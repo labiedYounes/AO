@@ -1,0 +1,163 @@
+<?php
+
+namespace medaSys\AOBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="marche")
+ */
+class marche {
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string" ,length=100)
+     */
+    protected $objet;
+    /**
+     * @ORM\OneToOne(targetEntity="resposableProjet")
+     */
+    protected $resposableProjet;//chrgé du projet
+    /**
+     * @ORM\Column(type="dateTime")
+     */
+    protected $datePassation;
+    /**
+     * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="marches")
+     */
+    protected $maitreOuvrage;
+    /**
+     * @ORM\OneToOne(targetEntity="situationMarche", mappedBy="marche")
+     */
+    protected $situationMarche;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set objet
+     *
+     * @param string $objet
+     * @return marche
+     */
+    public function setObjet($objet)
+    {
+        $this->objet = $objet;
+
+        return $this;
+    }
+
+    /**
+     * Get objet
+     *
+     * @return string 
+     */
+    public function getObjet()
+    {
+        return $this->objet;
+    }
+
+    /**
+     * Set datePassation
+     *
+     * @param \dateTime $datePassation
+     * @return marche
+     */
+    public function setDatePassation(\dateTime $datePassation)
+    {
+        $this->datePassation = $datePassation;
+
+        return $this;
+    }
+
+    /**
+     * Get datePassation
+     *
+     * @return \dateTime 
+     */
+    public function getDatePassation()
+    {
+        return $this->datePassation;
+    }
+
+    /**
+     * Set resposableProjet
+     *
+     * @param \medaSys\AOBundle\Entity\resposableProjet $resposableProjet
+     * @return marche
+     */
+    public function setResposableProjet(\medaSys\AOBundle\Entity\resposableProjet $resposableProjet = null)
+    {
+        $this->resposableProjet = $resposableProjet;
+
+        return $this;
+    }
+
+    /**
+     * Get resposableProjet
+     *
+     * @return \medaSys\AOBundle\Entity\resposableProjet 
+     */
+    public function getResposableProjet()
+    {
+        return $this->resposableProjet;
+    }
+
+    /**
+     * Set maitreOuvrage
+     *
+     * @param \medaSys\AOBundle\Entity\entreprise $maitreOuvrage
+     * @return marche
+     */
+    public function setMaitreOuvrage(\medaSys\AOBundle\Entity\entreprise $maitreOuvrage = null)
+    {
+        $this->maitreOuvrage = $maitreOuvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get maitreOuvrage
+     *
+     * @return \medaSys\AOBundle\Entity\entreprise 
+     */
+    public function getMaitreOuvrage()
+    {
+        return $this->maitreOuvrage;
+    }
+
+    /**
+     * Set situationMarche
+     *
+     * @param \medaSys\AOBundle\Entity\situationMarche $situationMarche
+     * @return marche
+     */
+    public function setSituationMarche(\medaSys\AOBundle\Entity\situationMarche $situationMarche = null)
+    {
+        $this->situationMarche = $situationMarche;
+
+        return $this;
+    }
+
+    /**
+     * Get situationMarche
+     *
+     * @return \medaSys\AOBundle\Entity\situationMarche 
+     */
+    public function getSituationMarche()
+    {
+        return $this->situationMarche;
+    }
+}

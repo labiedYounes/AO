@@ -1,0 +1,4 @@
+services:
+#    meda_sys_ao.example:
+#        class: medaSys\AOBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,249 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: jhonDoe
+ * Date: 16/03/2015
+ * Time: 19:43
+ */
+
+namespace medaSys\AOBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="etat")
+ */
+class etat {
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $ref;//nom
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $hasDate;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $hasNum;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $hasChoices;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $isLinked;
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    protected $valuesArray;
+    /**
+     * @ORM\ManyToOne(targetEntity="situationAppel", inversedBy="etats")
+     */
+    protected $situationAppel;
+    /**
+     * @ORM\ManyToOne(targetEntity="situationMarche", inversedBy="etats")
+     */
+    protected $situationMarche;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set ref
+     *
+     * @param string $ref
+     * @return etat
+     */
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+    /**
+     * Get ref
+     *
+     * @return string 
+     */
+    public function getRef()
+    {
+        return $this->ref;
+    }
+
+    /**
+     * Set hasDate
+     *
+     * @param string $hasDate
+     * @return etat
+     */
+    public function setHasDate($hasDate)
+    {
+        $this->hasDate = $hasDate;
+
+        return $this;
+    }
+
+    /**
+     * Get hasDate
+     *
+     * @return string 
+     */
+    public function getHasDate()
+    {
+        return $this->hasDate;
+    }
+
+    /**
+     * Set hasNum
+     *
+     * @param boolean $hasNum
+     * @return etat
+     */
+    public function setHasNum($hasNum)
+    {
+        $this->hasNum = $hasNum;
+
+        return $this;
+    }
+
+    /**
+     * Get hasNum
+     *
+     * @return boolean 
+     */
+    public function getHasNum()
+    {
+        return $this->hasNum;
+    }
+
+    /**
+     * Set hasChoices
+     *
+     * @param boolean $hasChoices
+     * @return etat
+     */
+    public function setHasChoices($hasChoices)
+    {
+        $this->hasChoices = $hasChoices;
+
+        return $this;
+    }
+
+    /**
+     * Get hasChoices
+     *
+     * @return boolean 
+     */
+    public function getHasChoices()
+    {
+        return $this->hasChoices;
+    }
+
+    /**
+     * Set isLinked
+     *
+     * @param boolean $isLinked
+     * @return etat
+     */
+    public function setIsLinked($isLinked)
+    {
+        $this->isLinked = $isLinked;
+
+        return $this;
+    }
+
+    /**
+     * Get isLinked
+     *
+     * @return boolean 
+     */
+    public function getIsLinked()
+    {
+        return $this->isLinked;
+    }
+
+    /**
+     * Set valuesArray
+     *
+     * @param array $valuesArray
+     * @return etat
+     */
+    public function setValuesArray($valuesArray)
+    {
+        $this->valuesArray = $valuesArray;
+
+        return $this;
+    }
+
+    /**
+     * Get valuesArray
+     *
+     * @return array 
+     */
+    public function getValuesArray()
+    {
+        return $this->valuesArray;
+    }
+
+    /**
+     * Set situationAppel
+     *
+     * @param \medaSys\AOBundle\Entity\situationAppel $situationAppel
+     * @return etat
+     */
+    public function setSituationAppel(\medaSys\AOBundle\Entity\situationAppel $situationAppel = null)
+    {
+        $this->situationAppel = $situationAppel;
+
+        return $this;
+    }
+
+    /**
+     * Get situationAppel
+     *
+     * @return \medaSys\AOBundle\Entity\situationAppel 
+     */
+    public function getSituationAppel()
+    {
+        return $this->situationAppel;
+    }
+
+    /**
+     * Set situationMarche
+     *
+     * @param \medaSys\AOBundle\Entity\situationMarche $situationMarche
+     * @return etat
+     */
+    public function setSituationMarche(\medaSys\AOBundle\Entity\situationMarche $situationMarche = null)
+    {
+        $this->situationMarche = $situationMarche;
+
+        return $this;
+    }
+
+    /**
+     * Get situationMarche
+     *
+     * @return \medaSys\AOBundle\Entity\situationMarche 
+     */
+    public function getSituationMarche()
+    {
+        return $this->situationMarche;
+    }
+}

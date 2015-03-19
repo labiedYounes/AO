@@ -1,0 +1,7 @@
+meda_sys_ao_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: medaSysAOBundle:Default:index }
+
+secRoot:
+    path: /test/{name}
+    defaults: {_controller: medaSysAOBundle:Default:test }
