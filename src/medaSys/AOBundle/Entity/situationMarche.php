@@ -21,7 +21,7 @@ class situationMarche {//suivi du marché
      */
     protected $etats;
     /**
-     * @ORM\OneToOne(targetEntity="appel", inversedBy="situationMarche")
+     * @ORM\OneToOne(targetEntity="marche", inversedBy="situationMarche")
      */
     protected $marche;
     /**
