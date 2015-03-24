@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="medaSys\AOBundle\Entity\appel" table="appel">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="objet" type="string" column="objet" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="description" type="text" column="description" precision="0" scale="0" nullable="false"/>
+    <field name="type" type="string" column="type" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="passation" type="string" column="passation" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="cp" type="string" column="cp" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="ville" type="string" column="ville" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="typeMarche" type="string" column="typeMarche" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="dateLimit" type="datetime" column="dateLimit" precision="0" scale="0" nullable="false"/>
+    <one-to-one field="situationAppel" target-entity="medaSys\AOBundle\Entity\entreprise" mapped-by="appel">
+      <join-columns/>
+    </one-to-one>
+    <many-to-one field="maitreOuvrage" target-entity="medaSys\AOBundle\Entity\entreprise" inversed-by="appels">
+      <join-columns>
+        <join-column name="maitreOuvrage_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="medaSys\AOBundle\Entity\lot" table="lot">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="numero" type="integer" column="numero" precision="0" scale="0" nullable="false"/>
+    <one-to-many field="soumissionnaires" target-entity="medaSys\AOBundle\Entity\lotSoumissionnaire" mapped-by="lot"/>
+    <many-to-one field="suiviPlis" target-entity="medaSys\AOBundle\Entity\suiviPlis" inversed-by="lots">
+      <join-columns>
+        <join-column name="suiviPlis_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

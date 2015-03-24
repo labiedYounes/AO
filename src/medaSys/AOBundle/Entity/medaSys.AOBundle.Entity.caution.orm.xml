@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="medaSys\AOBundle\Entity\caution" table="caution">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="type" type="string" column="type" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="dateDemande" type="datetime" column="dateDemande" precision="0" scale="0" nullable="false"/>
+    <field name="dateRetour" type="datetime" column="dateRetour" precision="0" scale="0" nullable="false"/>
+    <many-to-one field="situationMarche" target-entity="medaSys\AOBundle\Entity\situationMarche" inversed-by="cautions">
+      <join-columns>
+        <join-column name="situationMarche_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="situationAppel" target-entity="medaSys\AOBundle\Entity\situationAppel" inversed-by="cautions">
+      <join-columns>
+        <join-column name="situationAppel_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

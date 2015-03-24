@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="medaSys\AOBundle\Entity\situationMarche" table="situationMarche">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <one-to-one field="marche" target-entity="medaSys\AOBundle\Entity\marche" inversed-by="situationMarche">
+      <join-columns>
+        <join-column name="marche_id" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-many field="cautions" target-entity="medaSys\AOBundle\Entity\caution" mapped-by="situationMarche"/>
+    <one-to-many field="etats" target-entity="medaSys\AOBundle\Entity\etat" mapped-by="situationMarche"/>
+  </entity>
+</doctrine-mapping>

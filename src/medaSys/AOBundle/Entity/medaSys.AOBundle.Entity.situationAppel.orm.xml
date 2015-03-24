@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="medaSys\AOBundle\Entity\situationAppel" table="situationAppel">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="numOrder" type="string" column="numOrder" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="resultas" type="string" column="resultas" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="responsableCompte" type="string" column="responsableCompte" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="responsableQualification" type="string" column="responsableQualification" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="montantMarche" type="integer" column="montantMarche" precision="0" scale="0" nullable="false"/>
+    <field name="lot" type="integer" column="lot" precision="0" scale="0" nullable="false"/>
+    <field name="dateSoumission" type="datetime" column="dateSoumission" precision="0" scale="0" nullable="false"/>
+    <field name="observation" type="datetime" column="observation" precision="0" scale="0" nullable="false"/>
+    <one-to-one field="appel" target-entity="medaSys\AOBundle\Entity\appel" inversed-by="situationAppel">
+      <join-columns>
+        <join-column name="appel_id" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-many field="cautions" target-entity="medaSys\AOBundle\Entity\caution" mapped-by="situationAppel"/>
+    <one-to-many field="etats" target-entity="medaSys\AOBundle\Entity\etat" mapped-by="situationAppel"/>
+  </entity>
+</doctrine-mapping>

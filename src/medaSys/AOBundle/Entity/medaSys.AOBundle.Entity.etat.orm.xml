@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="medaSys\AOBundle\Entity\etat" table="etat">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="ref" type="string" column="ref" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="hasDate" type="string" column="hasDate" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="hasNum" type="boolean" column="hasNum" precision="0" scale="0" nullable="false"/>
+    <field name="hasChoices" type="boolean" column="hasChoices" precision="0" scale="0" nullable="false"/>
+    <field name="isLinked" type="boolean" column="isLinked" precision="0" scale="0" nullable="false"/>
+    <field name="valuesArray" type="json_array" column="valuesArray" precision="0" scale="0" nullable="false"/>
+    <many-to-one field="situationMarche" target-entity="medaSys\AOBundle\Entity\situationMarche" inversed-by="etats">
+      <join-columns>
+        <join-column name="situationMarche_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="situationAppel" target-entity="medaSys\AOBundle\Entity\situationAppel" inversed-by="etats">
+      <join-columns>
+        <join-column name="situationAppel_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

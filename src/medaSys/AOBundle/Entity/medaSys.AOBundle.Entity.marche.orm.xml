@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="medaSys\AOBundle\Entity\marche" table="marche">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="objet" type="string" column="objet" length="100" precision="0" scale="0" nullable="false"/>
+    <field name="datePassation" type="datetime" column="datePassation" precision="0" scale="0" nullable="false"/>
+    <one-to-one field="responsableProjet" target-entity="medaSys\AOBundle\Entity\responsable">
+      <join-columns>
+        <join-column name="responsableProjet_id" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="situationMarche" target-entity="medaSys\AOBundle\Entity\situationMarche" mapped-by="marche">
+      <join-columns/>
+    </one-to-one>
+    <many-to-one field="maitreOuvrage" target-entity="medaSys\AOBundle\Entity\entreprise" inversed-by="marches">
+      <join-columns>
+        <join-column name="maitreOuvrage_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
