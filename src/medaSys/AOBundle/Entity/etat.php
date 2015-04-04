@@ -24,22 +24,6 @@ class etat {
      */
     protected $ref;//nom
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    protected $hasDate;
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $hasNum;
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $hasChoices;
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $isLinked;
-    /**
      * @ORM\Column(type="json_array")
      */
     protected $valuesArray;
@@ -51,7 +35,14 @@ class etat {
      * @ORM\ManyToOne(targetEntity="situationMarche", inversedBy="etats")
      */
     protected $situationMarche;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="modelEtats", inversedBy="etats")
+     */
+    protected $modelEtats;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $displayedString;
 
     /**
      * Get id
@@ -245,5 +236,51 @@ class etat {
     public function getSituationMarche()
     {
         return $this->situationMarche;
+    }
+
+    /**
+     * Set displayedString
+     *
+     * @param string $displayedString
+     * @return etat
+     */
+    public function setDisplayedString($displayedString)
+    {
+        $this->displayedString = $displayedString;
+
+        return $this;
+    }
+
+    /**
+     * Get displayedString
+     *
+     * @return string 
+     */
+    public function getDisplayedString()
+    {
+        return $this->displayedString;
+    }
+
+    /**
+     * Set modelEtats
+     *
+     * @param \medaSys\AOBundle\Entity\modelEtats $modelEtats
+     * @return etat
+     */
+    public function setModelEtats(\medaSys\AOBundle\Entity\modelEtats $modelEtats = null)
+    {
+        $this->modelEtats = $modelEtats;
+
+        return $this;
+    }
+
+    /**
+     * Get modelEtats
+     *
+     * @return \medaSys\AOBundle\Entity\modelEtats 
+     */
+    public function getModelEtats()
+    {
+        return $this->modelEtats;
     }
 }

@@ -60,6 +60,10 @@ class situationAppel {
      * @ORM\OneToMany(targetEntity="caution", mappedBy="situationAppel")
      */
     protected $cautions;//oneToMany bidirectionnale
+     /**
+     * @ORM\OneToOne(targetEntity="modelEtats")
+     */
+    protected $modelEtats;
 
 
 
@@ -353,5 +357,28 @@ class situationAppel {
     public function getCautions()
     {
         return $this->cautions;
+    }
+
+    /**
+     * Set modelEtats
+     *
+     * @param \medaSys\AOBundle\Entity\modelEtats $modelEtats
+     * @return situationAppel
+     */
+    public function setModelEtats(\medaSys\AOBundle\Entity\modelEtats $modelEtats = null)
+    {
+        $this->modelEtats = $modelEtats;
+
+        return $this;
+    }
+
+    /**
+     * Get modelEtats
+     *
+     * @return \medaSys\AOBundle\Entity\modelEtats 
+     */
+    public function getModelEtats()
+    {
+        return $this->modelEtats;
     }
 }

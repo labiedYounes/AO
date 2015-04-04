@@ -15,7 +15,12 @@ class DefaultController extends Controller
     }
     public function testAction($name='test')
     {
-        return new Response('hello '.$name);
+        //return new Response('hello '.$name);
+
+    }
+    public function accueilAction($name)
+    {
+        return $this->render('medaSysAO:Default:accueil');
     }
 
 }

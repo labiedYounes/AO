@@ -18,11 +18,11 @@ class marche {
      */
     protected $objet;
     /**
-     * @ORM\OneToOne(targetEntity="resposableProjet")
+     * @ORM\OneToOne(targetEntity="responsable")
      */
-    protected $resposableProjet;//chrgé du projet
+    protected $responsableProjet;//chrgé du projet
     /**
-     * @ORM\Column(type="dateTime")
+     * @ORM\Column(type="datetime")
      */
     protected $datePassation;
     /**
@@ -72,10 +72,10 @@ class marche {
     /**
      * Set datePassation
      *
-     * @param \dateTime $datePassation
+     * @param \datetime $datePassation
      * @return marche
      */
-    public function setDatePassation(\dateTime $datePassation)
+    public function setDatePassation(\datetime $datePassation)
     {
         $this->datePassation = $datePassation;
 
@@ -85,7 +85,7 @@ class marche {
     /**
      * Get datePassation
      *
-     * @return \dateTime 
+     * @return \datetime
      */
     public function getDatePassation()
     {
@@ -159,5 +159,28 @@ class marche {
     public function getSituationMarche()
     {
         return $this->situationMarche;
+    }
+
+    /**
+     * Set responsableProjet
+     *
+     * @param \medaSys\AOBundle\Entity\responsable $responsableProjet
+     * @return marche
+     */
+    public function setResponsableProjet(\medaSys\AOBundle\Entity\responsable $responsableProjet = null)
+    {
+        $this->responsableProjet = $responsableProjet;
+
+        return $this;
+    }
+
+    /**
+     * Get responsableProjet
+     *
+     * @return \medaSys\AOBundle\Entity\responsable 
+     */
+    public function getResponsableProjet()
+    {
+        return $this->responsableProjet;
     }
 }

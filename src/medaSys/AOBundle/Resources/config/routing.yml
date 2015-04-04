@@ -5,3 +5,17 @@ meda_sys_ao_homepage:
 secRoot:
     path: /test/{name}
     defaults: {_controller: medaSysAOBundle:Default:test }
+
+create_Appel:
+    path: /Appel/create
+    defaults: {_controller: medaSysAOBundle:Appel:create }
+
+accueil:
+    path: /accueil
+    defaults: {_controller: medaSysAOBundle:Default:accueil }
+
+update_Appel:
+    path: /Appel/update/{id}
+    defaults: {_controller: medaSysAOBundle:Appel:update }
+
+

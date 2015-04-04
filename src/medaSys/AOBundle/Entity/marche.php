@@ -160,4 +160,27 @@ class marche {
     {
         return $this->situationMarche;
     }
+
+    /**
+     * Set responsableProjet
+     *
+     * @param \medaSys\AOBundle\Entity\responsable $responsableProjet
+     * @return marche
+     */
+    public function setResponsableProjet(\medaSys\AOBundle\Entity\responsable $responsableProjet = null)
+    {
+        $this->responsableProjet = $responsableProjet;
+
+        return $this;
+    }
+
+    /**
+     * Get responsableProjet
+     *
+     * @return \medaSys\AOBundle\Entity\responsable 
+     */
+    public function getResponsableProjet()
+    {
+        return $this->responsableProjet;
+    }
 }

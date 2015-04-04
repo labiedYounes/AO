@@ -41,11 +41,11 @@ class situationAppel {
      */
     protected $lot;
     /**
-     * @ORM\Column(type="dateTime")
+     * @ORM\Column(type="datetime")
      */
     protected $dateSoumission;
     /**
-     * @ORM\Column(type="dateTime")
+     * @ORM\Column(type="datetime")
      */
     protected $observation;
     /**
@@ -60,6 +60,10 @@ class situationAppel {
      * @ORM\OneToMany(targetEntity="caution", mappedBy="situationAppel")
      */
     protected $cautions;//oneToMany bidirectionnale
+     /**
+     * @ORM\OneToOne(targetEntity="modelEtats")
+     */
+    protected $modelEtats;
 
 
 
@@ -223,10 +227,10 @@ class situationAppel {
     /**
      * Set dateSoumission
      *
-     * @param \dateTime $dateSoumission
+     * @param \datetime $dateSoumission
      * @return situationAppel
      */
-    public function setDateSoumission(\dateTime $dateSoumission)
+    public function setDateSoumission(\datetime $dateSoumission)
     {
         $this->dateSoumission = $dateSoumission;
 
@@ -236,7 +240,7 @@ class situationAppel {
     /**
      * Get dateSoumission
      *
-     * @return \dateTime 
+     * @return \datetime
      */
     public function getDateSoumission()
     {
@@ -246,10 +250,10 @@ class situationAppel {
     /**
      * Set observation
      *
-     * @param \dateTime $observation
+     * @param \datetime $observation
      * @return situationAppel
      */
-    public function setObservation(\dateTime $observation)
+    public function setObservation(\datetime $observation)
     {
         $this->observation = $observation;
 
@@ -259,7 +263,7 @@ class situationAppel {
     /**
      * Get observation
      *
-     * @return \dateTime 
+     * @return \datetime
      */
     public function getObservation()
     {
@@ -353,5 +357,28 @@ class situationAppel {
     public function getCautions()
     {
         return $this->cautions;
+    }
+
+    /**
+     * Set modelEtats
+     *
+     * @param \medaSys\AOBundle\Entity\modelEtats $modelEtats
+     * @return situationAppel
+     */
+    public function setModelEtats(\medaSys\AOBundle\Entity\modelEtats $modelEtats = null)
+    {
+        $this->modelEtats = $modelEtats;
+
+        return $this;
+    }
+
+    /**
+     * Get modelEtats
+     *
+     * @return \medaSys\AOBundle\Entity\modelEtats 
+     */
+    public function getModelEtats()
+    {
+        return $this->modelEtats;
     }
 }

@@ -21,11 +21,11 @@ class caution {
      */
     protected $type;
     /**
-     * @ORM\Column(type="dateTime")
+     * @ORM\Column(type="datetime")
      */
     protected $dateDemande;
     /**
-     * @ORM\Column(type="dateTime")
+     * @ORM\Column(type="datetime")
      */
     protected $dateRetour;
     /**
@@ -74,10 +74,10 @@ class caution {
     /**
      * Set dateDemande
      *
-     * @param \dateTime $dateDemande
+     * @param \datetime $dateDemande
      * @return caution
      */
-    public function setDateDemande(\dateTime $dateDemande)
+    public function setDateDemande(\datetime $dateDemande)
     {
         $this->dateDemande = $dateDemande;
 
@@ -87,7 +87,7 @@ class caution {
     /**
      * Get dateDemande
      *
-     * @return \dateTime 
+     * @return \datetime
      */
     public function getDateDemande()
     {
@@ -97,10 +97,10 @@ class caution {
     /**
      * Set dateRetour
      *
-     * @param \dateTime $dateRetour
+     * @param \datetime $dateRetour
      * @return caution
      */
-    public function setDateRetour(\dateTime $dateRetour)
+    public function setDateRetour(\datetime $dateRetour)
     {
         $this->dateRetour = $dateRetour;
 
@@ -110,7 +110,7 @@ class caution {
     /**
      * Get dateRetour
      *
-     * @return \dateTime 
+     * @return \datetime
      */
     public function getDateRetour()
     {

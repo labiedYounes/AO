@@ -57,9 +57,9 @@ class entreprise {
      */
     protected $type;//maitre ouvrage, modataire, soummisionnaire
     /**
-     * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage")
+     * @ORM\OneToMany(targetEntity="appel", mappedBy="entreprise")
      */
-    protected $appels;
+    protected $appel;
     /**
      * @ORM\OneToMany(targetEntity="marche", mappedBy="maitreOuvrage")
      */
@@ -392,5 +392,15 @@ class entreprise {
     public function getLots()
     {
         return $this->lots;
+    }
+
+    /**
+     * Get appel
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAppel()
+    {
+        return $this->appel;
     }
 }

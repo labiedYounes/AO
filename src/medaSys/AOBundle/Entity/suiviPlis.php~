@@ -20,7 +20,7 @@ class suiviPlis {
      */
     protected $id;
     /**
-     * @ORM\Column(type="dateTime")
+     * @ORM\Column(type="datetime")
      */
     protected $dateOuverture;
     /**
@@ -65,10 +65,10 @@ class suiviPlis {
     /**
      * Set dateOuverture
      *
-     * @param \dateTime $dateOuverture
+     * @param \datetime $dateOuverture
      * @return suiviPlis
      */
-    public function setDateOuverture(\dateTime $dateOuverture)
+    public function setDateOuverture(\datetime $dateOuverture)
     {
         $this->dateOuverture = $dateOuverture;
 
@@ -78,7 +78,7 @@ class suiviPlis {
     /**
      * Get dateOuverture
      *
-     * @return \dateTime 
+     * @return \datetime
      */
     public function getDateOuverture()
     {

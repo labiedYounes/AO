@@ -29,6 +29,10 @@ class situationMarche {//suivi du marché
      */
     protected $cautions;
 
+     /**
+     * @ORM\OneToOne(targetEntity="modelEtats")
+     */
+    protected $modelEtats;
 
     /**
      * Constructor
@@ -136,5 +140,28 @@ class situationMarche {//suivi du marché
     public function getCautions()
     {
         return $this->cautions;
+    }
+
+    /**
+     * Set modelEtats
+     *
+     * @param \medaSys\AOBundle\Entity\modelEtats $modelEtats
+     * @return situationMarche
+     */
+    public function setModelEtats(\medaSys\AOBundle\Entity\modelEtats $modelEtats = null)
+    {
+        $this->modelEtats = $modelEtats;
+
+        return $this;
+    }
+
+    /**
+     * Get modelEtats
+     *
+     * @return \medaSys\AOBundle\Entity\modelEtats 
+     */
+    public function getModelEtats()
+    {
+        return $this->modelEtats;
     }
 }

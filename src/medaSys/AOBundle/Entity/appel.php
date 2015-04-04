@@ -33,7 +33,7 @@ class appel{
      */
     protected $passation;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="integer")
      */
     protected $cp;
     /**
@@ -49,9 +49,9 @@ class appel{
      */
     protected $dateLimit;
     /**
-     * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels")
+     * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appel")
      */
-    protected $maitreOuvrage;//oneToOne Unidirectionnal
+    protected $entreprise;
     /**
      * @ORM\oneToOne(targetEntity="entreprise", mappedBy="appel")
      */
@@ -298,5 +298,28 @@ class appel{
     public function getSituationAppel()
     {
         return $this->situationAppel;
+    }
+
+    /**
+     * Set entreprise
+     *
+     * @param \medaSys\AOBundle\Entity\entreprise $entreprise
+     * @return appel
+     */
+    public function setEntreprise(\medaSys\AOBundle\Entity\entreprise $entreprise = null)
+    {
+        $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    /**
+     * Get entreprise
+     *
+     * @return \medaSys\AOBundle\Entity\entreprise 
+     */
+    public function getEntreprise()
+    {
+        return $this->entreprise;
     }
 }
