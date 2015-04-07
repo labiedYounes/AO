@@ -1,0 +1,4 @@
+medaSys/AOBundle/Entity/appel:
+    properties:
+        objet:
+             - NotBlank: ~

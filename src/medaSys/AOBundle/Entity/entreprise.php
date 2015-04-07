@@ -25,15 +25,15 @@ class entreprise {
      */
     protected $nom;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $sectereur;//secteur d'activité
+    protected $secteur;//secteur d'activité
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $forme;//forme juridique
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $adresse;
     /**
@@ -41,7 +41,7 @@ class entreprise {
      */
     protected $telephone;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $fax;
     /**
@@ -49,17 +49,18 @@ class entreprise {
      */
     protected $mail;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $site;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $type;//maitre ouvrage, modataire, soummisionnaire
     /**
-     * @ORM\OneToMany(targetEntity="appel", mappedBy="entreprise")
+     * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage")
+     * @ORM\JoinColumn(name="appel_id", referencedColumnName="id")
      */
-    protected $appel;
+    protected $appels;
     /**
      * @ORM\OneToMany(targetEntity="marche", mappedBy="maitreOuvrage")
      */
@@ -402,5 +403,31 @@ class entreprise {
     public function getAppel()
     {
         return $this->appel;
+    }
+    public function __toString(){
+        return $this->getNom();
+    }
+
+    /**
+     * Set secteur
+     *
+     * @param string $secteur
+     * @return entreprise
+     */
+    public function setSecteur($secteur)
+    {
+        $this->secteur = $secteur;
+
+        return $this;
+    }
+
+    /**
+     * Get secteur
+     *
+     * @return string 
+     */
+    public function getSecteur()
+    {
+        return $this->secteur;
     }
 }

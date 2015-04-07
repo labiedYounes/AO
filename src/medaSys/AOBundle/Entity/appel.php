@@ -4,6 +4,8 @@
 namespace medaSys\AOBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContext;
 /**
  * @ORM\Entity
  * @ORM\Table(name="appel")
@@ -18,42 +20,49 @@ class appel{
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
      */
     protected $objet;
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     protected $description;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
+     *
      */
     protected $type;//dev ...
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
+     *
      */
     protected $passation;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $cp;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $ville;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $typeMarche;// privé|public
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
      */
     protected $dateLimit;
     /**
-     * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appel")
+     * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels")
+     *  @ORM\JoinColumn(name="maitreOuvrage_id", referencedColumnName="id")
      */
-    protected $entreprise;
+    protected $maitreOuvrage;//oneToOne Unidirectionnal
     /**
-     * @ORM\oneToOne(targetEntity="entreprise", mappedBy="appel")
+     * @ORM\oneToOne(targetEntity="situationAppel", mappedBy="appel")
      */
     protected $situationAppel;//oneToOne Bidirectionnal
 
@@ -300,26 +309,4 @@ class appel{
         return $this->situationAppel;
     }
 
-    /**
-     * Set entreprise
-     *
-     * @param \medaSys\AOBundle\Entity\entreprise $entreprise
-     * @return appel
-     */
-    public function setEntreprise(\medaSys\AOBundle\Entity\entreprise $entreprise = null)
-    {
-        $this->entreprise = $entreprise;
-
-        return $this;
-    }
-
-    /**
-     * Get entreprise
-     *
-     * @return \medaSys\AOBundle\Entity\entreprise 
-     */
-    public function getEntreprise()
-    {
-        return $this->entreprise;
-    }
 }
