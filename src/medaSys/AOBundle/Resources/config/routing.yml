@@ -1,3 +1,19 @@
+meda_sys_ao_situationAppel:
+    resource: "@medaSysAOBundle/Resources/config/routing/situationappel.yml"
+    prefix:   /situationAppel
+
+meda_sys_ao_caution:
+    resource: "@medaSysAOBundle/Resources/config/routing/caution.yml"
+    prefix:   /caution
+
+meda_sys_ao_appel:
+    resource: "@medaSysAOBundle/Resources/config/routing/appel.yml"
+    prefix:   /appel
+
+meda_sys_ao_entreprise:
+    resource: "@medaSysAOBundle/Resources/config/routing/entreprise.yml"
+    prefix:   /entreprise
+
 meda_sys_ao_homepage:
     path:     /hello/{name}
     defaults: { _controller: medaSysAOBundle:Default:index }

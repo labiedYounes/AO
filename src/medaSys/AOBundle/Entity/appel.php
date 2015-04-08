@@ -40,6 +40,7 @@ class appel{
     protected $passation;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
     protected $cp;
     /**
@@ -289,10 +290,10 @@ class appel{
     /**
      * Set situationAppel
      *
-     * @param \medaSys\AOBundle\Entity\entreprise $situationAppel
+     * @param \medaSys\AOBundle\Entity\situationAppel $situationAppel
      * @return appel
      */
-    public function setSituationAppel(\medaSys\AOBundle\Entity\entreprise $situationAppel = null)
+    public function setSituationAppel(\medaSys\AOBundle\Entity\situationAppel $situationAppel = null)
     {
         $this->situationAppel = $situationAppel;
 
@@ -302,7 +303,7 @@ class appel{
     /**
      * Get situationAppel
      *
-     * @return \medaSys\AOBundle\Entity\entreprise 
+     * @return \medaSys\AOBundle\Entity\situationAppel
      */
     public function getSituationAppel()
     {

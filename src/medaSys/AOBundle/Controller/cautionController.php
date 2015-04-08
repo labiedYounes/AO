@@ -2,75 +2,68 @@
 
 namespace medaSys\AOBundle\Controller;
 
-use medaSys\AOBundle\Entity\situationAppel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use medaSys\AOBundle\Entity\appel;
-use medaSys\AOBundle\Form\appelType;
+use medaSys\AOBundle\Entity\caution;
+use medaSys\AOBundle\Form\cautionType;
 
 /**
- * appel controller.
+ * caution controller.
  *
  */
-class appelController extends Controller
+class cautionController extends Controller
 {
 
     /**
-     * Lists all appel entities.
+     * Lists all caution entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('medaSysAOBundle:appel')->findAll();
+        $entities = $em->getRepository('medaSysAOBundle:caution')->findAll();
 
-        return $this->render('medaSysAOBundle:appel:index.html.twig', array(
+        return $this->render('medaSysAOBundle:caution:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new appel entity.
+     * Creates a new caution entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new appel();
+        $entity = new caution();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $maitreOuvrage=$entity->getMaitreOuvrage();//persisting the underlying object
-            $situationAppel=new situationAppel();
-            $entity->setSituationAppel($situationAppel);
-            $situationAppel->setAppel($entity);
             $em->persist($entity);
-            $em->persist($maitreOuvrage);
-            $em->persist($situationAppel);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('appel_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('caution_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('medaSysAOBundle:appel:new.html.twig', array(
+        return $this->render('medaSysAOBundle:caution:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a appel entity.
+     * Creates a form to create a caution entity.
      *
-     * @param appel $entity The entity
+     * @param caution $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(appel $entity)
+    private function createCreateForm(caution $entity)
     {
-        $form = $this->createForm(new appelType(), $entity, array(
-            'action' => $this->generateUrl('appel_create'),
+        $form = $this->createForm(new cautionType(), $entity, array(
+            'action' => $this->generateUrl('caution_create'),
             'method' => 'POST',
         ));
 
@@ -80,60 +73,60 @@ class appelController extends Controller
     }
 
     /**
-     * Displays a form to create a new appel entity.
+     * Displays a form to create a new caution entity.
      *
      */
     public function newAction()
     {
-        $entity = new appel();
+        $entity = new caution();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('medaSysAOBundle:appel:new.html.twig', array(
+        return $this->render('medaSysAOBundle:caution:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a appel entity.
+     * Finds and displays a caution entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:caution')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find appel entity.');
+            throw $this->createNotFoundException('Unable to find caution entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('medaSysAOBundle:appel:show.html.twig', array(
+        return $this->render('medaSysAOBundle:caution:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing appel entity.
+     * Displays a form to edit an existing caution entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:caution')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find appel entity.');
+            throw $this->createNotFoundException('Unable to find caution entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:caution:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -141,16 +134,16 @@ class appelController extends Controller
     }
 
     /**
-    * Creates a form to edit a appel entity.
+    * Creates a form to edit a caution entity.
     *
-    * @param appel $entity The entity
+    * @param caution $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(appel $entity)
+    private function createEditForm(caution $entity)
     {
-        $form = $this->createForm(new appelType(), $entity, array(
-            'action' => $this->generateUrl('appel_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new cautionType(), $entity, array(
+            'action' => $this->generateUrl('caution_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -159,17 +152,17 @@ class appelController extends Controller
         return $form;
     }
     /**
-     * Edits an existing appel entity.
+     * Edits an existing caution entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:caution')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find appel entity.');
+            throw $this->createNotFoundException('Unable to find caution entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -179,17 +172,17 @@ class appelController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('caution_edit', array('id' => $id)));
         }
 
-        return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:caution:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a appel entity.
+     * Deletes a caution entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -199,21 +192,21 @@ class appelController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+            $entity = $em->getRepository('medaSysAOBundle:caution')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find appel entity.');
+                throw $this->createNotFoundException('Unable to find caution entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('appel'));
+        return $this->redirect($this->generateUrl('caution'));
     }
 
     /**
-     * Creates a form to delete a appel entity by id.
+     * Creates a form to delete a caution entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -222,7 +215,7 @@ class appelController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('appel_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('caution_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

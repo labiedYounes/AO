@@ -1,0 +1,30 @@
+situationAppel:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:situationAppel:index" }
+
+situationAppel_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:situationAppel:show" }
+
+situationAppel_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:situationAppel:new" }
+
+situationAppel_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:situationAppel:create" }
+    requirements: { _method: post }
+
+situationAppel_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:situationAppel:edit" }
+
+situationAppel_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:situationAppel:update" }
+    requirements: { _method: post|put }
+
+situationAppel_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:situationAppel:delete" }
+    requirements: { _method: post|delete }

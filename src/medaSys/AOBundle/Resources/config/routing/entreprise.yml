@@ -1,0 +1,30 @@
+entreprise:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:entreprise:index" }
+
+entreprise_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:entreprise:show" }
+
+entreprise_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:entreprise:new" }
+
+entreprise_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:entreprise:create" }
+    requirements: { _method: post }
+
+entreprise_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:entreprise:edit" }
+
+entreprise_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:entreprise:update" }
+    requirements: { _method: post|put }
+
+entreprise_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:entreprise:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>situationAppel list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numorder</th>
+                <th>Resultas</th>
+                <th>Responsablecompte</th>
+                <th>Responsablequalification</th>
+                <th>Montantmarche</th>
+                <th>Lot</th>
+                <th>Datesoumission</th>
+                <th>Observation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('situationAppel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.numOrder }}</td>
+                <td>{{ entity.resultas }}</td>
+                <td>{{ entity.responsableCompte }}</td>
+                <td>{{ entity.responsableQualification }}</td>
+                <td>{{ entity.montantMarche }}</td>
+                <td>{{ entity.lot }}</td>
+                <td>{% if entity.dateSoumission %}{{ entity.dateSoumission|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.observation %}{{ entity.observation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('situationAppel_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('situationAppel_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('situationAppel_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

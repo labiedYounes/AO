@@ -2,75 +2,68 @@
 
 namespace medaSys\AOBundle\Controller;
 
-use medaSys\AOBundle\Entity\situationAppel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use medaSys\AOBundle\Entity\appel;
-use medaSys\AOBundle\Form\appelType;
+use medaSys\AOBundle\Entity\entreprise;
+use medaSys\AOBundle\Form\entrepriseType;
 
 /**
- * appel controller.
+ * entreprise controller.
  *
  */
-class appelController extends Controller
+class entrepriseController extends Controller
 {
 
     /**
-     * Lists all appel entities.
+     * Lists all entreprise entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('medaSysAOBundle:appel')->findAll();
+        $entities = $em->getRepository('medaSysAOBundle:entreprise')->findAll();
 
-        return $this->render('medaSysAOBundle:appel:index.html.twig', array(
+        return $this->render('medaSysAOBundle:entreprise:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new appel entity.
+     * Creates a new entreprise entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new appel();
+        $entity = new entreprise();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $maitreOuvrage=$entity->getMaitreOuvrage();//persisting the underlying object
-            $situationAppel=new situationAppel();
-            $entity->setSituationAppel($situationAppel);
-            $situationAppel->setAppel($entity);
             $em->persist($entity);
-            $em->persist($maitreOuvrage);
-            $em->persist($situationAppel);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('appel_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('entreprise_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('medaSysAOBundle:appel:new.html.twig', array(
+        return $this->render('medaSysAOBundle:entreprise:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a appel entity.
+     * Creates a form to create a entreprise entity.
      *
-     * @param appel $entity The entity
+     * @param entreprise $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(appel $entity)
+    private function createCreateForm(entreprise $entity)
     {
-        $form = $this->createForm(new appelType(), $entity, array(
-            'action' => $this->generateUrl('appel_create'),
+        $form = $this->createForm(new entrepriseType(), $entity, array(
+            'action' => $this->generateUrl('entreprise_create'),
             'method' => 'POST',
         ));
 
@@ -80,60 +73,60 @@ class appelController extends Controller
     }
 
     /**
-     * Displays a form to create a new appel entity.
+     * Displays a form to create a new entreprise entity.
      *
      */
     public function newAction()
     {
-        $entity = new appel();
+        $entity = new entreprise();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('medaSysAOBundle:appel:new.html.twig', array(
+        return $this->render('medaSysAOBundle:entreprise:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a appel entity.
+     * Finds and displays a entreprise entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:entreprise')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find appel entity.');
+            throw $this->createNotFoundException('Unable to find entreprise entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('medaSysAOBundle:appel:show.html.twig', array(
+        return $this->render('medaSysAOBundle:entreprise:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing appel entity.
+     * Displays a form to edit an existing entreprise entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:entreprise')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find appel entity.');
+            throw $this->createNotFoundException('Unable to find entreprise entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:entreprise:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -141,16 +134,16 @@ class appelController extends Controller
     }
 
     /**
-    * Creates a form to edit a appel entity.
+    * Creates a form to edit a entreprise entity.
     *
-    * @param appel $entity The entity
+    * @param entreprise $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(appel $entity)
+    private function createEditForm(entreprise $entity)
     {
-        $form = $this->createForm(new appelType(), $entity, array(
-            'action' => $this->generateUrl('appel_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new entrepriseType(), $entity, array(
+            'action' => $this->generateUrl('entreprise_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -159,17 +152,17 @@ class appelController extends Controller
         return $form;
     }
     /**
-     * Edits an existing appel entity.
+     * Edits an existing entreprise entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:entreprise')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find appel entity.');
+            throw $this->createNotFoundException('Unable to find entreprise entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -179,17 +172,17 @@ class appelController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('entreprise_edit', array('id' => $id)));
         }
 
-        return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:entreprise:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a appel entity.
+     * Deletes a entreprise entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -199,21 +192,21 @@ class appelController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+            $entity = $em->getRepository('medaSysAOBundle:entreprise')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find appel entity.');
+                throw $this->createNotFoundException('Unable to find entreprise entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('appel'));
+        return $this->redirect($this->generateUrl('entreprise'));
     }
 
     /**
-     * Creates a form to delete a appel entity by id.
+     * Creates a form to delete a entreprise entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -222,7 +215,7 @@ class appelController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('appel_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('entreprise_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

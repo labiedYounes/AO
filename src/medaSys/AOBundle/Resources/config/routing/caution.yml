@@ -1,0 +1,30 @@
+caution:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:caution:index" }
+
+caution_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:caution:show" }
+
+caution_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:caution:new" }
+
+caution_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:caution:create" }
+    requirements: { _method: post }
+
+caution_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:caution:edit" }
+
+caution_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:caution:update" }
+    requirements: { _method: post|put }
+
+caution_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:caution:delete" }
+    requirements: { _method: post|delete }

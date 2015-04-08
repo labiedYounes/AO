@@ -1,0 +1,30 @@
+appel:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:appel:index" }
+
+appel_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:appel:show" }
+
+appel_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:appel:new" }
+
+appel_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:appel:create" }
+    requirements: { _method: post }
+
+appel_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:appel:edit" }
+
+appel_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:appel:update" }
+    requirements: { _method: post|put }
+
+appel_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:appel:delete" }
+    requirements: { _method: post|delete }
