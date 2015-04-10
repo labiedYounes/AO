@@ -1,3 +1,7 @@
+meda_sys_ao_etat:
+    resource: "@medaSysAOBundle/Resources/config/routing/etat.yml"
+    prefix:   /etat
+
 meda_sys_ao_situationAppel:
     resource: "@medaSysAOBundle/Resources/config/routing/situationappel.yml"
     prefix:   /situationAppel

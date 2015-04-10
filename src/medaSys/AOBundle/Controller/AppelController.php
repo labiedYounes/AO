@@ -48,7 +48,7 @@ class appelController extends Controller
             $situationAppel->setAppel($entity);
             $em->persist($entity);
             $em->persist($maitreOuvrage);
-            $em->persist($situationAppel);
+           // $em->persist($situationAppel);
             $em->flush();
 
             return $this->redirect($this->generateUrl('appel_show', array('id' => $entity->getId())));

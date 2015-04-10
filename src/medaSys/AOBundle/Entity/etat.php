@@ -28,11 +28,11 @@ class etat {
      */
     protected $valuesArray;
     /**
-     * @ORM\ManyToOne(targetEntity="situationAppel", inversedBy="etats")
+     * @ORM\ManyToOne(targetEntity="situationAppel", inversedBy="etats",cascade={"persist","remove"})
      */
     protected $situationAppel;
     /**
-     * @ORM\ManyToOne(targetEntity="situationMarche", inversedBy="etats")
+     * @ORM\ManyToOne(targetEntity="situationMarche", inversedBy="etats",cascade={"persist","remove"})
      */
     protected $situationMarche;
     /**
@@ -53,7 +53,10 @@ class etat {
     {
         return $this->id;
     }
-
+    public function setId($id){
+        $this->id=$id;
+        return $this;
+    }
     /**
      * Set ref
      *
@@ -282,5 +285,16 @@ class etat {
     public function getModelEtats()
     {
         return $this->modelEtats;
+    }
+
+    /**
+     * clones etat without copying id , modelEtats,situationAppel or situationMarch
+     */
+    public function getClone(){
+        $clonedEtat=new etat();
+        $clonedEtat->setDisplayedString($this->getDisplayedString());
+        $clonedEtat->setValuesArray($this->getValuesArray());
+        $clonedEtat->setRef($this->getRef());
+        return $clonedEtat;
     }
 }

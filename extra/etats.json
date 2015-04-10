@@ -28,7 +28,7 @@
 	},
 //AO
     "13":{"choices":["Oui ","Non"]},//soumission
-    "14":{"textfield":{"displayedString":"Motif", "type":"text" ,"value":null}},
+    "14":{"textfield":{"displayedString":" si non Motif", "type":"text" ,"value":null}},
     "15":{"choices":["Oui ","Non"]},//avant vente
     "16":{"linkes":{"pointing":"entreprise","value":[]}}//soumissionaires}
 }

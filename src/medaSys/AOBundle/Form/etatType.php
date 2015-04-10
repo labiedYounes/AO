@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class situationAppelType extends AbstractType
+class etatType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,16 +15,10 @@ class situationAppelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numOrder')
-            ->add('resultas')
-            ->add('responsableCompte')
-            ->add('responsableQualification')
-            ->add('montantMarche')
-            ->add('lot')
-            ->add('dateSoumission')
-            ->add('observation')
-            ->add('appel',new appelType())
-           // ->add('etats',new etatType())
+            ->add('ref')
+            ->add('valuesArray')
+            ->add('displayedString')
+
         ;
     }
     
@@ -34,7 +28,7 @@ class situationAppelType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'medaSys\AOBundle\Entity\situationAppel'
+            'data_class' => 'medaSys\AOBundle\Entity\etat'
         ));
     }
 
@@ -43,6 +37,6 @@ class situationAppelType extends AbstractType
      */
     public function getName()
     {
-        return 'medasys_aobundle_situationappel';
+        return 'medasys_aobundle_etat';
     }
 }

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="situationAppel")
+ * $ORM\EntityListeners({"situationAppelListener"})
  */
 
 class situationAppel {
@@ -45,23 +46,23 @@ class situationAppel {
      */
     protected $dateSoumission;
     /**
-     * @ORM\Column(type="datetime",nullable=true)
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $observation;
     /**
-     * @ORM\OneToMany(targetEntity="etat", mappedBy="situationAppel")
+     * @ORM\OneToMany(targetEntity="etat", mappedBy="situationAppel", cascade={"persist","remove"})
      */
     protected $etats;
     /**
-     * @ORM\OneToOne(targetEntity="appel", inversedBy="situationAppel")
+     * @ORM\OneToOne(targetEntity="appel", inversedBy="situationAppel",cascade={"persist","remove"})
      */
     protected $appel;//oneToOne bidirectionnale
     /**
      * @ORM\OneToMany(targetEntity="caution", mappedBy="situationAppel")
      */
     protected $cautions;//oneToMany bidirectionnale
-     /**
-     * @ORM\OneToOne(targetEntity="modelEtats")
+    /**
+     * @ORM\ManyToOne(targetEntity="modelEtats")
      */
     protected $modelEtats;
 
@@ -79,7 +80,7 @@ class situationAppel {
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -102,7 +103,7 @@ class situationAppel {
     /**
      * Get numOrder
      *
-     * @return string 
+     * @return string
      */
     public function getNumOrder()
     {
@@ -125,7 +126,7 @@ class situationAppel {
     /**
      * Get resultas
      *
-     * @return string 
+     * @return string
      */
     public function getResultas()
     {
@@ -148,7 +149,7 @@ class situationAppel {
     /**
      * Get responsableCompte
      *
-     * @return string 
+     * @return string
      */
     public function getResponsableCompte()
     {
@@ -171,7 +172,7 @@ class situationAppel {
     /**
      * Get responsableQualification
      *
-     * @return string 
+     * @return string
      */
     public function getResponsableQualification()
     {
@@ -194,7 +195,7 @@ class situationAppel {
     /**
      * Get montantMarche
      *
-     * @return integer 
+     * @return integer
      */
     public function getMontantMarche()
     {
@@ -217,7 +218,7 @@ class situationAppel {
     /**
      * Get lot
      *
-     * @return integer 
+     * @return integer
      */
     public function getLot()
     {
@@ -296,7 +297,7 @@ class situationAppel {
     /**
      * Get etats
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEtats()
     {
@@ -319,7 +320,7 @@ class situationAppel {
     /**
      * Get appel
      *
-     * @return \medaSys\AOBundle\Entity\appel 
+     * @return \medaSys\AOBundle\Entity\appel
      */
     public function getAppel()
     {
@@ -352,7 +353,7 @@ class situationAppel {
     /**
      * Get cautions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCautions()
     {
@@ -375,7 +376,7 @@ class situationAppel {
     /**
      * Get modelEtats
      *
-     * @return \medaSys\AOBundle\Entity\modelEtats 
+     * @return \medaSys\AOBundle\Entity\modelEtats
      */
     public function getModelEtats()
     {

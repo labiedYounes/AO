@@ -30,7 +30,7 @@ class situationMarche {//suivi du marché
     protected $cautions;
 
      /**
-     * @ORM\OneToOne(targetEntity="modelEtats")
+     * @ORM\ManyToOne(targetEntity="modelEtats")
      */
     protected $modelEtats;
 

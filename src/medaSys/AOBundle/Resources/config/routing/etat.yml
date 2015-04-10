@@ -1,0 +1,30 @@
+etat:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:etat:index" }
+
+etat_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:etat:show" }
+
+etat_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:etat:new" }
+
+etat_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:etat:create" }
+    requirements: { _method: post }
+
+etat_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:etat:edit" }
+
+etat_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:etat:update" }
+    requirements: { _method: post|put }
+
+etat_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:etat:delete" }
+    requirements: { _method: post|delete }

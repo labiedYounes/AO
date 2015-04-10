@@ -7,18 +7,26 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="modelEtats")
+ * @ORM\Entity(repositoryClass="medaSys\AOBundle\Entity\modelEtatsRepository")
  */
 class modelEtats{
 	/**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
      */
     protected $id;
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     protected $isDefault;
+
+    /**
+     * @ORM\Column(type="string", length=100 )
+     */
+    protected $type;
+
     /**
      * @ORM\OneToMany(targetEntity="etat", mappedBy="modelEtats")
      */

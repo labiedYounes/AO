@@ -57,7 +57,7 @@ class entreprise {
      */
     protected $type;//maitre ouvrage, modataire, soummisionnaire
     /**
-     * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage")
+     * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage",cascade={"remove"})
      * @ORM\JoinColumn(name="appel_id", referencedColumnName="id")
      */
     protected $appels;

@@ -63,7 +63,7 @@ class appel{
      */
     protected $maitreOuvrage;//oneToOne Unidirectionnal
     /**
-     * @ORM\oneToOne(targetEntity="situationAppel", mappedBy="appel")
+     * @ORM\oneToOne(targetEntity="situationAppel", mappedBy="appel",cascade={"persist","remove"})
      */
     protected $situationAppel;//oneToOne Bidirectionnal
 

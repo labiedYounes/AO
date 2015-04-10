@@ -2,11 +2,12 @@
 
 namespace medaSys\AOBundle\Form;
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class situationAppelType extends AbstractType
+class appelForSituationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,16 +16,16 @@ class situationAppelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numOrder')
-            ->add('resultas')
-            ->add('responsableCompte')
-            ->add('responsableQualification')
-            ->add('montantMarche')
-            ->add('lot')
-            ->add('dateSoumission')
-            ->add('observation')
-            ->add('appel',new appelType())
-           // ->add('etats',new etatType())
+            ->add('objet')
+            ->add('description')
+            ->add('type')
+            ->add('passation')
+            ->add('cp')
+            ->add('ville')
+            ->add('typeMarche')
+            ->add('dateLimit')
+           // ->add('maitreOuvrage',new entrepriseType())
+
         ;
     }
     
@@ -34,7 +35,7 @@ class situationAppelType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'medaSys\AOBundle\Entity\situationAppel'
+            'data_class' => 'medaSys\AOBundle\Entity\appel'
         ));
     }
 
@@ -43,6 +44,6 @@ class situationAppelType extends AbstractType
      */
     public function getName()
     {
-        return 'medasys_aobundle_situationappel';
+        return 'medasys_aobundle_appel';
     }
 }
