@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="enterprise")
+ * @ORM\Entity(repositoryClass="medaSys\AOBundle\Entity\entrepriseRepository")
  */
 class entreprise {
     /**

@@ -1,0 +1,30 @@
+situationmarche:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:situationMarche:index" }
+
+situationmarche_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:situationMarche:show" }
+
+situationmarche_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:situationMarche:new" }
+
+situationmarche_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:situationMarche:create" }
+    requirements: { _method: post }
+
+situationmarche_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:situationMarche:edit" }
+
+situationmarche_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:situationMarche:update" }
+    requirements: { _method: post|put }
+
+situationmarche_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:situationMarche:delete" }
+    requirements: { _method: post|delete }

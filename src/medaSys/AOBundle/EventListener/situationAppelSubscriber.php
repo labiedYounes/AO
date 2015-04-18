@@ -38,7 +38,6 @@ class situationAppelSubscriber implements  EventSubscriber  {
             $clone=$etat->getClone();
             $clone->setSituationAppel($entity);
             $entity->addEtat($clone);
-
         }
     }
 

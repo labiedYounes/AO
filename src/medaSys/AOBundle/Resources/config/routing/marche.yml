@@ -1,0 +1,30 @@
+marche:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:marche:index" }
+
+marche_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:marche:show" }
+
+marche_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:marche:new" }
+
+marche_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:marche:create" }
+    requirements: { _method: post }
+
+marche_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:marche:edit" }
+
+marche_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:marche:update" }
+    requirements: { _method: post|put }
+
+marche_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:marche:delete" }
+    requirements: { _method: post|delete }

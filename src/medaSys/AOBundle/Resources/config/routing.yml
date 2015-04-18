@@ -1,3 +1,15 @@
+meda_sys_ao_lot:
+    resource: "@medaSysAOBundle/Resources/config/routing/lot.yml"
+    prefix:   /lot
+
+meda_sys_ao_situationmarche:
+    resource: "@medaSysAOBundle/Resources/config/routing/situationmarche.yml"
+    prefix:   /situationmarche
+
+meda_sys_ao_marche:
+    resource: "@medaSysAOBundle/Resources/config/routing/marche.yml"
+    prefix:   /marche
+
 meda_sys_ao_etat:
     resource: "@medaSysAOBundle/Resources/config/routing/etat.yml"
     prefix:   /etat

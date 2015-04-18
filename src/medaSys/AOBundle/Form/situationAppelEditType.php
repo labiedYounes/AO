@@ -15,7 +15,7 @@ class situationAppelEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('appel',new appelForSituationType())
+           /* ->add('appel',new appelForSituationType())
             ->add('numOrder')
             ->add('resultas')
             ->add('responsableCompte')
@@ -23,9 +23,9 @@ class situationAppelEditType extends AbstractType
             ->add('montantMarche')
             ->add('lot')
             ->add('dateSoumission')
-            ->add('observation')
-           // ->add('etats','collection',array('type'=>new etatType()))
-            ->add($options['etats'][0]->getDisplayedString(), null, array('mapped' => false,'data'=>$options['etats'][0]->getValuesArray()['choices'][0]))
+            ->add('observation')*/
+            ->add('etats','collection',array('type'=>new etatType()))
+            //->add($options['etats'][0]->getDisplayedString(), null, array('mapped' => false,'data'=>$options['etats'][0]->getValuesArray()['choices'][0]))
 
         ;
 

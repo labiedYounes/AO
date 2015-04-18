@@ -57,7 +57,7 @@ class entreprise {
      */
     protected $type;//maitre ouvrage, modataire, soummisionnaire
     /**
-     * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage")
+     * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage",cascade={"remove"})
      * @ORM\JoinColumn(name="appel_id", referencedColumnName="id")
      */
     protected $appels;
@@ -406,5 +406,28 @@ class entreprise {
     }
     public function __toString(){
         return $this->getNom();
+    }
+
+    /**
+     * Set secteur
+     *
+     * @param string $secteur
+     * @return entreprise
+     */
+    public function setSecteur($secteur)
+    {
+        $this->secteur = $secteur;
+
+        return $this;
+    }
+
+    /**
+     * Get secteur
+     *
+     * @return string 
+     */
+    public function getSecteur()
+    {
+        return $this->secteur;
     }
 }

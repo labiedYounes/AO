@@ -11,7 +11,7 @@ INSERT into etat(displayedString,modelEtats_id,valuesArray) values('',2,'{"choic
 INSERT into etat(displayedString,modelEtats_id,valuesArray) values('',2,'{"choices":["Caution R.G	"], "dateField":{"displayedString":"Date", "type":"date" ,"value":null},"quantity":{"displayedString":"Montant","type":"double" ,"value":null}}');
 INSERT into etat(displayedString,modelEtats_id,valuesArray) values('',2,'{"choices":["Facture (Décompte) ","Signé"]}');
 INSERT into etat(displayedString,modelEtats_id,valuesArray) values('',2,'{"dateField":{"displayedString":"Date", "type":"date" ,"value":null}, "quantity":{"displayedString":"N°","type":"number" ,"value":null}');
-INSERT into etat(displayedString,modelEtats_id,valuesArray) values('soumission',1,'{"choices":["Oui ","Non"]}');
-INSERT into etat(displayedString,modelEtats_id,valuesArray) values('si non Motif',1,'{"textfield":{"displayedString":"si non Motif", "type":"text" ,"value":null}}');
-INSERT into etat(displayedString,modelEtats_id,valuesArray) values('avant vente',1,'{"choices":["Oui ","Non"]}');
-INSERT into etat(displayedString,modelEtats_id,valuesArray) values('soumissionaires',1,'{"linkes":{"pointing":"entreprise","value":[]}}');
+INSERT into etat(displayedString,modelEtats_id,orderNum,valuesArray) values('soumission',1,1,'{"type":"choice","label":"Soumission","options":{"choices":["Oui ","Non"],"checked":null}}');
+INSERT into etat(displayedString,modelEtats_id,orderNum,valuesArray) values('si non Motif',1,2,'{"type":"text","label":"Si non","text":null}');
+INSERT into etat(displayedString,modelEtats_id,orderNum,valuesArray) values('avant vente',1,3,'{"type":"choice","label":"Avant vente","options":{"choices":["Oui ","Non"],"checked":null}}');
+INSERT into etat(displayedString,modelEtats_id,orderNum,valuesArray) values('soumissionaires',1,4,'{"type":"link","label":"Soumissionnaires","targetEntity":"medaSysAOBundle:entreprise","targetsArray":[]}');

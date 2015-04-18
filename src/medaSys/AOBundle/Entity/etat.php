@@ -27,6 +27,11 @@ class etat {
      * @ORM\Column(type="json_array")
      */
     protected $valuesArray;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $orderNum;
     /**
      * @ORM\ManyToOne(targetEntity="situationAppel", inversedBy="etats",cascade={"persist","remove"})
      */
@@ -295,6 +300,33 @@ class etat {
         $clonedEtat->setDisplayedString($this->getDisplayedString());
         $clonedEtat->setValuesArray($this->getValuesArray());
         $clonedEtat->setRef($this->getRef());
+        $clonedEtat->setOrderNum($this->getOrderNum());
         return $clonedEtat;
+    }
+
+
+
+
+    /**
+     * Set orderNum
+     *
+     * @param integer $orderNum
+     * @return etat
+     */
+    public function setOrderNum($orderNum)
+    {
+        $this->orderNum = $orderNum;
+
+        return $this;
+    }
+
+    /**
+     * Get orderNum
+     *
+     * @return integer 
+     */
+    public function getOrderNum()
+    {
+        return $this->orderNum;
     }
 }

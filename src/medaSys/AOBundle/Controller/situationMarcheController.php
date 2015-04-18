@@ -5,38 +5,37 @@ namespace medaSys\AOBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use medaSys\AOBundle\Entity\situationAppel;
-use medaSys\AOBundle\Form\situationAppelType;
-use medaSys\AOBundle\Form\situationAppelEditType;
-use medaSys\AOBundle\Form\etatForm;
+use medaSys\AOBundle\Entity\situationMarche;
+use medaSys\AOBundle\Form\situationMarcheType;
+
 /**
- * situationAppel controller.
+ * situationMarche controller.
  *
  */
-class situationAppelController extends Controller
+class situationMarcheController extends Controller
 {
 
     /**
-     * Lists all situationAppel entities.
+     * Lists all situationMarche entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('medaSysAOBundle:situationAppel')->findAll();
+        $entities = $em->getRepository('medaSysAOBundle:situationMarche')->findAll();
 
-        return $this->render('medaSysAOBundle:situationAppel:index.html.twig', array(
+        return $this->render('medaSysAOBundle:situationMarche:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new situationAppel entity.
+     * Creates a new situationMarche entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new situationAppel();
+        $entity = new situationMarche();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -45,26 +44,26 @@ class situationAppelController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('situationAppel_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('situationmarche_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('medaSysAOBundle:situationAppel:new.html.twig', array(
+        return $this->render('medaSysAOBundle:situationMarche:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a situationAppel entity.
+     * Creates a form to create a situationMarche entity.
      *
-     * @param situationAppel $entity The entity
+     * @param situationMarche $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(situationAppel $entity)
+    private function createCreateForm(situationMarche $entity)
     {
-        $form = $this->createForm(new situationAppelType(), $entity, array(
-            'action' => $this->generateUrl('situationAppel_create'),
+        $form = $this->createForm(new situationMarcheType(), $entity, array(
+            'action' => $this->generateUrl('situationmarche_create'),
             'method' => 'POST',
         ));
 
@@ -74,60 +73,60 @@ class situationAppelController extends Controller
     }
 
     /**
-     * Displays a form to create a new situationAppel entity.
+     * Displays a form to create a new situationMarche entity.
      *
      */
     public function newAction()
     {
-        $entity = new situationAppel();
+        $entity = new situationMarche();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('medaSysAOBundle:situationAppel:new.html.twig', array(
+        return $this->render('medaSysAOBundle:situationMarche:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a situationAppel entity.
+     * Finds and displays a situationMarche entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:situationAppel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:situationMarche')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find situationAppel entity.');
+            throw $this->createNotFoundException('Unable to find situationMarche entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('medaSysAOBundle:situationAppel:show.html.twig', array(
+        return $this->render('medaSysAOBundle:situationMarche:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing situationAppel entity.
+     * Displays a form to edit an existing situationMarche entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:situationAppel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:situationMarche')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find situationAppel entity.');
+            throw $this->createNotFoundException('Unable to find situationMarche entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('medaSysAOBundle:situationAppel:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:situationMarche:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -135,38 +134,35 @@ class situationAppelController extends Controller
     }
 
     /**
-    * Creates a form to edit a situationAppel entity.
+    * Creates a form to edit a situationMarche entity.
     *
-    * @param situationAppel $entity The entity
+    * @param situationMarche $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(situationAppel $entity)
+    private function createEditForm(situationMarche $entity)
     {
-        $form = $this->createForm(new situationAppelType(), $entity, array(
-            'action' => $this->generateUrl('situationAppel_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new situationMarcheType(), $entity, array(
+            'action' => $this->generateUrl('situationmarche_update', array('id' => $entity->getId())),
             'method' => 'PUT',
-
         ));
-        $etatForm= new etatForm($form,$entity->getEtats(),$this->getDoctrine()->getEntityManager());
-
 
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
     /**
-     * Edits an existing situationAppel entity.
+     * Edits an existing situationMarche entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:situationAppel')->find($id);
+        $entity = $em->getRepository('medaSysAOBundle:situationMarche')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find situationAppel entity.');
+            throw $this->createNotFoundException('Unable to find situationMarche entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -176,17 +172,17 @@ class situationAppelController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('situationAppel_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('situationmarche_edit', array('id' => $id)));
         }
 
-        return $this->render('medaSysAOBundle:situationAppel:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:situationMarche:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a situationAppel entity.
+     * Deletes a situationMarche entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -196,21 +192,21 @@ class situationAppelController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('medaSysAOBundle:situationAppel')->find($id);
+            $entity = $em->getRepository('medaSysAOBundle:situationMarche')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find situationAppel entity.');
+                throw $this->createNotFoundException('Unable to find situationMarche entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('situationAppel'));
+        return $this->redirect($this->generateUrl('situationmarche'));
     }
 
     /**
-     * Creates a form to delete a situationAppel entity by id.
+     * Creates a form to delete a situationMarche entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -219,7 +215,7 @@ class situationAppelController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('situationAppel_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('situationmarche_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
