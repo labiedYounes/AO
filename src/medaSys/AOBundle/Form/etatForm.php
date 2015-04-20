@@ -32,14 +32,14 @@ class etatForm {
 
     }
     function getChoice($form,$etat){
-        $form->add('e'.$etat->getOrderNum(),$etat->getValuesArray()['type'],array('label'=>$etat->getValuesArray()["label"],'choices'=>$etat->getValuesArray()['options']['choices'],'multiple'=>true,'mapped'=>false));
+        $form->add('e'.$etat->getRef(),$etat->getValuesArray()['type'],array('label'=>$etat->getValuesArray()["label"],'choices'=>$etat->getValuesArray()['options']['choices'],'multiple'=>false,'mapped'=>false));
     }
     function getText($form,$etat){
-        $form->add('e'.$etat->getOrderNum(),$etat->getValuesArray()['type'],array('label'=>$etat->getValuesArray()["label"],'data'=>$etat->getValuesArray()['text'],'mapped'=>false));
+        $form->add('e'.$etat->getRef(),$etat->getValuesArray()['type'],array('label'=>$etat->getValuesArray()["label"],'data'=>$etat->getValuesArray()['text'],'mapped'=>false));
     }
     function getLink($form,$etat){
         $targets=$this->getTargets($etat);
-        $form->add('e'.$etat->getOrderNum(),"choice",array('label'=>$etat->getValuesArray()["label"],'choices'=>$targets,'multiple'=>true,'mapped'=>false));
+        $form->add('e'.$etat->getRef(),"choice",array('label'=>$etat->getValuesArray()["label"],'choices'=>$targets,'multiple'=>true,'mapped'=>false));
     }
     function getTargets($etat){
         return $this->em->getRepository($etat->getValuesArray()['targetEntity'])->findByIds($etat->getValuesArray()['targetsArray']);

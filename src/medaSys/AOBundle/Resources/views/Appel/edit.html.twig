@@ -3,7 +3,27 @@
 {% block body -%}
     <h1>appel edit</h1>
 
-    {{ form(edit_form) }}
+    <table>
+        {{ form_start(edit_form) }}
+        <tr><td>
+                {{ form_row(edit_form.situationAppel.responsableCompte) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.maitreOuvrage.nom) }}</td></tr>
+        {# {{ form_row(edit_form.nom) }}#}
+        <tr><td> {{ form_row(edit_form.maitreOuvrage.telephone) }}</td>
+            <td>{{ form_row(edit_form.maitreOuvrage.fax) }}</td>
+            <td>{{ form_row(edit_form.maitreOuvrage.mail) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.dateSoumission) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.montantMarche) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.objet) }}</td>
+            <td> {{ form_row(edit_form.dateLimit) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.lot) }}</td><</tr>
+        <tr><td> {{ form_row(edit_form.esoumission) }}</td><
+            <td>{{ form_row(edit_form.emotif) }}</td><</tr>
+
+        <tr><td>{{ form_row(edit_form.passation) }}</td><</tr>
+        <tr  ><td>{{ form_row(edit_form.cautionnement) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.qualificationTechnique)}}</td><td>{{ form_row(edit_form.soumissionnairesConcurrents) }}</td><</tr>
+        <tr><td>{{ form_row(edit_form.submit) }}</td><</tr>
+    </table>
 
         <ul class="record_actions">
     <li>

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use medaSys\AOBundle\Entity\appel;
 use medaSys\AOBundle\Form\appelType;
+use medaSys\AOBundle\Form\etatForm;
 
 /**
  * appel controller.
@@ -20,6 +21,7 @@ class appelController extends Controller
      * Lists all appel entities.
      *
      */
+    private $etatForm;
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -40,11 +42,11 @@ class appelController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $maitreOuvrage=$entity->getMaitreOuvrage();//persisting the underlying object
-            $situationAppel=new situationAppel();
-            $entity->setSituationAppel($situationAppel);
+            $situationAppel=$entity->getSituationAppel();
+          //  $entity->setSituationAppel($situationAppel);
             $situationAppel->setAppel($entity);
             $em->persist($entity);
             $em->persist($maitreOuvrage);
@@ -72,9 +74,10 @@ class appelController extends Controller
         $form = $this->createForm(new appelType(), $entity, array(
             'action' => $this->generateUrl('appel_create'),
             'method' => 'POST',
-        ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        ));
+          $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -86,10 +89,21 @@ class appelController extends Controller
     public function newAction()
     {
         $entity = new appel();
-        $form   = $this->createCreateForm($entity);
+        $situation=new situationAppel();
+        $entity->setSituationAppel($situation);
+       // $situation->setAppel($entity);
+        $situation->setLot(2);
+        $em=$this->getDoctrine()->getEntityManager();
+        $em->persist($situation);
+        $em->flush();
+
+        $form   = $this->createCreateForm($entity,$situation);
+        $this->etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+
 
         return $this->render('medaSysAOBundle:appel:new.html.twig', array(
             'entity' => $entity,
+            'situation'=>$situation,
             'form'   => $form->createView(),
         ));
     }
@@ -132,6 +146,7 @@ class appelController extends Controller
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+        $this->etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
 
         return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
             'entity'      => $entity,
@@ -153,8 +168,13 @@ class appelController extends Controller
             'action' => $this->generateUrl('appel_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
+        $form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
+        $form->add('installation', 'submit', array('label' => 'Installation'));
+        $form->add('qualificationTechnique', 'submit', array('label' => 'Qualification Technique'));
         $form->add('submit', 'submit', array('label' => 'Update'));
+
+        $form->add('soumissionnairesConcurrents', 'submit', array('label' => 'soumissionnaires concurrents'));
+        //$form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }

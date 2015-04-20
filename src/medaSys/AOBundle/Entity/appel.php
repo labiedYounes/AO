@@ -24,8 +24,8 @@ class appel{
      */
     protected $objet;
     /**
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @ORM\Column(type="text", nullable=true)
+
      */
     protected $description;
     /**

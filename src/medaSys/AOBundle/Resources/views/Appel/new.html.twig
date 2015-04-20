@@ -3,13 +3,33 @@
 {% block body -%}
     <h1>appel creation</h1>
 
-    {{ form(form) }}
+    {# {{ form(form) }}#}
+    <table>
+    {{ form_start(form) }}
+        <tr><td>
+    {{ form_row(form.situationAppel.responsableCompte) }}</td></tr>
+        <tr><td>{{ form_row(form.maitreOuvrage.nom) }}</td></tr>
+    {# {{ form_row(form.nom) }}#}
+   <tr><td> {{ form_row(form.maitreOuvrage.telephone) }}</td>
+       <td>{{ form_row(form.maitreOuvrage.fax) }}</td>
+       <td>{{ form_row(form.maitreOuvrage.mail) }}</td></tr>
+        <tr><td>{{ form_row(form.situationAppel.dateSoumission) }}</td></tr>
+        <tr><td>{{ form_row(form.situationAppel.montantMarche) }}</td></tr>
+        <tr><td>{{ form_row(form.objet) }}</td>
+            <td> {{ form_row(form.dateLimit) }}</td></tr>
+        <tr><td>{{ form_row(form.situationAppel.lot) }}</td><</tr>
+        <tr><td> {{ form_row(form.esoumission) }}</td><
+            <td>{{ form_row(form.emotif) }}</td><</tr>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('appel') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+        <tr><td>{{ form_row(form.passation) }}</td><</tr>
+    <tr><td>{{ form_row(form.submit) }}</td><</tr>
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('appel') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
 {% endblock %}

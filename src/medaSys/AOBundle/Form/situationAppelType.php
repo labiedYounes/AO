@@ -23,7 +23,7 @@ class situationAppelType extends AbstractType
             ->add('lot')
             ->add('dateSoumission')
             ->add('observation')
-            ->add('appel',new appelType())
+            //->add('appel',new appelType())
            // ->add('etats',new etatType())
         ;
     }

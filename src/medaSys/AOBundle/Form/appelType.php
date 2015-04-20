@@ -3,6 +3,7 @@
 namespace medaSys\AOBundle\Form;
 
 
+use medaSys\AOBundle\Entity\situationAppel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -25,6 +26,7 @@ class appelType extends AbstractType
             ->add('typeMarche')
             ->add('dateLimit')
             ->add('maitreOuvrage',new entrepriseType())
+            ->add('situationAppel',new situationAppelType());
 
         ;
     }
@@ -36,7 +38,8 @@ class appelType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'medaSys\AOBundle\Entity\appel'
-        ));
+        ))
+        ;
     }
 
     /**
