@@ -40,6 +40,11 @@ class situationAppel {
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    protected $montantSoumission;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
     protected $lot;
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -381,5 +386,28 @@ class situationAppel {
     public function getModelEtats()
     {
         return $this->modelEtats;
+    }
+
+    /**
+     * Set montantSoumission
+     *
+     * @param integer $montantSoumission
+     * @return situationAppel
+     */
+    public function setMontantSoumission($montantSoumission)
+    {
+        $this->montantSoumission = $montantSoumission;
+
+        return $this;
+    }
+
+    /**
+     * Get montantSoumission
+     *
+     * @return integer 
+     */
+    public function getMontantSoumission()
+    {
+        return $this->montantSoumission;
     }
 }
