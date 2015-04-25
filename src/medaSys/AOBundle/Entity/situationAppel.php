@@ -51,6 +51,10 @@ class situationAppel {
      */
     protected $dateSoumission;
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $dateVisiteLieux;
+    /**
      * @ORM\Column(type="text",nullable=true)
      */
     protected $observation;
@@ -70,7 +74,10 @@ class situationAppel {
      * @ORM\ManyToOne(targetEntity="modelEtats")
      */
     protected $modelEtats;
-
+    /**
+     * @ORM\oneToOne(targetEntity="suiviPlis",cascade={"persist","remove"})
+     */
+    protected $suiviPlis;
 
 
     /**
@@ -252,6 +259,22 @@ class situationAppel {
     {
         return $this->dateSoumission;
     }
+    public function setDateVisiteLieux(\datetime $dateVisiteLieux)
+    {
+        $this->dateVisiteLieux = $dateVisiteLieux;
+
+        return $this;
+    }
+
+    /**
+     * Get dateSoumission
+     *
+     * @return \datetime
+     */
+    public function getDateVisiteLieux()
+    {
+        return $this->dateVisiteLieux;
+    }
 
     /**
      * Set observation
@@ -409,5 +432,21 @@ class situationAppel {
     public function getMontantSoumission()
     {
         return $this->montantSoumission;
+    }
+    public function setsuiviPlis(\medaSys\AOBundle\Entity\suiviPlis $suiviPlis)
+    {
+        $this->suiviPlis = $suiviPlis;
+
+        return $this;
+    }
+
+    /**
+     * Get situationAppel
+     *
+     * @return \medaSys\AOBundle\Entity\suiviPlis
+     */
+    public function getSuiviPlis()
+    {
+        return $this->suiviPlis;
     }
 }

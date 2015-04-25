@@ -1,0 +1,30 @@
+suiviplis:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:index" }
+
+suiviplis_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:show" }
+
+suiviplis_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:new" }
+
+suiviplis_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:create" }
+    requirements: { _method: post }
+
+suiviplis_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:edit" }
+
+suiviplis_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:update" }
+    requirements: { _method: post|put }
+
+suiviplis_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:delete" }
+    requirements: { _method: post|delete }

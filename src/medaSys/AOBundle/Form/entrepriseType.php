@@ -15,15 +15,16 @@ class entrepriseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('secteur')
-            ->add('forme')
-            ->add('adresse')
-            ->add('telephone')
-            ->add('fax')
-            ->add('mail')
-            ->add('site')
-            ->add('type')
+            ->add('nomEntreprise',null,array('label'=>'Maître d’Ouvrage'))
+            ->add('nomContact',null,array('label'=>'Nom du contact '))
+            ->add('secteur',null,array('label'=>'Secteur'))
+            ->add('forme',null,array('label'=>'Forme juridique'))
+            ->add('adresse',null,array('label'=>'Adresse'))
+            ->add('telephone',null,array('label'=>'Tél'))
+            ->add('fax',null,array('label'=>'Fax'))
+            ->add('mail',null,array('label'=>'E-mail'))
+            ->add('site',null,array('label'=>'Site'))
+            ->add('type',null,array('label'=>'Type (Maître d’Ouvrage,Soumissionnaires,Mondataire)'))
         ;
     }
     

@@ -24,7 +24,11 @@ class entreprise {
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $nom;
+    protected $nomContact;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $nomEntreprise;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
@@ -96,9 +100,9 @@ class entreprise {
      * @param string $nom
      * @return entreprise
      */
-    public function setNom($nom)
+    public function setNomContact($nom)
     {
-        $this->nom = $nom;
+        $this->nomContact = $nom;
 
         return $this;
     }
@@ -108,11 +112,26 @@ class entreprise {
      *
      * @return string 
      */
-    public function getNom()
+    public function getNomcontact()
     {
-        return $this->nom;
+        return $this->nomContact;
+    }
+    public function setNomEntreprise($nom)
+    {
+        $this->nomEntreprise = $nom;
+
+        return $this;
     }
 
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNomEntreprise()
+    {
+        return $this->nomEntreprise;
+    }
     /**
      * Set sectereur
      *

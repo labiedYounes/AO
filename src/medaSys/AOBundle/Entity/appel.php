@@ -40,6 +40,11 @@ class appel{
     protected $passation;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     *
+     */
+    protected $attestation;
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
     protected $cp;
@@ -57,6 +62,10 @@ class appel{
      * @Assert\GreaterThan("+1 days")
      */
     protected $dateLimit;
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $lieuxDepot;
     /**
      * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels")
      *  @ORM\JoinColumn(name="maitreOuvrage_id", referencedColumnName="id")
@@ -102,7 +111,22 @@ class appel{
     {
         return $this->objet;
     }
+    public function setLieuxDepot($lieuxDepot)
+    {
+        $this->lieuxDepot = $lieuxDepot;
 
+        return $this;
+    }
+
+    /**
+     * Get objet
+     *
+     * @return string
+     */
+    public function getLieuxDepot()
+    {
+        return $this->lieuxDepot;
+    }
     /**
      * Set description
      *
@@ -143,6 +167,22 @@ class appel{
      * Get type
      *
      * @return string 
+     */
+    public function getAttestation()
+    {
+        return $this->attestation;
+    }
+    public function setAttestation($attestation)
+    {
+        $this->attestation = $attestation;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
      */
     public function getType()
     {

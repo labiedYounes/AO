@@ -20,7 +20,7 @@ class suiviPlis {
      */
     protected $id;
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      */
     protected $dateOuverture;
     /**
@@ -32,9 +32,13 @@ class suiviPlis {
      */
     protected $chagerDepot;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100 ,nullable=true)
      */
     protected $seance;
+    /**
+     * @ORM\Column(type="string", length=100 ,nullable=true)
+     */
+    protected $lieuxOuverture;
     /**
      * @ORM\OneToOne(targetEntity="situationAppel")
      */
@@ -68,12 +72,12 @@ class suiviPlis {
      * @param \datetime $dateOuverture
      * @return suiviPlis
      */
-    public function setDateOuverture(\datetime $dateOuverture)
-    {
-        $this->dateOuverture = $dateOuverture;
+    public function setDateOuverture(\datetime $dateOuverture=null)
+{
+    $this->dateOuverture = $dateOuverture;
 
-        return $this;
-    }
+    return $this;
+}
 
     /**
      * Get dateOuverture
@@ -83,6 +87,22 @@ class suiviPlis {
     public function getDateOuverture()
     {
         return $this->dateOuverture;
+    }
+    public function setLieuxOuverture($lieuxOuverture)
+    {
+        $this->lieuxOuverture = $lieuxOuverture;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOuverture
+     *
+     * @return \datetime
+     */
+    public function getLieuxOuverture()
+    {
+        return $this->lieuxOuverture;
     }
 
     /**

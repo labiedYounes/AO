@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use medaSys\AOBundle\Entity\appel;
+use medaSys\AOBundle\Entity\suiviPlis;
 use medaSys\AOBundle\Form\appelType;
 use medaSys\AOBundle\Form\etatForm;
 
@@ -46,11 +47,15 @@ class appelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $maitreOuvrage=$entity->getMaitreOuvrage();//persisting the underlying object
             $situationAppel=$entity->getSituationAppel();
-          //  $entity->setSituationAppel($situationAppel);
+           $suiviPlis=$situationAppel->getSuiviPlis();
+            $suiviPlis->setSituationAppel($situationAppel);
+
+            //  $entity->setSituationAppel($situationAppel);
             $situationAppel->setAppel($entity);
             $em->persist($entity);
             $em->persist($maitreOuvrage);
-           // $em->persist($situationAppel);
+            $em->persist($suiviPlis);
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('appel_show', array('id' => $entity->getId())));
@@ -77,7 +82,7 @@ class appelController extends Controller
 
 
         ));
-          $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -91,7 +96,7 @@ class appelController extends Controller
         $entity = new appel();
         $situation=new situationAppel();
         $entity->setSituationAppel($situation);
-       // $situation->setAppel($entity);
+        // $situation->setAppel($entity);
         $situation->setLot(2);
         $em=$this->getDoctrine()->getEntityManager();
         $em->persist($situation);
@@ -156,12 +161,12 @@ class appelController extends Controller
     }
 
     /**
-    * Creates a form to edit a appel entity.
-    *
-    * @param appel $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a appel entity.
+     *
+     * @param appel $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(appel $entity)
     {
         $form = $this->createForm(new appelType(), $entity, array(
@@ -246,6 +251,6 @@ class appelController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-        ;
+            ;
     }
 }

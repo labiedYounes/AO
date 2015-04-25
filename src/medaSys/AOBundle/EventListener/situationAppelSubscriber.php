@@ -11,6 +11,7 @@ use medaSys\AOBundle\Entity\Repository\modelEtatsRepository;
 use medaSys\AOBundle\Entity\modelEats;
 use medaSys\AOBundle\Entity\etat;
 
+
 class situationAppelSubscriber implements  EventSubscriber  {
     public function getSubscribedEvents(){
         return array('postPersist');
