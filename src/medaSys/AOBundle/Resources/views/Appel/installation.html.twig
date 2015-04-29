@@ -37,10 +37,15 @@
             {% if viewStr[0]=="all" %}
                 <tr><td>{{ form_row(attribute(edit_form,idEtat))}}</td></tr>
             {% endif %}
+            {% set viewStr=idEtat|split('',12) %}
 
+            {% if viewStr[0]=="installation" %}
+                <tr><td>{{ form_row(attribute(edit_form,idEtat))}}</td></tr>
+            {% endif %}
         {% endfor %}
 
-        <tr><td>{{ form_row(edit_form.cautionnement) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.qualificationTechnique)}}</td><td>{{ form_row(edit_form.soumissionnairesConcurrents) }}</td><</tr>
+
+       {# <tr><td>{{ form_row(edit_form.cautionnement) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.qualificationTechnique)}}</td><td>{{ form_row(edit_form.soumissionnairesConcurrents) }}</td><</tr>#}
         <tr><td>{{ form_row(edit_form.submit) }}</td><</tr>
 
         {{ form_widget(edit_form._token) }}

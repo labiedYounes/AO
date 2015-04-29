@@ -75,7 +75,7 @@ class situationAppel {
      */
     protected $modelEtats;
     /**
-     * @ORM\oneToOne(targetEntity="suiviPlis",cascade={"persist","remove"})
+     * @ORM\oneToOne(targetEntity="suiviPlis")
      */
     protected $suiviPlis;
 

@@ -8,7 +8,7 @@
 
 namespace medaSys\AOBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="enterprise")
@@ -43,18 +43,22 @@ class entreprise {
     protected $adresse;
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
     protected $telephone;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
     protected $fax;
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Email
      */
     protected $mail;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Url
      */
     protected $site;
     /**

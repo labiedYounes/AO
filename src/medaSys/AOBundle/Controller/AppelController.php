@@ -22,7 +22,7 @@ class appelController extends Controller
      * Lists all appel entities.
      *
      */
-    private $etatForm;
+
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -51,6 +51,8 @@ class appelController extends Controller
             $suiviPlis->setSituationAppel($situationAppel);
 
             //  $entity->setSituationAppel($situationAppel);
+            $etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+            $etatForm->processEtats();
             $situationAppel->setAppel($entity);
             $em->persist($entity);
             $em->persist($maitreOuvrage);
@@ -103,8 +105,8 @@ class appelController extends Controller
         $em->flush();
 
         $form   = $this->createCreateForm($entity,$situation);
-        $this->etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
-
+        $etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+        $etatForm->renderEtats();
 
         return $this->render('medaSysAOBundle:appel:new.html.twig', array(
             'entity' => $entity,
@@ -150,8 +152,10 @@ class appelController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
+       $etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+        $etatForm->renderEtats();
+
         $deleteForm = $this->createDeleteForm($id);
-        $this->etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
 
         return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
             'entity'      => $entity,
@@ -173,12 +177,13 @@ class appelController extends Controller
             'action' => $this->generateUrl('appel_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-        $form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
+       $form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
         $form->add('installation', 'submit', array('label' => 'Installation'));
         $form->add('qualificationTechnique', 'submit', array('label' => 'Qualification Technique'));
+        $form->add('soumissionnairesConcurrents', 'submit', array('label' => 'soumissionnaires concurrents'));
+
         $form->add('submit', 'submit', array('label' => 'Update'));
 
-        $form->add('soumissionnairesConcurrents', 'submit', array('label' => 'soumissionnaires concurrents'));
         //$form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
@@ -200,8 +205,16 @@ class appelController extends Controller
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
+        if($editForm->get('installation')->isClicked()){
+            return $this->render('medaSysAOBundle:appel:installation.html.twig', array(
+                'entity'      => $entity,
+                'edit_form'   => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }
         if ($editForm->isValid()) {
+         $etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+            $etatForm->processEtats();
             $em->flush();
 
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));

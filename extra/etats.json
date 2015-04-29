@@ -27,8 +27,8 @@
         "quantity":{"displayedString":"N°","type":"number" ,"value":null}
 	},
 //AO
-    "13":{"type":"choice","label":"Soumission","options":{"choices":["Oui ","Non"],"checked":null}},//soumission
-    "14":{"type":"text","label":"Si non motif","text":null},
-    "15":{"type":"choice","label":"Avant vente","options":{"choices":["Oui ","Non"],"checked":null}},//avant vente
-    "16":{"type":"link","label":"Soumissionnaires","targetEntity":"medaSysAOBundle:entreprise","targetsArray":[]}//soumissionaires}
+    "13":{"type":"choice","label":"Soumission","options":{"choices":["Oui ","Non"],"checked":null},"displayArea":"all"},//soumission
+    "14":{"type":"text","label":"Si non motif","text":null,"displayArea":"all"},
+    "15":{"type":"choice","label":"Avant vente","options":{"choices":["Oui ","Non"],"checked":null},"displayArea":"all"},//avant vente
+    "16":{"type":"link","label":"Soumissionnaires","targetEntity":"medaSysAOBundle:entreprise","targetsArray":[],"displayArea":"all"}//soumissionaires}
 }
