@@ -5,6 +5,7 @@
 namespace medaSys\AOBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="caution")
@@ -16,16 +17,26 @@ class caution {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    public function __construct()
+    {
+        $this->dateRetour=new \DateTime();
+        $this->dateDemande=new \DateTime();
+
+    }
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $type;
+    protected $type="def";
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
      */
     protected $dateDemande;
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
      */
     protected $dateRetour;
     /**

@@ -8,6 +8,7 @@
 
 namespace medaSys\AOBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="suiviPlis")
@@ -21,26 +22,28 @@ class suiviPlis {
     protected $id;
     /**
      * @ORM\Column(type="datetime",nullable=true)
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
      */
     protected $dateOuverture;
     /**
      * @ORM\OneToOne(targetEntity="responsable")
      */
-    protected $responsableCompte;
+    protected $responsableCompte="test";
     /**
      * @ORM\OneToOne(targetEntity="responsable")
      */
-    protected $chagerDepot;
+    protected $chagerDepot="test";
     /**
      * @ORM\Column(type="string", length=100 ,nullable=true)
      */
-    protected $seance;
+    protected $seance="test";
     /**
      * @ORM\Column(type="string", length=100 ,nullable=true)
      */
-    protected $lieuxOuverture;
+    protected $lieuxOuverture="test";
     /**
-     * @ORM\OneToOne(targetEntity="situationAppel")
+     * @ORM\OneToOne(targetEntity="situationAppel",mappedBy="suivPlis")
      */
     protected $situationAppel;
     /**
@@ -54,6 +57,7 @@ class suiviPlis {
     public function __construct()
     {
         $this->lots = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateOuverture=new \DateTime();
     }
 
     /**

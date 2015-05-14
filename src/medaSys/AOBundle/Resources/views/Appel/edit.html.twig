@@ -5,6 +5,7 @@
 
     <table>
         {{ form_start(edit_form) }}
+
         <tr><td>
                 {{ form_row(edit_form.situationAppel.responsableCompte) }}</td></tr>
         <tr><td>{{ form_row(edit_form.maitreOuvrage.nomEntreprise) }}</td></tr>
@@ -40,8 +41,12 @@
 
         {% endfor %}
 
-        <tr><td>{{ form_row(edit_form.cautionnement) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.installation) }}</td><td>{{ form_row(edit_form.qualificationTechnique)}}</td><td>{{ form_row(edit_form.soumissionnairesConcurrents) }}</td><</tr>
+        {#<tr><td>{{ form_row(edit_form.cautionnement) }}</td>
+        <td>{{ form_row(edit_form.installation) }}</td>
+        <td>{{ form_row(edit_form.qualificationTechnique)}}</td>
+        <td>{{ form_row(edit_form.soumissionnairesConcurrents) }}</td><</tr>#}
         <tr><td>{{ form_row(edit_form.submit) }}</td><</tr>
+        form_errors(edit_form)
 
         {{ form_widget(edit_form._token) }}
         </form>

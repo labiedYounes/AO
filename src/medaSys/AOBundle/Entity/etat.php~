@@ -8,6 +8,7 @@
 
 namespace medaSys\AOBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="etat")
@@ -300,29 +301,33 @@ class etat {
         $clonedEtat->setDisplayedString($this->getDisplayedString());
         $clonedEtat->setValuesArray($this->getValuesArray());
         $clonedEtat->setRef($this->getRef());
+        $clonedEtat->setOrderNum($this->getOrderNum());
         return $clonedEtat;
     }
 
+
+
+
     /**
-     * Set order
+     * Set orderNum
      *
-     * @param integer $order
+     * @param integer $orderNum
      * @return etat
      */
-    public function setOrder($order)
+    public function setOrderNum($orderNum)
     {
-        $this->order = $order;
+        $this->orderNum = $orderNum;
 
         return $this;
     }
 
     /**
-     * Get order
+     * Get orderNum
      *
      * @return integer 
      */
-    public function getOrder()
+    public function getOrderNum()
     {
-        return $this->order;
+        return $this->orderNum;
     }
 }

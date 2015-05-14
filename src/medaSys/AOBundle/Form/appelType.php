@@ -18,22 +18,18 @@ class appelType extends AbstractType
     {
         $builder
             ->add('objet',null,array('label'=>'Objet :'))
-            ->add('description',null,array('label'=>'Description :'))
             ->add('attestation',null,array('label'=>'Attestation à fournir :'))
-            ->add('type',null,array('label'=>'Type (dev,ing) :'))
             ->add('passation',null,array('label'=>'Mode de Passation :'))
-            ->add('cp',null,array('label'=>'CP :'))
-            ->add('ville',null,array('label'=>'Ville :'))
             ->add('typeMarche',null,array('label'=>'Type du marché :'))
             ->add('dateLimit',null,array('label'=>'Date dépôt Prospectus :'))
             ->add('lieuxDepot',null,array('label'=>'lieu dépôt Prospectus  :'))
             ->add('attestation',null,array('label'=>'Attestation à fournir :'))
-            ->add('maitreOuvrage',new entrepriseType())
-            ->add('situationAppel',new situationAppelType());
+            ->add('maitreOuvrage',new entrepriseForAppelType())
+            ->add('situationAppel',new situationAppelForAppelType());
 
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

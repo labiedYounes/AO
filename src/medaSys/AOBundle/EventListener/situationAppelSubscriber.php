@@ -25,21 +25,25 @@ class situationAppelSubscriber implements  EventSubscriber  {
     public function assignModel(LifecycleEventArgs $args){
         $entity=  $args->getEntity();
         $em=$args->getEntityManager();
-        if($entity->getModelEtats()==null){
+        if($entity->getModelEtats()==null){//if it has no modelEtats create a new one and add it to situationAppel
             $modelEtats= $em->getRepository('medaSysAOBundle:modelEtats')->getDefaultAndAppel();
             $entity->setModelEtats($modelEtats);
             $this->setEtats($entity,$em,$modelEtats);
             $em->persist($entity);
-            $em->flush();
+           // $em->flush();
         }
     }
     private function setEtats($entity,$em,$modelEtats){
-        $etats=$modelEtats->getEtats();
-        foreach($etats as $etat){
-            $clone=$etat->getClone();
-            $clone->setSituationAppel($entity);
-            $entity->addEtat($clone);
+         $etats=$modelEtats->getEtats();
+        foreach($etats as   $etat){
+            $this->setEtat($entity,$etat);
+
         }
+    }
+    private function setEtat($entity,\medaSys\AOBundle\Entity\etat  $etat){
+        $clone=$etat->getClone();
+        $clone->setSituationAppel($entity);
+        $entity->addEtat($clone);
     }
 
 

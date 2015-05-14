@@ -22,16 +22,35 @@ class appelController extends Controller
      * Lists all appel entities.
      *
      */
+    private $em;
+    private $btnArray;
+
+    function __construct()
+    {
+     $this->btnArray=array('cautionnement'=>'Cautionnement',
+            'installation'=>'Installation',
+            'qualificationTechnique'=>'Qualification Technique',
+            'soumissionnairesConcurrents'=>'soumissionnaires concurrents',
+            "submit"=>"Update");
+        //$this->btnArray=array("submit"=>"Update");
+
+    }
 
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('medaSysAOBundle:appel')->findAll();
+        $entities = $this->em->getRepository('medaSysAOBundle:appel')->findAll();
 
         return $this->render('medaSysAOBundle:appel:index.html.twig', array(
             'entities' => $entities,
         ));
+    }
+    private function debugFun($msg){
+        $appel=$this->em->getRepository('medaSysAOBundle:appel')->findOneById(1);
+        $appel->setAppelDebug($msg);
+        $this->em->persist($appel);
+        $this->em->flush();
     }
     /**
      * Creates a new appel entity.
@@ -39,26 +58,28 @@ class appelController extends Controller
      */
     public function createAction(Request $request)
     {
+
         $entity = new appel();
         $form = $this->createCreateForm($entity);
+
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $em = $this->getDoctrine()->getManager();
-            $maitreOuvrage=$entity->getMaitreOuvrage();//persisting the underlying object
+        if ($form->isValid()) {
+            $this->em = $this->getDoctrine()->getManager();
+           // $maitreOuvrage=$entity->getMaitreOuvrage();//persisting the underlying object
             $situationAppel=$entity->getSituationAppel();
-           $suiviPlis=$situationAppel->getSuiviPlis();
-            $suiviPlis->setSituationAppel($situationAppel);
-
-            //  $entity->setSituationAppel($situationAppel);
-            $etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
-            $etatForm->processEtats();
+            //$suiviPlis=$situationAppel->getSuiviPlis();
+           // $suiviPlis->setSituationAppel($situationAppel);
             $situationAppel->setAppel($entity);
-            $em->persist($entity);
-            $em->persist($maitreOuvrage);
-            $em->persist($suiviPlis);
+            $this->em->persist($entity);
+           // $this->em->persist($maitreOuvrage);
+           // $this->em->persist($suiviPlis);
+            $etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager(),$request);
+            $etatForm->processEtats();
+            $this->em->flush();
 
-            $em->flush();
+            // ////$this->debugFun("SituationAppelId ". $entity->getSituationAppel()->getId()." appelID ".$entity->getId());
+
 
             return $this->redirect($this->generateUrl('appel_show', array('id' => $entity->getId())));
         }
@@ -81,9 +102,10 @@ class appelController extends Controller
         $form = $this->createForm(new appelType(), $entity, array(
             'action' => $this->generateUrl('appel_create'),
             'method' => 'POST',
-
-
+            'attr'=>array('novalidate'=>'novalidate')
         ));
+        $etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+        $etatForm->renderEtats();
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
@@ -97,20 +119,17 @@ class appelController extends Controller
     {
         $entity = new appel();
         $situation=new situationAppel();
-        $entity->setSituationAppel($situation);
-        // $situation->setAppel($entity);
         $situation->setLot(2);
-        $em=$this->getDoctrine()->getEntityManager();
-        $em->persist($situation);
-        $em->flush();
-
-        $form   = $this->createCreateForm($entity,$situation);
+        $this->em=$this->getDoctrine()->getEntityManager();
+        $this->em->persist($situation);
+        $this->em->flush();
+        $entity->setSituationAppel($situation);
+        $form   = $this->createCreateForm($entity);
         $etatForm= new etatForm($form,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
         $etatForm->renderEtats();
 
         return $this->render('medaSysAOBundle:appel:new.html.twig', array(
-            'entity' => $entity,
-            'situation'=>$situation,
+            'entity'=>$entity,
             'form'   => $form->createView(),
         ));
     }
@@ -121,9 +140,9 @@ class appelController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $this->em->getRepository('medaSysAOBundle:appel')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find appel entity.');
@@ -141,20 +160,19 @@ class appelController extends Controller
      * Displays a form to edit an existing appel entity.
      *
      */
-    public function editAction($id)
+    public function editAction(Request $request,$id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $this->em->getRepository('medaSysAOBundle:appel')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find appel entity.');
         }
 
         $editForm = $this->createEditForm($entity);
-       $etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+        $etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager(),$request);
         $etatForm->renderEtats();
-
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
@@ -175,18 +193,25 @@ class appelController extends Controller
     {
         $form = $this->createForm(new appelType(), $entity, array(
             'action' => $this->generateUrl('appel_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
+            'method' => 'POST',
+            'attr'=>array('novalidate'=> 'novalidate'),
         ));
-       $form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
-        $form->add('installation', 'submit', array('label' => 'Installation'));
-        $form->add('qualificationTechnique', 'submit', array('label' => 'Qualification Technique'));
-        $form->add('soumissionnairesConcurrents', 'submit', array('label' => 'soumissionnaires concurrents'));
+        $this->addBtns($this->btnArray,$form);
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+
+       // $form->add('submit', 'submit', array('label' => 'Update'));
 
         //$form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
+    }
+    private function addBtns($btnArray,$form){
+        $str="";
+        foreach($btnArray as $key=>$btnLabel){
+            $form->add($key, 'submit', array('label' =>$btnLabel ));
+            $str.=$key." added";
+        }
+        ////$this->debugFun($str);
     }
     /**
      * Edits an existing appel entity.
@@ -194,31 +219,34 @@ class appelController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+        $entity = $this->em->getRepository('medaSysAOBundle:appel')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find appel entity.');
         }
 
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
+
         $editForm->handleRequest($request);
-        if($editForm->get('installation')->isClicked()){
-            return $this->render('medaSysAOBundle:appel:installation.html.twig', array(
-                'entity'      => $entity,
-                'edit_form'   => $editForm->createView(),
-                'delete_form' => $deleteForm->createView(),
-            ));
-        }
+
+
         if ($editForm->isValid()) {
-         $etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+            ////$this->debugFun("isValid");
+            $this->persist($entity);
+            $etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager(),$request);
             $etatForm->processEtats();
-            $em->flush();
+            $this->em->flush();
 
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
+     ////$this->debugFun(var_dump($editForm->getErrors()));
+        $editForm=$this->createEditForm($entity);
+        $etatForm= new etatForm($editForm,$entity->getSituationAppel()->getEtats(),$this->getDoctrine()->getEntityManager());
+        $etatForm->renderEtats();
 
         return $this->render('medaSysAOBundle:appel:edit.html.twig', array(
             'entity'      => $entity,
@@ -236,15 +264,15 @@ class appelController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('medaSysAOBundle:appel')->find($id);
+            $this->em = $this->getDoctrine()->getManager();
+            $entity = $this->em->getRepository('medaSysAOBundle:appel')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find appel entity.');
             }
 
-            $em->remove($entity);
-            $em->flush();
+            $this->em->remove($entity);
+            $this->em->flush();
         }
 
         return $this->redirect($this->generateUrl('appel'));

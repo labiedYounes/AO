@@ -8,10 +8,11 @@
 
 namespace medaSys\AOBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="enterprise")
+ * @ORM\Entity(repositoryClass="medaSys\AOBundle\Entity\entrepriseRepository")
  */
 class entreprise {
     /**
@@ -20,42 +21,51 @@ class entreprise {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $nom;
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $secteur;//secteur d'activité
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $forme;//forme juridique
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $adresse;
+    protected $nomContact="test";
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $telephone;
+    protected $nomEntreprise="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $fax;
+    protected $secteur="test";//secteur d'activité
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $forme="test";//forme juridique
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $adresse="test";
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
-    protected $mail;
+    protected $telephone="02136598";
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Regex("/\d+/") => options (pattern, match, message)
+     */
+    protected $fax="02136598";
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\Email
+     */
+    protected $mail="test@test.com";
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Url
+     */
+    protected $site="www.etst.com";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $site;
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $type;//maitre ouvrage, modataire, soummisionnaire
+    protected $type="test";//maitre ouvrage, modataire, soummisionnaire
     /**
      * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage",cascade={"remove"})
      * @ORM\JoinColumn(name="appel_id", referencedColumnName="id")
@@ -95,9 +105,9 @@ class entreprise {
      * @param string $nom
      * @return entreprise
      */
-    public function setNom($nom)
+    public function setNomContact($nom)
     {
-        $this->nom = $nom;
+        $this->nomContact = $nom;
 
         return $this;
     }
@@ -107,11 +117,26 @@ class entreprise {
      *
      * @return string 
      */
-    public function getNom()
+    public function getNomcontact()
     {
-        return $this->nom;
+        return $this->nomContact;
+    }
+    public function setNomEntreprise($nom)
+    {
+        $this->nomEntreprise = $nom;
+
+        return $this;
     }
 
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNomEntreprise()
+    {
+        return $this->nomEntreprise;
+    }
     /**
      * Set sectereur
      *

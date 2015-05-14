@@ -16,46 +16,50 @@ class appel{
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
 
+    protected $id;
+    public function __construct()
+    {
+        $this->dateLimit=new \DateTime();
+    }
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank
      */
-    protected $objet;
+    protected $objet="test";
     /**
      * @ORM\Column(type="text", nullable=true)
 
      */
-    protected $description;
+    protected $description="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      *
      */
-    protected $type;//dev ...
+    protected $type="dev";//dev ...
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      *
      */
-    protected $passation;
+    protected $passation="lot";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      *
      */
-    protected $attestation;
+    protected $attestation="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
-    protected $cp;
+    protected $cp=1;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $ville;
+    protected $ville="rabat";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $typeMarche;// privé|public
+    protected $typeMarche="privé";// privé|public
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
@@ -65,7 +69,7 @@ class appel{
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $lieuxDepot;
+    protected $lieuxDepot="rabat";
     /**
      * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels")
      *  @ORM\JoinColumn(name="maitreOuvrage_id", referencedColumnName="id")
@@ -75,14 +79,30 @@ class appel{
      * @ORM\oneToOne(targetEntity="situationAppel", mappedBy="appel",cascade={"persist","remove"})
      */
     protected $situationAppel;//oneToOne Bidirectionnal
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $appelDebug;
 
 
+    public function setAppelDebug($str)
+    {
+        $this->appelDebug = $str;
+
+        return $this;
+    }
+
+
+    public function getAppelDebug()
+    {
+        return $this->appelDebug;
+    }
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -105,7 +125,7 @@ class appel{
     /**
      * Get objet
      *
-     * @return string 
+     * @return string
      */
     public function getObjet()
     {
@@ -143,7 +163,7 @@ class appel{
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -166,7 +186,7 @@ class appel{
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getAttestation()
     {
@@ -205,7 +225,7 @@ class appel{
     /**
      * Get passation
      *
-     * @return string 
+     * @return string
      */
     public function getPassation()
     {
@@ -228,7 +248,7 @@ class appel{
     /**
      * Get cp
      *
-     * @return string 
+     * @return string
      */
     public function getCp()
     {
@@ -251,7 +271,7 @@ class appel{
     /**
      * Get ville
      *
-     * @return string 
+     * @return string
      */
     public function getVille()
     {
@@ -274,7 +294,7 @@ class appel{
     /**
      * Get typeMarche
      *
-     * @return string 
+     * @return string
      */
     public function getTypeMarche()
     {
@@ -320,7 +340,7 @@ class appel{
     /**
      * Get maitreOuvrage
      *
-     * @return \medaSys\AOBundle\Entity\entreprise 
+     * @return \medaSys\AOBundle\Entity\entreprise
      */
     public function getMaitreOuvrage()
     {

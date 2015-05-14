@@ -2,6 +2,7 @@
 
 namespace medaSys\AOBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="situationMarche")
@@ -41,6 +42,7 @@ class situationMarche {//suivi du marché
     {
         $this->etats = new \Doctrine\Common\Collections\ArrayCollection();
         $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**

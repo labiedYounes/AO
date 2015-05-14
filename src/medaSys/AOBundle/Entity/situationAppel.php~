@@ -3,6 +3,7 @@
 
 namespace medaSys\AOBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -17,49 +18,58 @@ class situationAppel {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $numOrder;
+    protected $numOrder="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $resultas;
+    protected $resultas="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $responsableCompte;
+    protected $responsableCompte="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $responsableQualification;//oneToOne unidirectionnale
+    protected $responsableQualification="test";//oneToOne unidirectionnale
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $montantMarche;
+    protected $montantMarche=1;
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $montantSoumission;
+    protected $montantSoumission=1;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $lot;
+    protected $lot=1;
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
      */
     protected $dateSoumission;
     /**
+     * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
+     */
+    protected $dateVisiteLieux;
+    /**
      * @ORM\Column(type="text",nullable=true)
      */
-    protected $observation;
+    protected $observation="test";
     /**
      * @ORM\OneToMany(targetEntity="etat", mappedBy="situationAppel", cascade={"persist","remove"})
      */
     protected $etats;
     /**
-     * @ORM\OneToOne(targetEntity="appel", inversedBy="situationAppel",cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="appel", inversedBy="situationAppel")
      */
     protected $appel;//oneToOne bidirectionnale
     /**
@@ -70,7 +80,10 @@ class situationAppel {
      * @ORM\ManyToOne(targetEntity="modelEtats")
      */
     protected $modelEtats;
-
+    /**
+     * @ORM\oneToOne(targetEntity="suiviPlis",inversedBy="situationAppel")
+     */
+    protected $suiviPlis;
 
 
     /**
@@ -80,6 +93,9 @@ class situationAppel {
     {
         $this->etats = new \Doctrine\Common\Collections\ArrayCollection();
         $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateSoumission=new \DateTime();
+        $this->dateVisiteLieux=new \DateTime();
+
     }
 
     /**
@@ -252,14 +268,30 @@ class situationAppel {
     {
         return $this->dateSoumission;
     }
+    public function setDateVisiteLieux(\datetime $dateVisiteLieux)
+    {
+        $this->dateVisiteLieux = $dateVisiteLieux;
+
+        return $this;
+    }
+
+    /**
+     * Get dateSoumission
+     *
+     * @return \datetime
+     */
+    public function getDateVisiteLieux()
+    {
+        return $this->dateVisiteLieux;
+    }
 
     /**
      * Set observation
      *
-     * @param \datetime $observation
+     * @param string $observation
      * @return situationAppel
      */
-    public function setObservation(\datetime $observation)
+    public function setObservation( $observation)
     {
         $this->observation = $observation;
 
@@ -269,7 +301,7 @@ class situationAppel {
     /**
      * Get observation
      *
-     * @return \datetime
+     * @return string
      */
     public function getObservation()
     {
@@ -386,5 +418,44 @@ class situationAppel {
     public function getModelEtats()
     {
         return $this->modelEtats;
+    }
+
+    /**
+     * Set montantSoumission
+     *
+     * @param integer $montantSoumission
+     * @return situationAppel
+     */
+    public function setMontantSoumission($montantSoumission)
+    {
+        $this->montantSoumission = $montantSoumission;
+
+        return $this;
+    }
+
+    /**
+     * Get montantSoumission
+     *
+     * @return integer 
+     */
+    public function getMontantSoumission()
+    {
+        return $this->montantSoumission;
+    }
+    public function setsuiviPlis(\medaSys\AOBundle\Entity\suiviPlis $suiviPlis)
+    {
+        $this->suiviPlis = $suiviPlis;
+
+        return $this;
+    }
+
+    /**
+     * Get situationAppel
+     *
+     * @return \medaSys\AOBundle\Entity\suiviPlis
+     */
+    public function getSuiviPlis()
+    {
+        return $this->suiviPlis;
     }
 }

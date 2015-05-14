@@ -21,50 +21,51 @@ class entreprise {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $nomContact;
+    protected $nomContact="test";
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $nomEntreprise;
+    protected $nomEntreprise="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $secteur;//secteur d'activité
+    protected $secteur="test";//secteur d'activité
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $forme;//forme juridique
+    protected $forme="test";//forme juridique
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $adresse;
+    protected $adresse="test";
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
-    protected $telephone;
+    protected $telephone="02136598";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
-    protected $fax;
+    protected $fax="02136598";
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\Email
      */
-    protected $mail;
+    protected $mail="test@test.com";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Url
      */
-    protected $site;
+    protected $site="www.etst.com";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $type;//maitre ouvrage, modataire, soummisionnaire
+    protected $type="test";//maitre ouvrage, modataire, soummisionnaire
     /**
      * @ORM\OneToMany(targetEntity="appel", mappedBy="maitreOuvrage",cascade={"remove"})
      * @ORM\JoinColumn(name="appel_id", referencedColumnName="id")
@@ -429,7 +430,7 @@ class entreprise {
         return $this->appel;
     }
     public function __toString(){
-        return $this->getNom();
+        return $this->getNomEntreprise();
     }
 
     /**
@@ -454,4 +455,11 @@ class entreprise {
     {
         return $this->secteur;
     }
+
+    /**
+     * Get nomContact
+     *
+     * @return string 
+     */
+
 }

@@ -1,12 +1,12 @@
 <?php
 
+
 namespace medaSys\AOBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-class suiviPlisType extends AbstractType
+class suiviPlisForAppelType  extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,13 +15,14 @@ class suiviPlisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
+            
             ->add('lieuxOuverture',null,array('label'=>"Lieu d ’ouverture des plis : "))
-
-           // ->add('situationAppel')
+            ->add('responsableCompte')
+            ->add('chagerDepot')
+            // ->add('situationAppel')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -39,4 +40,4 @@ class suiviPlisType extends AbstractType
     {
         return 'medasys_aobundle_suiviplis';
     }
-}
+} 

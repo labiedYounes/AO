@@ -2,6 +2,7 @@
 
 namespace medaSys\AOBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="marche")
@@ -13,18 +14,25 @@ class marche {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    public function __construct()
+    {
+        $this->datePassation=new \DateTime();
+
+    }
     /**
      * @ORM\Column(type="string" ,length=100)
      */
-    protected $objet;
+    protected $objet="test";
     /**
      * @ORM\OneToOne(targetEntity="responsable")
      */
-    protected $responsableProjet;//chrgé du projet
+    protected $responsableProjet="test";//chrgé du projet
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
      */
-    protected $datePassation;
+    protected $datePassation="test";
     /**
      * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="marches")
      */
