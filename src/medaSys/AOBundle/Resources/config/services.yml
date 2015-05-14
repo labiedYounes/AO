@@ -2,8 +2,7 @@ services:
 #    meda_sys_ao.example:
 #        class: medaSys\AOBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
-
      situationAppel.listener:
-         class: medaSys\AOBundle\EventListener\situationAppelSubscriber
-         tags:
-              - { name: doctrine.event_subscriber, connection: default }
+             class: medaSys\AOBundle\EventListener\situationAppelSubscriber
+             tags:
+                  - { name: doctrine.event_subscriber, connection: default }

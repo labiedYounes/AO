@@ -48,11 +48,14 @@ class caution {
      */
     protected $situationMarche;//manyToOne Bidirectionnal
 
-
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $montant;
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -75,7 +78,7 @@ class caution {
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -144,7 +147,7 @@ class caution {
     /**
      * Get situationAppel
      *
-     * @return \medaSys\AOBundle\Entity\situationAppel 
+     * @return \medaSys\AOBundle\Entity\situationAppel
      */
     public function getSituationAppel()
     {
@@ -167,10 +170,33 @@ class caution {
     /**
      * Get situationMarche
      *
-     * @return \medaSys\AOBundle\Entity\situationMarche 
+     * @return \medaSys\AOBundle\Entity\situationMarche
      */
     public function getSituationMarche()
     {
         return $this->situationMarche;
+    }
+
+    /**
+     * Set montant
+     *
+     * @param string $montant
+     * @return caution
+     */
+    public function setMontant($montant)
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    /**
+     * Get montant
+     *
+     * @return string
+     */
+    public function getMontant()
+    {
+        return $this->montant;
     }
 }

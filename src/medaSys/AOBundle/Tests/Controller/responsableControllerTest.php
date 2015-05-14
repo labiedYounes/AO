@@ -4,7 +4,7 @@ namespace medaSys\AOBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class situationAppelControllerTest extends WebTestCase
+class responsableControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class situationAppelControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/situationappel/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /situationappel/");
+        $crawler = $client->request('GET', '/responsable/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /responsable/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'medasys_aobundle_situationappel[field_name]'  => 'Test',
+            'medasys_aobundle_responsable[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class situationAppelControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'medasys_aobundle_situationappel[field_name]'  => 'Foo',
+            'medasys_aobundle_responsable[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

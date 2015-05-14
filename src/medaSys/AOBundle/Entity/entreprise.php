@@ -456,10 +456,5 @@ class entreprise {
         return $this->secteur;
     }
 
-    /**
-     * Get nomContact
-     *
-     * @return string 
-     */
 
 }

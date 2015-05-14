@@ -13,7 +13,7 @@ etat_new:
 etat_create:
     path:     /create
     defaults: { _controller: "medaSysAOBundle:etat:create" }
-    requirements: { _method: post }
+    methods:  POST
 
 etat_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ etat_edit:
 etat_update:
     path:     /{id}/update
     defaults: { _controller: "medaSysAOBundle:etat:update" }
-    requirements: { _method: post|put }
+    methods:  [POST, PUT]
 
 etat_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:etat:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

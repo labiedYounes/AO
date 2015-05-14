@@ -71,7 +71,7 @@ class appel{
      */
     protected $lieuxDepot="rabat";
     /**
-     * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels")
+     * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels",cascade={"persist"} )
      *  @ORM\JoinColumn(name="maitreOuvrage_id", referencedColumnName="id")
      */
     protected $maitreOuvrage;//oneToOne Unidirectionnal
@@ -332,6 +332,7 @@ class appel{
      */
     public function setMaitreOuvrage(\medaSys\AOBundle\Entity\entreprise $maitreOuvrage = null)
     {
+        $maitreOuvrage->addAppel($this);
         $this->maitreOuvrage = $maitreOuvrage;
 
         return $this;
@@ -354,7 +355,7 @@ class appel{
      * @return appel
      */
     public function setSituationAppel(\medaSys\AOBundle\Entity\situationAppel $situationAppel = null)
-    {
+    {   $situationAppel->setAppel($this);
         $this->situationAppel = $situationAppel;
 
         return $this;

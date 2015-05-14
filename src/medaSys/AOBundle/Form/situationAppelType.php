@@ -2,7 +2,6 @@
 
 namespace medaSys\AOBundle\Form;
 
-use medaSys\AOBundle\Entity\suiviPlis;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -16,19 +15,17 @@ class situationAppelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numOrder',null,array('label'=>'Réf. AO/ Consultation : '))
-            ->add('resultas',null,array('label'=>'Resultas :'))
-            ->add('responsableCompte',null,array('label'=>'Responsable du compte :'))
-            ->add('responsableQualification',null,array('label'=>'Responsable de la qualification :'))
-            ->add('montantMarche',null,array('label'=>'Estimation du projet :'))
-            ->add('lot',null,array('label'=>'Nombre de lots : '))
-            ->add('montantSoumission',null,array('label'=>'Montant de la soumission :'))
-            ->add('dateVisiteLieux',null,array('label'=>'Date visite des lieux :  '))
-            ->add('dateSoumission',null,array('label'=>'Date et heure soumission :'))
-            ->add('observation',null,array('label'=>'Observations : (Etat AO/ Soumissionnaires / Adjudicataire) :'))
+            ->add('numOrder')
+            ->add('resultas')
+            ->add('responsableCompte')
+            ->add('responsableQualification')
+            ->add('montantMarche')
+            ->add('montantSoumission')
+            ->add('lot')
+            ->add('dateSoumission')
+            ->add('dateVisiteLieux')
+            ->add('observation')
             ->add('suiviPlis',new suiviPlisType())
-            //->add('appel',new appelType())
-           // ->add('etats',new etatType())
         ;
     }
     

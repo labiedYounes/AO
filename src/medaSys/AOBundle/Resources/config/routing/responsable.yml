@@ -1,0 +1,30 @@
+responsable:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:responsable:index" }
+
+responsable_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:responsable:show" }
+
+responsable_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:responsable:new" }
+
+responsable_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:responsable:create" }
+    methods:  POST
+
+responsable_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:responsable:edit" }
+
+responsable_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:responsable:update" }
+    methods:  [POST, PUT]
+
+responsable_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:responsable:delete" }
+    methods:  [POST, DELETE]

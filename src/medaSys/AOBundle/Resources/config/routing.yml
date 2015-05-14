@@ -2,25 +2,33 @@ meda_sys_ao_suiviplis:
     resource: "@medaSysAOBundle/Resources/config/routing/suiviplis.yml"
     prefix:   /suiviplis
 
-meda_sys_ao_lot:
-    resource: "@medaSysAOBundle/Resources/config/routing/lot.yml"
-    prefix:   /lot
-
 meda_sys_ao_situationmarche:
     resource: "@medaSysAOBundle/Resources/config/routing/situationmarche.yml"
     prefix:   /situationmarche
+
+meda_sys_ao_situationappel:
+    resource: "@medaSysAOBundle/Resources/config/routing/situationappel.yml"
+    prefix:   /situationappel
+
+meda_sys_ao_responsable:
+    resource: "@medaSysAOBundle/Resources/config/routing/responsable.yml"
+    prefix:   /responsable
 
 meda_sys_ao_marche:
     resource: "@medaSysAOBundle/Resources/config/routing/marche.yml"
     prefix:   /marche
 
+meda_sys_ao_lot:
+    resource: "@medaSysAOBundle/Resources/config/routing/lot.yml"
+    prefix:   /lot
+
 meda_sys_ao_etat:
     resource: "@medaSysAOBundle/Resources/config/routing/etat.yml"
     prefix:   /etat
 
-meda_sys_ao_situationAppel:
-    resource: "@medaSysAOBundle/Resources/config/routing/situationappel.yml"
-    prefix:   /situationAppel
+meda_sys_ao_entreprise:
+    resource: "@medaSysAOBundle/Resources/config/routing/entreprise.yml"
+    prefix:   /entreprise
 
 meda_sys_ao_caution:
     resource: "@medaSysAOBundle/Resources/config/routing/caution.yml"
@@ -30,28 +38,6 @@ meda_sys_ao_appel:
     resource: "@medaSysAOBundle/Resources/config/routing/appel.yml"
     prefix:   /appel
 
-meda_sys_ao_entreprise:
-    resource: "@medaSysAOBundle/Resources/config/routing/entreprise.yml"
-    prefix:   /entreprise
-
 meda_sys_ao_homepage:
     path:     /hello/{name}
     defaults: { _controller: medaSysAOBundle:Default:index }
-
-secRoot:
-    path: /test/{name}
-    defaults: {_controller: medaSysAOBundle:Default:test }
-
-create_Appel:
-    path: /Appel/create
-    defaults: {_controller: medaSysAOBundle:Appel:create }
-
-accueil:
-    path: /accueil
-    defaults: {_controller: medaSysAOBundle:Default:accueil }
-
-update_Appel:
-    path: /Appel/update/{id}
-    defaults: {_controller: medaSysAOBundle:Appel:update }
-
-

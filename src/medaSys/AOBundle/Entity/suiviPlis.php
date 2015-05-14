@@ -29,11 +29,11 @@ class suiviPlis {
     /**
      * @ORM\OneToOne(targetEntity="responsable")
      */
-    protected $responsableCompte="test";
+    protected $responsableCompte;
     /**
      * @ORM\OneToOne(targetEntity="responsable")
      */
-    protected $chagerDepot="test";
+    protected $chagerDepot;
     /**
      * @ORM\Column(type="string", length=100 ,nullable=true)
      */
@@ -43,7 +43,7 @@ class suiviPlis {
      */
     protected $lieuxOuverture="test";
     /**
-     * @ORM\OneToOne(targetEntity="situationAppel",mappedBy="suivPlis")
+     * @ORM\OneToOne(targetEntity="situationAppel",mappedBy="suiviPlis")
      */
     protected $situationAppel;
     /**

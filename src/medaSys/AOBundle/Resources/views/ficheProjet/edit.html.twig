@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>appel creation</h1>
+
+    <table>
+        {{ form_start(edit_form) }}
+        <tr><td>
+                {{ form_row(edit_form.situationAppel.responsableCompte) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.maitreOuvrage.nomEntreprise) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.maitreOuvrage.nomContact) }}</td></tr>
+        {# {{ form_row(edit_form.nom) }}#}
+        <tr><td> {{ form_row(edit_form.maitreOuvrage.telephone) }}</td>
+            <td>{{ form_row(edit_form.maitreOuvrage.fax) }}</td>
+            <td>{{ form_row(edit_form.maitreOuvrage.mail) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.numOrder) }}</td>
+            <td>{{ form_row(edit_form.situationAppel.dateSoumission) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.montantSoumission) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.objet) }}</td>
+            <td> {{ form_row(edit_form.dateLimit) }}</td>
+            <td> {{ form_row(edit_form.lieuxDepot) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.lot) }}</td><td>{{ form_row(edit_form.situationAppel.dateVisiteLieux) }}</td></tr>
+        {#<tr><td> {{ form_row(edit_form.esoumission) }}</td><
+            <td>{{ form_row(edit_form.emotif) }}</td><</tr>#}
+
+        <tr><td>{{ form_row(edit_form.passation) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.montantMarche) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.attestation) }}</td></tr>
+
+        <tr><td>{{ form_row(edit_form.situationAppel.suiviPlis.lieuxOuverture) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.submit) }}</td></tr>
+       {# {% for etat in edit_form.etats %}
+            <tr>
+                <td>{{ form_row(etat) }}</td>
+                <td>{{ form_widget(etat) }}</td>
+            </tr>
+        {% endfor %}#}
+        {{ form_end(edit_form) }}
+    </table>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('appel') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+{% endblock %}

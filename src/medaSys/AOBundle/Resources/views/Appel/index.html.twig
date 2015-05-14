@@ -11,10 +11,13 @@
                 <th>Description</th>
                 <th>Type</th>
                 <th>Passation</th>
+                <th>Attestation</th>
                 <th>Cp</th>
                 <th>Ville</th>
                 <th>Typemarche</th>
                 <th>Datelimit</th>
+                <th>Lieuxdepot</th>
+                <th>Appeldebug</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,10 +29,13 @@
                 <td>{{ entity.description }}</td>
                 <td>{{ entity.type }}</td>
                 <td>{{ entity.passation }}</td>
+                <td>{{ entity.attestation }}</td>
                 <td>{{ entity.cp }}</td>
                 <td>{{ entity.ville }}</td>
                 <td>{{ entity.typeMarche }}</td>
                 <td>{% if entity.dateLimit %}{{ entity.dateLimit|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.lieuxDepot }}</td>
+                <td>{{ entity.appelDebug }}</td>
                 <td>
                 <ul>
                     <li>

@@ -13,7 +13,7 @@ marche_new:
 marche_create:
     path:     /create
     defaults: { _controller: "medaSysAOBundle:marche:create" }
-    requirements: { _method: post }
+    methods:  POST
 
 marche_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ marche_edit:
 marche_update:
     path:     /{id}/update
     defaults: { _controller: "medaSysAOBundle:marche:update" }
-    requirements: { _method: post|put }
+    methods:  [POST, PUT]
 
 marche_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:marche:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

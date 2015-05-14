@@ -13,7 +13,7 @@ lot_new:
 lot_create:
     path:     /create
     defaults: { _controller: "medaSysAOBundle:lot:create" }
-    requirements: { _method: post }
+    methods:  POST
 
 lot_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ lot_edit:
 lot_update:
     path:     /{id}/update
     defaults: { _controller: "medaSysAOBundle:lot:update" }
-    requirements: { _method: post|put }
+    methods:  [POST, PUT]
 
 lot_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:lot:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

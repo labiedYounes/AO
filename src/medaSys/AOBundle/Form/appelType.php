@@ -2,7 +2,6 @@
 
 namespace medaSys\AOBundle\Form;
 
-
 use medaSys\AOBundle\Entity\situationAppel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,16 +16,18 @@ class appelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('objet',null,array('label'=>'Objet :'))
-            ->add('attestation',null,array('label'=>'Attestation à fournir :'))
-            ->add('passation',null,array('label'=>'Mode de Passation :'))
-            ->add('typeMarche',null,array('label'=>'Type du marché :'))
-            ->add('dateLimit',null,array('label'=>'Date dépôt Prospectus :'))
-            ->add('lieuxDepot',null,array('label'=>'lieu dépôt Prospectus  :'))
-            ->add('attestation',null,array('label'=>'Attestation à fournir :'))
-            ->add('maitreOuvrage',new entrepriseForAppelType())
-            ->add('situationAppel',new situationAppelForAppelType());
-
+            ->add('objet')
+            ->add('description')
+            ->add('type')
+            ->add('passation')
+            ->add('attestation')
+            ->add('cp')
+            ->add('ville')
+            ->add('typeMarche')
+            ->add('dateLimit')
+            ->add('lieuxDepot')
+            ->add('maitreOuvrage',new entrepriseType())
+            ->add('situationAppel',new situationAppelType())
         ;
     }
 
@@ -37,8 +38,7 @@ class appelType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'medaSys\AOBundle\Entity\appel'
-        ))
-        ;
+        ));
     }
 
     /**

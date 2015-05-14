@@ -3,54 +3,13 @@
 {% block body -%}
     <h1>appel creation</h1>
 
-    {# {{ form(form) }}#}
-    <table>
-    {{ form_start(form) }}
-        <tr><td>
-                {{ form_row(form.situationAppel.responsableCompte) }}</td></tr>
-        <tr><td>{{ form_row(form.maitreOuvrage.nomEntreprise) }}</td></tr>
-        <tr><td>{{ form_row(form.maitreOuvrage.nomContact) }}</td></tr>
-        {# {{ form_row(form.nom) }}#}
-        <tr><td> {{ form_row(form.maitreOuvrage.telephone) }}</td>
-            <td>{{ form_row(form.maitreOuvrage.fax) }}</td>
-            <td>{{ form_row(form.maitreOuvrage.mail) }}</td></tr>
-        <tr><td>{{ form_row(form.situationAppel.numOrder) }}</td>
-            <td>{{ form_row(form.situationAppel.dateSoumission) }}</td></tr>
-        <tr><td>{{ form_row(form.situationAppel.montantSoumission) }}</td></tr>
-        <tr><td>{{ form_row(form.objet) }}</td>
-            <td> {{ form_row(form.dateLimit) }}</td>
-            <td> {{ form_row(form.lieuxDepot) }}</td></tr>
-        <tr><td>{{ form_row(form.situationAppel.lot) }}</td><td>{{ form_row(form.situationAppel.dateVisiteLieux) }}</td><</tr>
-        {#<tr><td> {{ form_row(form.esoumission) }}</td><
-            <td>{{ form_row(form.emotif) }}</td><</tr>#}
+    {{ form(form) }}
 
-        <tr><td>{{ form_row(form.passation) }}</td><</tr>
-        <tr><td>{{ form_row(form.situationAppel.montantMarche) }}</td></tr>
-        <tr><td>{{ form_row(form.attestation) }}</td></tr>
-
-        <tr><td>{{ form_row(form.situationAppel.suiviPlis.lieuxOuverture) }}</td></tr>
-        {{ form_row(form.hiddenStr) }}
-        {% set hiddenArray=form.hiddenStr.vars.value|split(',') %}
-        {%  for idEtat in hiddenArray %}
-            {% set viewStr=idEtat|split('',3) %}
-
-            {% if viewStr[0]=="all" %}
-                <tr><td>{{ form_row(attribute(form,idEtat))}}</td></tr>
-            {% endif %}
-        {% endfor %}
-
-    <tr><td>{{ form_row(form.submit) }}</td><</tr>
-
-        {{ form_widget(form._token) }}
-        </form>
-    </table>
-
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('appel') }}">
-                Back to the list
-            </a>
-        </li>
-    </ul>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('appel') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
 {% endblock %}

@@ -430,7 +430,7 @@ class entreprise {
         return $this->appel;
     }
     public function __toString(){
-        return $this->getNom();
+        return $this->getNomEntreprise();
     }
 
     /**
@@ -455,4 +455,5 @@ class entreprise {
     {
         return $this->secteur;
     }
+
 }

@@ -8,7 +8,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="situationAppel")
- * $ORM\EntityListeners({"situationAppelListener"})
  */
 
 class situationAppel {
@@ -81,7 +80,7 @@ class situationAppel {
      */
     protected $modelEtats;
     /**
-     * @ORM\oneToOne(targetEntity="suiviPlis",inversedBy="situationAppel")
+     * @ORM\oneToOne(targetEntity="suiviPlis",inversedBy="situationAppel",cascade={"persist"})
      */
     protected $suiviPlis;
 
@@ -443,7 +442,9 @@ class situationAppel {
         return $this->montantSoumission;
     }
     public function setsuiviPlis(\medaSys\AOBundle\Entity\suiviPlis $suiviPlis)
+
     {
+        $suiviPlis->setSituationAppel($this);
         $this->suiviPlis = $suiviPlis;
 
         return $this;
@@ -459,11 +460,6 @@ class situationAppel {
         return $this->suiviPlis;
     }
 
-    /**
-     * Set suiviPlis
-     *
-     * @param \medaSys\AOBundle\Entity\suiviPlis $suiviPlis
-     * @return situationAppel
-     */
+
 
 }

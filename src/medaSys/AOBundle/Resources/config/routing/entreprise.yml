@@ -13,7 +13,7 @@ entreprise_new:
 entreprise_create:
     path:     /create
     defaults: { _controller: "medaSysAOBundle:entreprise:create" }
-    requirements: { _method: post }
+    methods:  POST
 
 entreprise_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ entreprise_edit:
 entreprise_update:
     path:     /{id}/update
     defaults: { _controller: "medaSysAOBundle:entreprise:update" }
-    requirements: { _method: post|put }
+    methods:  [POST, PUT]
 
 entreprise_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:entreprise:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

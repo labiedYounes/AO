@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class entrepriseType extends AbstractType
+class responsableType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,16 +15,8 @@ class entrepriseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomContact')
-            ->add('nomEntreprise')
-            ->add('secteur')
-            ->add('forme')
-            ->add('adresse')
-            ->add('telephone')
-            ->add('fax')
-            ->add('mail')
-            ->add('site')
-            ->add('type')
+            ->add('nom')
+            ->add('responsabilite')
         ;
     }
     
@@ -34,7 +26,7 @@ class entrepriseType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'medaSys\AOBundle\Entity\entreprise'
+            'data_class' => 'medaSys\AOBundle\Entity\responsable'
         ));
     }
 
@@ -43,6 +35,6 @@ class entrepriseType extends AbstractType
      */
     public function getName()
     {
-        return 'medasys_aobundle_entreprise';
+        return 'medasys_aobundle_responsable';
     }
 }

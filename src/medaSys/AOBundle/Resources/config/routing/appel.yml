@@ -13,7 +13,7 @@ appel_new:
 appel_create:
     path:     /create
     defaults: { _controller: "medaSysAOBundle:appel:create" }
-    requirements: { _method: post }
+    methods:  POST
 
 appel_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ appel_edit:
 appel_update:
     path:     /{id}/update
     defaults: { _controller: "medaSysAOBundle:appel:update" }
-    requirements: { _method: post|put }
+    methods:  [POST, PUT]
 
 appel_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:appel:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

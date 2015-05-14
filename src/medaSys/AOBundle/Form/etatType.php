@@ -17,8 +17,11 @@ class etatType extends AbstractType
         $builder
             ->add('ref')
             ->add('valuesArray')
+            ->add('orderNum')
             ->add('displayedString')
-
+            ->add('situationAppel')
+            ->add('situationMarche')
+            ->add('modelEtats')
         ;
     }
     

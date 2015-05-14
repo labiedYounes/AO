@@ -30,6 +30,10 @@
                 <td>{{ entity.montantMarche }}</td>
             </tr>
             <tr>
+                <th>Montantsoumission</th>
+                <td>{{ entity.montantSoumission }}</td>
+            </tr>
+            <tr>
                 <th>Lot</th>
                 <td>{{ entity.lot }}</td>
             </tr>
@@ -38,20 +42,24 @@
                 <td>{{ entity.dateSoumission|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
+                <th>Datevisitelieux</th>
+                <td>{{ entity.dateVisiteLieux|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
                 <th>Observation</th>
-                <td>{{ entity.observation|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.observation }}</td>
             </tr>
         </tbody>
     </table>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('situationAppel') }}">
+        <a href="{{ path('situationappel') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('situationAppel_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('situationappel_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>

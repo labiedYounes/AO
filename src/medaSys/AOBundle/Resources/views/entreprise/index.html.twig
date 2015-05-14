@@ -7,7 +7,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
+                <th>Nomcontact</th>
+                <th>Nomentreprise</th>
                 <th>Secteur</th>
                 <th>Forme</th>
                 <th>Adresse</th>
@@ -23,7 +24,8 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('entreprise_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nom }}</td>
+                <td>{{ entity.nomContact }}</td>
+                <td>{{ entity.nomEntreprise }}</td>
                 <td>{{ entity.secteur }}</td>
                 <td>{{ entity.forme }}</td>
                 <td>{{ entity.adresse }}</td>

@@ -12,8 +12,10 @@
                 <th>Responsablecompte</th>
                 <th>Responsablequalification</th>
                 <th>Montantmarche</th>
+                <th>Montantsoumission</th>
                 <th>Lot</th>
                 <th>Datesoumission</th>
+                <th>Datevisitelieux</th>
                 <th>Observation</th>
                 <th>Actions</th>
             </tr>
@@ -21,22 +23,24 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('situationAppel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('situationappel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.numOrder }}</td>
                 <td>{{ entity.resultas }}</td>
                 <td>{{ entity.responsableCompte }}</td>
                 <td>{{ entity.responsableQualification }}</td>
                 <td>{{ entity.montantMarche }}</td>
+                <td>{{ entity.montantSoumission }}</td>
                 <td>{{ entity.lot }}</td>
                 <td>{% if entity.dateSoumission %}{{ entity.dateSoumission|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.observation %}{{ entity.observation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateVisiteLieux %}{{ entity.dateVisiteLieux|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.observation }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('situationAppel_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('situationappel_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('situationAppel_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('situationappel_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -47,7 +51,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('situationAppel_new') }}">
+            <a href="{{ path('situationappel_new') }}">
                 Create a new entry
             </a>
         </li>

@@ -38,6 +38,6 @@ class cautionType extends AbstractType
      */
     public function getName()
     {
-        return 'caution';
+        return 'medasys_aobundle_caution';
     }
 }

@@ -15,10 +15,11 @@ class suiviPlisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add('lieuxOuverture',null,array('label'=>"Lieu d ’ouverture des plis : "))
-
-           // ->add('situationAppel')
+            ->add('dateOuverture')
+            ->add('seance')
+            ->add('lieuxOuverture')
+            ->add('responsableCompte')
+            ->add('chagerDepot')
         ;
     }
     

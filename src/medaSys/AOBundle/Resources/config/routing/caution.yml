@@ -13,7 +13,7 @@ caution_new:
 caution_create:
     path:     /create
     defaults: { _controller: "medaSysAOBundle:caution:create" }
-    requirements: { _method: post }
+    methods:  POST
 
 caution_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ caution_edit:
 caution_update:
     path:     /{id}/update
     defaults: { _controller: "medaSysAOBundle:caution:update" }
-    requirements: { _method: post|put }
+    methods:  [POST, PUT]
 
 caution_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:caution:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]
