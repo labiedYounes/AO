@@ -4,20 +4,15 @@
 namespace medaSys\AOBundle\Form\appForms\ficheProjet;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvent;
 
 class situationAppelType extends AbstractType {
-
-    private $showEtat;
-    private $displayArea;
-    private $situationAppel;
-    function __construct($showEtat,$situationAppel=null,$displayArea=null)
-
+    private $section;
+    function __construct($section="none")
     {
-        $this->showEtat=$showEtat;
-        $this->displayArea=$displayArea;
-        $this->situationAppel=$situationAppel;
-
+        $this->section=$section;
     }
 
 
@@ -36,19 +31,37 @@ class situationAppelType extends AbstractType {
             ->add('dateVisiteLieux',null,array('label'=>'Date visite des lieux :  '))
             ->add('dateSoumission',null,array('label'=>'Date et heure soumission :'))
             ->add('suiviPlis',new suiviPlisType())
+            ->add('soumission',null,array('label'=>'Soumission'))
+            ->add('motifs',null,array('label'=>'Motifs'))
+            ->add('modeAdjudication',null,array('label'=>'Mode Adjudication'))
+            ->add('observation',null,array('label'=>'Observations'))
+            ->addEventListener(FormEvents::PRE_SET_DATA,array($this, 'onPreSetData'))
             //->add('appel',new appelType())
-            // ->add('etats',new etatType())
+            //->add('etats',new etatType())
+
+
         ;
-        //$this->addEtats($builder);
+        // $this->addEtats($builder);
     }
 
+    public function onPreSetData(FormEvent $event){
+        {
+            switch($this->section){
+                case 'cautionnement':
+                    $event->getForm()->add('cautions','collection',array('type'=>new cautionType()
+                       ));
+                    $event->getForm()->add('dureeGarentie',null,array('label'=>'Durée de Garantie :'))->add('delaiExection',null,array('label'=>'Délai d’exécution : '))->add('penalites',null,array('label'=>'Pénalités de retard plafonnés à : '));
+                    break;
+            }
+        }
+    }
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'medaSys\AOBundle\Entity\situationAppel'
+            'data_class' => 'medaSys\AOBundle\Entity\situationAppel',
         ));
     }
 
@@ -58,28 +71,6 @@ class situationAppelType extends AbstractType {
     public function getName()
     {
         return 'ficheProjetFormSituationappel';
-    }
-    private function addEtats(FormBuilderInterface $builder){
-        if($this->showEtat){
-            $etats=$this->findEtatsArray();
-            $i=0;
-            $builder->add('etats','collection');
-            foreach($etats as $etat){
-                $builder->get('etats')->add('etats'.$i,new etatType($etat),array('data_class'=>'medaSys\AOBundle\Entity\Etat'));
-            }
-        }
-
-    }
-    private function findEtatsArray(){
-        $etatsTmp=$this->situationAppel->getEtats();
-        $etatsArray=array();
-
-        foreach($etatsTmp as $etat){
-            if($etat->getValuesArray()['displayArea']==$this->displayArea){
-                $etatsArray[]=$etat;
-            }
-        }
-        return $etatsArray;
     }
 
 } 

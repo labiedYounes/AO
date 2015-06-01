@@ -10,13 +10,15 @@ use medaSys\AOBundle\Entity\appel;
 use medaSys\AOBundle\Entity\modelEats;
 
 
-
+//class not used anymore
 class situationAppelSubscriber implements  EventSubscriber  {
     private $em;
 
 
     public function getSubscribedEvents(){
-        return array('postPersist');
+        //return array('postPersist');
+
+        return array();
     }
     public function postPersist(LifecycleEventArgs $args){
         $entity=$args->getEntity();

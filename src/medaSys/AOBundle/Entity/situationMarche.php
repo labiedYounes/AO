@@ -18,10 +18,6 @@ class situationMarche {//suivi du marché
     protected $garantieParAn;
     protected $observation;
     /**
-     * @ORM\OneToMany(targetEntity="etat", mappedBy="situationMarche")
-     */
-    protected $etats;
-    /**
      * @ORM\OneToOne(targetEntity="marche", inversedBy="situationMarche")
      */
     protected $marche;
@@ -30,18 +26,14 @@ class situationMarche {//suivi du marché
      */
     protected $cautions;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="modelEtats")
-     */
-    protected $modelEtats;
+
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->etats = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
+         $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
 
     }
 

@@ -5,7 +5,9 @@ namespace medaSys\AOBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use medaSys\AOBundle\Entity\appel;
+use medaSys\AOBundle\Entity\caution;
 use medaSys\AOBundle\Form\appForms\ficheProjet\appelType;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -41,7 +43,9 @@ class appelController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($appel);
+            $this->addDataToSituationAppel($appel, $em);
             $em->flush();
 
             return $this->redirect($this->generateUrl('appel_show', array('id' => $appel->getId())));
@@ -53,6 +57,29 @@ class appelController extends Controller
         ));
     }
 
+    private function addDataToSituationAppel($appel,$em){
+        $this->createCautions(array(array('definitive','MT Caution définitive : '),array('provisoire','MT Caution provisoire:'),array('garantie','MT Retenue de garantie : ')),$em,$appel->getSituationAppel());
+       // $this->addCationToSituationAppel($appel->getSituationAppel(),$DefaultCautions);
+        $em->persist($appel->getSituationAppel());
+
+    }
+    private function createCautions($optionArray,$em,$situation){
+
+        foreach($optionArray as $caut){
+            $caution=new caution();
+            $caution->setLabel($caut[1]);
+            $caution->setType($caut[0]);
+            $em->persist($caution);
+            $situation->addCaution($caution);
+            $cautions[]=$caution;
+        }
+
+    }
+    private function addCationToSituationAppel($situation,$cautions){
+        foreach($cautions as $caut){
+            $situation->addCaution($caut);
+        }
+    }
     /**
      * Creates a form to create a appel entity.
      *
@@ -62,7 +89,7 @@ class appelController extends Controller
      */
     private function createCreateForm(appel $appel)
     {
-        $form = $this->createForm(new appelType(false), $appel, array(
+        $form = $this->createForm(new appelType(), $appel, array(
             'action' => $this->generateUrl('appel_create'),
             'method' => 'POST',
         ));
@@ -119,6 +146,7 @@ class appelController extends Controller
 
         $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
 
+
         if (!$appel) {
             throw $this->createNotFoundException('Unable to find appel entity.');
         }
@@ -134,19 +162,26 @@ class appelController extends Controller
     }
 
     /**
-    * Creates a form to edit a appel entity.
-    *
-    * @param appel $appel The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(appel $appel,$displayArea='all')
+     * Creates a form to edit a appel entity.
+     *
+     * @param appel $appel The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(appel $appel,$formType='appelType')
     {
-        $form = $this->createForm(new appelType(true,$appel->getSituationAppel(),$displayArea), $appel, array(
-            'action' => $this->generateUrl('appel_update', array('id' => $appel->getId())),
+        $route=($formType=='appelType'?'appel_update':$formType);
+        $formType='medaSys\\AOBundle\\Form\\appForms\\ficheProjet\\'.$formType;
+        $obj=new $formType();
+        $form = $this->createForm($obj, $appel, array(
+            'action' => $this->generateUrl($route, array('id' => $appel->getId())),
             'method' => 'PUT',
         ));
 
+        $form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
+        $form->add('installation', 'submit', array('label' => 'Installation'));
+        $form->add('qualificationTechnique', 'submit', array('label' => 'Qualification Technique'));
+        $form->add('soumissionnaires', 'submit', array('label' => 'Soumissionnaires'));
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
@@ -157,6 +192,7 @@ class appelController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
+
         $em = $this->getDoctrine()->getManager();
 
         $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
@@ -169,17 +205,79 @@ class appelController extends Controller
         $editForm = $this->createEditForm($appel);
         $editForm->handleRequest($request);
 
-        if ($editForm->isValid()) {
+        $view=$this->isClicked($editForm);
+        //die(var_dump($editForm->isValid()?'true':'false'));
+        if ($editForm->isValid()&&$view=='') {
+            //  die(var_dump($view." test"));
             $em->flush();
-
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
+        $editView=$view==""?'edit':$view;
+
+        return $this->render('medaSysAOBundle:ficheProjet:'.$editView.'.html.twig', array(
+            'entity'      => $appel,
+            'edit_form'   => $this->getForm($view,$editForm),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    public function cautionnementAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
+
+        if (!$appel) {
+            throw $this->createNotFoundException('Unable to find appel entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($appel,'cautionnement');
+        $editForm->handleRequest($request);
+        // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
+        $view=$this->isClicked($editForm);
+
+
+        if ($editForm->isValid()) {
+            //die(var_dump($view." test"));
+            $em->persist($appel);
+            $em->flush();
+            return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
+        }
+        $editView=$view==""?'edit':$view;
 
         return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
             'entity'      => $appel,
-            'edit_form'   => $editForm->createView(),
+            'edit_form'   => $this->getForm("",$editForm),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+    /*
+     * returns a from view
+     * */
+    private function getForm($view,$defautlForm){
+        return $view==""?$defautlForm->createView():$this->createEditForm($defautlForm->getData(),$view)->createView();
+    }
+
+    private function isClicked($editForm){
+        $view="";
+        if(!$editForm->get('submit')->isClicked()){
+
+            if($editForm->get('cautionnement')->isClicked()){
+                $view='cautionnement';
+            }
+            if($editForm->get('installation')->isClicked()){
+                $view='installation';
+            }
+            if($editForm->get('qualificationTechnique')->isClicked()){
+                $view='qualificationTechnique';
+            }
+            if($editForm->get('soumissionnaires')->isClicked()){
+                $view='soumissionnaires';
+            }
+        }
+        return $view;
+
     }
     /**
      * Deletes a appel entity.
@@ -219,7 +317,7 @@ class appelController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-        ;
+            ;
     }
 
 

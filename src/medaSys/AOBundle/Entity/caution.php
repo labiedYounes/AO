@@ -26,7 +26,13 @@ class caution {
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $type="def";
+    protected $type="def";//definitive,provisoire,garantie
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $label;
+
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
@@ -51,7 +57,7 @@ class caution {
     /**
      * @ORM\Column(type="integer")
      */
-    protected $montant;
+    protected $montant=0;
     /**
      * Get id
      *
@@ -198,5 +204,28 @@ class caution {
     public function getMontant()
     {
         return $this->montant;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     * @return caution
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string 
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 }

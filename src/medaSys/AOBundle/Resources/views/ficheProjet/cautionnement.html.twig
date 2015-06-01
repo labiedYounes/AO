@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>appel creation</h1>
+
+    {% block editForm %}
+        {{ form_start(edit_form) }}
+        {% block editFormData %}
+            <table>
+
+            <tr><td>
+                    {{ form_row(edit_form.situationAppel.responsableCompte) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.maitreOuvrage.nomEntreprise) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.maitreOuvrage.nomContact) }}</td></tr>
+
+            <tr><td> {{ form_row(edit_form.maitreOuvrage.telephone) }}</td>
+                <td>{{ form_row(edit_form.maitreOuvrage.fax) }}</td>
+                <td>{{ form_row(edit_form.maitreOuvrage.mail) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.numOrder) }}</td>
+                <td>{{ form_row(edit_form.situationAppel.dateSoumission) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.montantSoumission) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.objet) }}</td>
+                <td> {{ form_row(edit_form.dateLimit) }}</td>
+                <td> {{ form_row(edit_form.lieuxDepot) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.lot) }}</td>
+                <td>{{ form_row(edit_form.situationAppel.dateVisiteLieux) }}</td></tr>
+            <tr><td> {{ form_row(edit_form.situationAppel.soumission) }}</td>
+                <td>{{ form_row(edit_form.situationAppel.motifs) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.modeAdjudication) }}</td></tr>
+
+
+            <tr><td>{{ form_row(edit_form.passation) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.montantMarche) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.attestation) }}</td></tr>
+
+            <tr><td>{{ form_row(edit_form.situationAppel.suiviPlis.lieuxOuverture) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.observation) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.dureeGarentie) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.cautions) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.delaiExection) }}</td></tr>
+            <tr><td>{{ form_row(edit_form.situationAppel.penalites) }}</td></tr>
+
+        {% endblock %}
+
+        </table>
+        {{ form_end(edit_form) }}
+    {% endblock %}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('appel') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+    {#{% set etats = edit_form.situationAppel.etats %}
+    {% for i in etats|length %}
+        <tr>
+            <td>{{ form_row(etats[i]) }}</td>
+            <td>{{ form_widget(etat[i]) }}</td>
+        </tr>
+    {% endfor %}#}
+    {#{{ dump(edit_form.situationAppel.etats ) }}#}
+    {#{{ form(edit_form) }}#}
+
+{% endblock %}
+
+
+
+
+
+{#
+{% extends 'medaSysAOBundle:ficheProjet:edit.html.twig' %}
+
+{% block body -%}
+   {{ parent() }}
+{% block editForm %}
+    {{ parent() }}
+    {% block editFormData %}
+        {{ parent() }}
+        <tr><td>{{ form_row(edit_form.situationAppel.dureeGarentie) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.cautions) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.delaiExection) }}</td></tr>
+        <tr><td>{{ form_row(edit_form.situationAppel.penalites) }}</td></tr>
+    {% endblock %}
+{% endblock %}
+{% endblock %}
+#}

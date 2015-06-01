@@ -113,14 +113,15 @@ class entreprise {
     }
 
     /**
-     * Get nom
+     * Get nomContact
      *
-     * @return string 
+     * @return string
      */
     public function getNomcontact()
     {
         return $this->nomContact;
     }
+
     public function setNomEntreprise($nom)
     {
         $this->nomEntreprise = $nom;
@@ -455,6 +456,10 @@ class entreprise {
     {
         return $this->secteur;
     }
+
+
+
+    
 
 
 }

@@ -1,19 +1,15 @@
 <?php
 
-
 namespace medaSys\AOBundle\Form\appForms\ficheProjet;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class etatType extends AbstractType
+class cautionType extends AbstractType
 {
-    /* private $etat;
-     function __construct($etat)
-     {
-         $this->etat=$etat;
-     }*/
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -21,27 +17,22 @@ class etatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           // ->add('ref','hidden')
-           // ->add('valuesArray','hidden')
-            ->add('orderNum')
-            ->add('displayedString')
-//            ->add('situationAppel','hidden')
-//            ->add('situationMarche','hidden')
-//            ->add('modelEtats','hidden')
+           
+            ->addEventListener(FormEvents::PRE_SET_DATA,function(FormEvent $event){
+                $caution=$event->getData();
+                $form=$event->getForm();
+                $form->add('montant',null,array('label'=>$caution->getLabel()));
+            })
         ;
-       /* if (!is_null($this->etat)){
-            $builder->setData($this->etat);
-        }*/
     }
-
+    
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'medaSys\AOBundle\Entity\etat',
-
+            'data_class' => 'medaSys\AOBundle\Entity\caution'
         ));
     }
 
@@ -50,6 +41,6 @@ class etatType extends AbstractType
      */
     public function getName()
     {
-        return 'ficheProjetFormEtat';
+        return 'medasys_aobundle_caution';
     }
 }

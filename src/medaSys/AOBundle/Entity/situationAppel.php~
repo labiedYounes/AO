@@ -64,10 +64,6 @@ class situationAppel {
      */
     protected $observation="test";
     /**
-     * @ORM\OneToMany(targetEntity="etat", mappedBy="situationAppel", cascade={"persist","remove"})
-     */
-    protected $etats;
-    /**
      * @ORM\OneToOne(targetEntity="appel", inversedBy="situationAppel")
      */
     protected $appel;//oneToOne bidirectionnale
@@ -75,14 +71,58 @@ class situationAppel {
      * @ORM\OneToMany(targetEntity="caution", mappedBy="situationAppel")
      */
     protected $cautions;//oneToMany bidirectionnale
-    /**
-     * @ORM\ManyToOne(targetEntity="modelEtats")
-     */
-    protected $modelEtats;
+
     /**
      * @ORM\oneToOne(targetEntity="suiviPlis",inversedBy="situationAppel",cascade={"persist"})
      */
     protected $suiviPlis;
+
+// new --------------
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $installation;
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $siteConcernes;
+    /**
+ * @ORM\Column(type="text",nullable=true)
+ */
+    protected $qualificationTechnique;
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $modeAdjudication;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $soumission;
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $motifs;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $dureeGarentie;
+
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     * @Assert\NotBlank
+     * @Assert\GreaterThan("+1 days")
+     */
+    protected $delaiExection;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $penalites;
+
+
+
+
 
 
     /**
@@ -90,8 +130,7 @@ class situationAppel {
      */
     public function __construct()
     {
-        $this->etats = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
+          $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dateSoumission=new \DateTime();
         $this->dateVisiteLieux=new \DateTime();
 
@@ -307,38 +346,7 @@ class situationAppel {
         return $this->observation;
     }
 
-    /**
-     * Add etats
-     *
-     * @param \medaSys\AOBundle\Entity\etat $etats
-     * @return situationAppel
-     */
-    public function addEtat(\medaSys\AOBundle\Entity\etat $etats)
-    {
-        $this->etats[] = $etats;
 
-        return $this;
-    }
-
-    /**
-     * Remove etats
-     *
-     * @param \medaSys\AOBundle\Entity\etat $etats
-     */
-    public function removeEtat(\medaSys\AOBundle\Entity\etat $etats)
-    {
-        $this->etats->removeElement($etats);
-    }
-
-    /**
-     * Get etats
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getEtats()
-    {
-        return $this->etats;
-    }
 
     /**
      * Set appel
@@ -396,28 +404,7 @@ class situationAppel {
         return $this->cautions;
     }
 
-    /**
-     * Set modelEtats
-     *
-     * @param \medaSys\AOBundle\Entity\modelEtats $modelEtats
-     * @return situationAppel
-     */
-    public function setModelEtats(\medaSys\AOBundle\Entity\modelEtats $modelEtats = null)
-    {
-        $this->modelEtats = $modelEtats;
 
-        return $this;
-    }
-
-    /**
-     * Get modelEtats
-     *
-     * @return \medaSys\AOBundle\Entity\modelEtats
-     */
-    public function getModelEtats()
-    {
-        return $this->modelEtats;
-    }
 
     /**
      * Set montantSoumission
@@ -441,14 +428,7 @@ class situationAppel {
     {
         return $this->montantSoumission;
     }
-    public function setsuiviPlis(\medaSys\AOBundle\Entity\suiviPlis $suiviPlis)
-
-    {
-        $suiviPlis->setSituationAppel($this);
-        $this->suiviPlis = $suiviPlis;
-
-        return $this;
-    }
+    
 
     /**
      * Get situationAppel
@@ -460,15 +440,237 @@ class situationAppel {
         return $this->suiviPlis;
     }
 
+
+
+
+
+
+    /**
+     * Set installation
+     *
+     * @param string $installation
+     * @return situationAppel
+     */
+    public function setInstallation($installation)
+    {
+        $this->installation = $installation;
+
+        return $this;
+    }
+
+    /**
+     * Get installation
+     *
+     * @return string 
+     */
+    public function getInstallation()
+    {
+        return $this->installation;
+    }
+
+    /**
+     * Set siteConcernes
+     *
+     * @param string $siteConcernes
+     * @return situationAppel
+     */
+    public function setSiteConcernes($siteConcernes)
+    {
+        $this->siteConcernes = $siteConcernes;
+
+        return $this;
+    }
+
+    /**
+     * Get siteConcernes
+     *
+     * @return string 
+     */
+    public function getSiteConcernes()
+    {
+        return $this->siteConcernes;
+    }
+
+    /**
+     * Set qualificationTechnique
+     *
+     * @param string $qualificationTechnique
+     * @return situationAppel
+     */
+    public function setQualificationTechnique($qualificationTechnique)
+    {
+        $this->qualificationTechnique = $qualificationTechnique;
+
+        return $this;
+    }
+
+    /**
+     * Get qualificationTechnique
+     *
+     * @return string 
+     */
+    public function getQualificationTechnique()
+    {
+        return $this->qualificationTechnique;
+    }
+
+   
+
+
+
+
+    /**
+     * Set modeAdjudication
+     *
+     * @param string $modeAdjudication
+     * @return situationAppel
+     */
+    public function setModeAdjudication($modeAdjudication)
+    {
+        $this->modeAdjudication = $modeAdjudication;
+
+        return $this;
+    }
+
+    /**
+     * Get modeAdjudication
+     *
+     * @return string 
+     */
+    public function getModeAdjudication()
+    {
+        return $this->modeAdjudication;
+    }
+
+
+
+
+    /**
+     * Set soumission
+     *
+     * @param string $soumission
+     * @return situationAppel
+     */
+    public function setSoumission($soumission)
+    {
+        $this->soumission = $soumission;
+
+        return $this;
+    }
+
+    /**
+     * Get soumission
+     *
+     * @return string 
+     */
+    public function getSoumission()
+    {
+        return $this->soumission;
+    }
+
+    /**
+     * Set motifs
+     *
+     * @param string $motifs
+     * @return situationAppel
+     */
+    public function setMotifs($motifs)
+    {
+        $this->motifs = $motifs;
+
+        return $this;
+    }
+
+    /**
+     * Get motifs
+     *
+     * @return string 
+     */
+    public function getMotifs()
+    {
+        return $this->motifs;
+    }
+
     /**
      * Set suiviPlis
      *
      * @param \medaSys\AOBundle\Entity\suiviPlis $suiviPlis
      * @return situationAppel
      */
+    public function setSuiviPlis(\medaSys\AOBundle\Entity\suiviPlis $suiviPlis = null)
+    {
+        $suiviPlis->setSituationAppel($this);
+        $this->suiviPlis = $suiviPlis;
 
+        return $this;
+    }
 
+    /**
+     * Set dureeGarentie
+     *
+     * @param integer $dureeGarentie
+     * @return situationAppel
+     */
+    public function setDureeGarentie($dureeGarentie)
+    {
+        $this->dureeGarentie = $dureeGarentie;
 
+        return $this;
+    }
 
+    /**
+     * Get dureeGarentie
+     *
+     * @return integer 
+     */
+    public function getDureeGarentie()
+    {
+        return $this->dureeGarentie;
+    }
 
+    /**
+     * Set delaiExection
+     *
+     * @param \DateTime $delaiExection
+     * @return situationAppel
+     */
+    public function setDelaiExection($delaiExection)
+    {
+        $this->delaiExection = $delaiExection;
+
+        return $this;
+    }
+
+    /**
+     * Get delaiExection
+     *
+     * @return \DateTime 
+     */
+    public function getDelaiExection()
+    {
+        return $this->delaiExection;
+    }
+
+    /**
+     * Set penalites
+     *
+     * @param integer $penalites
+     * @return situationAppel
+     */
+    public function setPenalites($penalites)
+    {
+        $this->penalites = $penalites;
+
+        return $this;
+    }
+
+    /**
+     * Get penalites
+     *
+     * @return integer 
+     */
+    public function getPenalites()
+    {
+        return $this->penalites;
+    }
 }

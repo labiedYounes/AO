@@ -1,16 +1,13 @@
 <?php
+
+
 namespace medaSys\AOBundle\Form\appForms\ficheProjet;
-
-
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-
-
-
-class appelType extends AbstractType {
+class cautionnement extends AbstractType {
 
 
     /**
@@ -27,7 +24,7 @@ class appelType extends AbstractType {
             ->add('lieuxDepot',null,array('label'=>'lieu dépôt Prospectus  :'))
             ->add('attestation',null,array('label'=>'Attestation à fournir :'))
             ->add('maitreOuvrage',new entrepriseType())
-            ->add('situationAppel',new situationAppelType())
+            ->add('situationAppel',new situationAppelType("cautionnement"))
         ;
 
     }
@@ -39,6 +36,7 @@ class appelType extends AbstractType {
     {
         $resolver->setDefaults(array(
             'data_class' => 'medaSys\AOBundle\Entity\appel'
+
         )) ;
     }
 
@@ -47,8 +45,6 @@ class appelType extends AbstractType {
      */
     public function getName()
     {
-        return 'ficheProjetFormAppel';
+        return 'ficheProjetFormAppelCautionnement';
     }
-
-
 } 

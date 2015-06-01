@@ -20,18 +20,21 @@
         <td> {{ form_row(form.dateLimit) }}</td>
         <td> {{ form_row(form.lieuxDepot) }}</td></tr>
     <tr><td>{{ form_row(form.situationAppel.lot) }}</td><td>{{ form_row(form.situationAppel.dateVisiteLieux) }}</td></tr>
-    {#<tr><td> {{ form_row(form.esoumission) }}</td><
-        <td>{{ form_row(form.emotif) }}</td><</tr>#}
-
+    <tr><td> {{ form_row(form.situationAppel.soumission) }}</td>
+        <td>{{ form_row(form.situationAppel.motifs) }}</td><</tr>
+    <tr><td>{{ form_row(form.situationAppel.modeAdjudication) }}</td></tr>
     <tr><td>{{ form_row(form.passation) }}</td></tr>
     <tr><td>{{ form_row(form.situationAppel.montantMarche) }}</td></tr>
     <tr><td>{{ form_row(form.attestation) }}</td></tr>
 
     <tr><td>{{ form_row(form.situationAppel.suiviPlis.lieuxOuverture) }}</td></tr>
-    <tr><td>{{ form_row(form.submit) }}</td></tr>
-    {{ form_end(form) }}
-    </table>
+    <tr><td>{{ form_row(form.situationAppel.observation) }}</td></tr>
 
+
+    <tr><td>{{ form_row(form.submit) }}</td></tr>
+
+    </table>
+    {{ form_end(form) }}
     <ul class="record_actions">
         <li>
             <a href="{{ path('appel') }}">

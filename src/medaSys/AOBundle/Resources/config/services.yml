@@ -6,3 +6,8 @@ services:
              class: medaSys\AOBundle\EventListener\situationAppelSubscriber
              tags:
                   - { name: doctrine.event_subscriber, connection: default }
+
+     ficheProjet.appelType:
+             class: medaSys\AOBundle\Form\appForms\ficheProjet\appelType
+             tags:
+                 - { name: form.type, alias: appelType }
