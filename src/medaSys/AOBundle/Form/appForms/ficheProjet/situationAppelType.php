@@ -30,7 +30,7 @@ class situationAppelType extends AbstractType {
             ->add('montantSoumission',null,array('label'=>'Montant de la soumission :'))
             ->add('dateVisiteLieux',null,array('label'=>'Date visite des lieux :  '))
             ->add('dateSoumission',null,array('label'=>'Date et heure soumission :'))
-            ->add('suiviPlis',new suiviPlisType())
+
             ->add('soumission',null,array('label'=>'Soumission'))
             ->add('motifs',null,array('label'=>'Motifs'))
             ->add('modeAdjudication',null,array('label'=>'Mode Adjudication'))
@@ -52,7 +52,24 @@ class situationAppelType extends AbstractType {
                        ));
                     $event->getForm()->add('dureeGarentie',null,array('label'=>'Durée de Garantie :'))->add('delaiExection',null,array('label'=>'Délai d’exécution : '))->add('penalites',null,array('label'=>'Pénalités de retard plafonnés à : '));
                     break;
+                case   'installation':
+                    $event->getForm()->add('siteConcernes',null,array('label'=>'* Sites concernés '))->add('installation',null,array('label'=>'installation'));
+                    break;
+                case   'qualificationTechnique':
+                    $event->getForm()->add('qualificationTechnique',null,array('label'=>'Qualification Technique'))->add('responsableQualification',null,array('label'=>'Responsable qualification :'));
+                    break;
+                case   'soumissionnaires':
+                    $event->getForm()->add('soumissionnaires','collection',array('type'=>new soumissionnaireType()
+                    ));
+                    break;
             }
+            if($this->section== 'soumissionnaires'){
+                $event->getForm() ->add('suiviPlis',new suiviPlisType('soumissionares'));
+            }
+            else{
+                $event->getForm() ->add('suiviPlis',new suiviPlisType());
+            }
+
         }
     }
     /**

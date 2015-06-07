@@ -1,14 +1,12 @@
 <?php
 
-namespace medaSys\AOBundle\Form\appForms\ficheProjet;
 
+namespace medaSys\AOBundle\Form\appForms\ficheProjet;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class cautionType extends AbstractType
+class soumissionnairesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,22 +15,21 @@ class cautionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->addEventListener(FormEvents::PRE_SET_DATA,function(FormEvent $event){
-                $caution=$event->getData();
-                $form=$event->getForm();
-                $form->add('montant',null,array('label'=>$caution->getLabel()));
-            })
+            ->add('nomEntreprise',null,array('label'=>'Maître d’Ouvrage'))
+            ->add('nomContact',null,array('label'=>'Nom du contact '))
+            ->add('telephone',null,array('label'=>'Tél'))
+            ->add('fax',null,array('label'=>'Fax'))
+            ->add('mail',null,array('label'=>'E-mail'))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'medaSys\AOBundle\Entity\caution'
+            'data_class' => 'medaSys\AOBundle\Entity\entreprise'
         ));
     }
 
@@ -41,6 +38,7 @@ class cautionType extends AbstractType
      */
     public function getName()
     {
-        return 'medasys_aobundle_caution';
+        return 'ficheProjetFormEntreprise';
     }
-}
+
+} 

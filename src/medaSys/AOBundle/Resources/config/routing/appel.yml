@@ -23,10 +23,24 @@ appel_update:
     path:     /{id}/update
     defaults: { _controller: "medaSysAOBundle:appel:update" }
     methods:  [POST, PUT]
+
 cautionnement:
     path:     /{id}/cautionnement
     defaults: { _controller: "medaSysAOBundle:appel:cautionnement" }
     methods:  [POST, PUT]
+soumissionnaires:
+    path:     /{id}/soumissionnaires
+    defaults: { _controller: "medaSysAOBundle:appel:soumissionnaires" }
+    methods:  [POST, PUT]
+qualificationTechnique:
+    path:     /{id}/qualificationTechnique
+    defaults: { _controller: "medaSysAOBundle:appel:qualificationTechnique" }
+    methods:  [POST, PUT]
+installation:
+    path:     /{id}/installation
+    defaults: { _controller: "medaSysAOBundle:appel:installation" }
+    methods:  [POST, PUT]
+
 
 appel_delete:
     path:     /{id}/delete

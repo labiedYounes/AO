@@ -252,6 +252,102 @@ class appelController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+    public function installationAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
+
+        if (!$appel) {
+            throw $this->createNotFoundException('Unable to find appel entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($appel,'installation');
+        $editForm->handleRequest($request);
+        // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
+        $view=$this->isClicked($editForm);
+
+
+        if ($editForm->isValid()) {
+            //die(var_dump($view." test"));
+            $em->persist($appel);
+            $em->flush();
+            return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
+        }
+        $editView=$view==""?'edit':$view;
+
+        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+            'entity'      => $appel,
+            'edit_form'   => $this->getForm("",$editForm),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    public function soumissionnairesAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
+
+        if (!$appel) {
+            throw $this->createNotFoundException('Unable to find appel entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($appel,'soumissionnaires');
+        $editForm->handleRequest($request);
+        // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
+        $view=$this->isClicked($editForm);
+
+
+        if ($editForm->isValid()) {
+            //die(var_dump($view." test"));
+            $em->persist($appel);
+            $em->flush();
+            return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
+        }
+        $editView=$view==""?'edit':$view;
+
+        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+            'entity'      => $appel,
+            'edit_form'   => $this->getForm("",$editForm),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    public function qualificationTechniqueAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
+
+        if (!$appel) {
+            throw $this->createNotFoundException('Unable to find appel entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($appel,'qualificationTechnique');
+        $editForm->handleRequest($request);
+        // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
+        $view=$this->isClicked($editForm);
+
+
+        if ($editForm->isValid()) {
+            //die(var_dump($view." test"));
+            $em->persist($appel);
+            $em->flush();
+            return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
+        }
+        $editView=$view==""?'edit':$view;
+
+        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+            'entity'      => $appel,
+            'edit_form'   => $this->getForm("",$editForm),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
     /*
      * returns a from view
      * */
