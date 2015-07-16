@@ -101,26 +101,26 @@ class marche {
     }
 
     /**
-     * Set resposableProjet
+     * Set responsableProjet
      *
-     * @param \medaSys\AOBundle\Entity\resposableProjet $resposableProjet
+     * @param \medaSys\AOBundle\Entity\responsableProjet $responsableProjet
      * @return marche
      */
-    public function setResposableProjet(\medaSys\AOBundle\Entity\resposableProjet $resposableProjet = null)
+    public function setResponsableProjet(\medaSys\AOBundle\Entity\responsableProjet $responsableProjet = null)
     {
-        $this->resposableProjet = $resposableProjet;
+        $this->responsableProjet = $responsableProjet;
 
         return $this;
     }
 
     /**
-     * Get resposableProjet
+     * Get responsableProjet
      *
-     * @return \medaSys\AOBundle\Entity\resposableProjet 
+     * @return \medaSys\AOBundle\Entity\responsableProjet 
      */
-    public function getResposableProjet()
+    public function getresponsableProjet()
     {
-        return $this->resposableProjet;
+        return $this->responsableProjet;
     }
 
     /**
@@ -169,26 +169,7 @@ class marche {
         return $this->situationMarche;
     }
 
-    /**
-     * Set responsableProjet
-     *
-     * @param \medaSys\AOBundle\Entity\responsable $responsableProjet
-     * @return marche
-     */
-    public function setResponsableProjet(\medaSys\AOBundle\Entity\responsable $responsableProjet = null)
-    {
-        $this->responsableProjet = $responsableProjet;
 
-        return $this;
-    }
 
-    /**
-     * Get responsableProjet
-     *
-     * @return \medaSys\AOBundle\Entity\responsable 
-     */
-    public function getResponsableProjet()
-    {
-        return $this->responsableProjet;
-    }
+
 }

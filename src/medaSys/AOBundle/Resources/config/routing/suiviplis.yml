@@ -28,3 +28,8 @@ suiviplis_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:suiviPlis:delete" }
     methods:  [POST, DELETE]
+
+suiviplis_modifier_soumissionnaires:
+    path:     /{id}/modifierSoumissionnaires
+    defaults: { _controller: "medaSysAOBundle:suiviPlis:modifierSoumissionnaires" }
+    methods:  [POST, DELETE,GET,PUT]

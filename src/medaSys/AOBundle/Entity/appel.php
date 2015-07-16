@@ -29,16 +29,21 @@ class appel{
     protected $objet="test";
     /**
      * @ORM\Column(type="text", nullable=true)
-
+     *@Assert\NotBlank
      */
     protected $description="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Regex("/^\w+/")
      *
      */
     protected $type="dev";//dev ...
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Your name cannot contain a number")
      *
      */
     protected $passation="lot";
@@ -54,10 +59,12 @@ class appel{
     protected $cp=1;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     protected $ville="rabat";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     protected $typeMarche="privé";// privé|public
     /**
@@ -68,11 +75,13 @@ class appel{
     protected $dateLimit;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     protected $lieuxDepot="rabat";
     /**
      * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels",cascade={"persist"} )
      *  @ORM\JoinColumn(name="maitreOuvrage_id", referencedColumnName="id")
+     *
      */
     protected $maitreOuvrage;//oneToOne Unidirectionnal
     /**

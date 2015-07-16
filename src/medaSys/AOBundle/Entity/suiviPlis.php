@@ -47,9 +47,13 @@ class suiviPlis {
      */
     protected $situationAppel;
     /**
-     * @ORM\OneToMany(targetEntity="lot", mappedBy="suivPlis")
+     * @ORM\OneToMany(targetEntity="lot", mappedBy="suiviPlis")
      */
     protected $lots;
+    /**
+     * @ORM\OneToMany(targetEntity="soumissionnairesPlis", mappedBy="suiviPlis",cascade={"remove","persist"})
+     */
+    protected $soumissionnaires;
 
     /**
      * Constructor
@@ -232,5 +236,38 @@ class suiviPlis {
     public function getLots()
     {
         return $this->lots;
+    }
+
+    /**
+     * Add soumissionnaires
+     *
+     * @param \medaSys\AOBundle\Entity\soumissionnairesPlis $soumissionnaires
+     * @return suiviPlis
+     */
+    public function addSoumissionnaire(\medaSys\AOBundle\Entity\soumissionnairesPlis $soumissionnaires)
+    {
+        $this->soumissionnaires[] = $soumissionnaires;
+
+        return $this;
+    }
+
+    /**
+     * Remove soumissionnaires
+     *
+     * @param \medaSys\AOBundle\Entity\soumissionnairesPlis $soumissionnaires
+     */
+    public function removeSoumissionnaire(\medaSys\AOBundle\Entity\soumissionnairesPlis $soumissionnaires)
+    {
+        $this->soumissionnaires->removeElement($soumissionnaires);
+    }
+
+    /**
+     * Get soumissionnaires
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSoumissionnaires()
+    {
+        return $this->soumissionnaires;
     }
 }

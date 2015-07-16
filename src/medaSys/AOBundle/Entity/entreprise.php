@@ -462,14 +462,4 @@ class entreprise {
     
 
 
-
-    /**
-     * Get nomContact
-     *
-     * @return string 
-     */
-    public function getNomContact()
-    {
-        return $this->nomContact;
-    }
 }

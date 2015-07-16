@@ -1,0 +1,33 @@
+soumissionnairesplis:
+    path:     /
+    defaults: { _controller: "medaSysAOBundle:soumissionnairesPlis:index" }
+
+soumissionnairesplis_show:
+    path:     /{id}/show
+    defaults: { _controller: "medaSysAOBundle:soumissionnairesPlis:show" }
+
+soumissionnairesplis_new:
+    path:     /new
+    defaults: { _controller: "medaSysAOBundle:soumissionnairesPlis:new" }
+
+soumissionnairesplis_create:
+    path:     /create
+    defaults: { _controller: "medaSysAOBundle:soumissionnairesPlis:create" }
+    methods:  POST
+
+soumissionnairesplis_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "medaSysAOBundle:soumissionnairesPlis:edit" }
+
+soumissionnairesplis_update:
+    path:     /{id}/update
+    defaults: { _controller: "medaSysAOBundle:soumissionnairesPlis:update" }
+    methods:  [POST, PUT]
+
+soumissionnairesplis_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "medaSysAOBundle:soumissionnairesPlis:delete" }
+    methods:  [POST, DELETE]
+
+
+

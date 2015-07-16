@@ -27,19 +27,19 @@ appel_update:
 cautionnement:
     path:     /{id}/cautionnement
     defaults: { _controller: "medaSysAOBundle:appel:cautionnement" }
-    methods:  [POST, PUT]
+    methods:  [POST, PUT,GET]
 soumissionnaires:
     path:     /{id}/soumissionnaires
     defaults: { _controller: "medaSysAOBundle:appel:soumissionnaires" }
-    methods:  [POST, PUT]
+    methods:  [POST, PUT,GET]
 qualificationTechnique:
     path:     /{id}/qualificationTechnique
     defaults: { _controller: "medaSysAOBundle:appel:qualificationTechnique" }
-    methods:  [POST, PUT]
+    methods:  [POST, PUT,GET]
 installation:
     path:     /{id}/installation
     defaults: { _controller: "medaSysAOBundle:appel:installation" }
-    methods:  [POST, PUT]
+    methods:  [POST, PUT,GET]
 
 
 appel_delete:

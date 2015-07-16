@@ -20,31 +20,39 @@ class situationAppel {
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     protected $numOrder="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     protected $resultas="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     protected $responsableCompte="test";
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     protected $responsableQualification="test";//oneToOne unidirectionnale
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
      */
     protected $montantMarche=1;
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
      */
     protected $montantSoumission=1;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
     protected $lot=1;
     /**
@@ -87,16 +95,20 @@ class situationAppel {
      */
     protected $siteConcernes;
     /**
- * @ORM\Column(type="text",nullable=true)
- */
+     * @ORM\Column(type="text",nullable=true)
+     * @Assert\NotBlank
+     */
     protected $qualificationTechnique;
     /**
      * @ORM\Column(type="text",nullable=true)
+     * @Assert\NotBlank
+     *
      */
     protected $modeAdjudication;
 
     /**
      * @ORM\Column(type="text",nullable=true)
+     * @Assert\NotBlank
      */
     protected $soumission;
     /**
@@ -130,7 +142,7 @@ class situationAppel {
      */
     public function __construct()
     {
-          $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cautions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dateSoumission=new \DateTime();
         $this->dateVisiteLieux=new \DateTime();
 
@@ -422,13 +434,13 @@ class situationAppel {
     /**
      * Get montantSoumission
      *
-     * @return integer 
+     * @return integer
      */
     public function getMontantSoumission()
     {
         return $this->montantSoumission;
     }
-    
+
 
     /**
      * Get situationAppel
@@ -461,7 +473,7 @@ class situationAppel {
     /**
      * Get installation
      *
-     * @return string 
+     * @return string
      */
     public function getInstallation()
     {
@@ -484,7 +496,7 @@ class situationAppel {
     /**
      * Get siteConcernes
      *
-     * @return string 
+     * @return string
      */
     public function getSiteConcernes()
     {
@@ -507,14 +519,14 @@ class situationAppel {
     /**
      * Get qualificationTechnique
      *
-     * @return string 
+     * @return string
      */
     public function getQualificationTechnique()
     {
         return $this->qualificationTechnique;
     }
 
-   
+
 
 
 
@@ -535,7 +547,7 @@ class situationAppel {
     /**
      * Get modeAdjudication
      *
-     * @return string 
+     * @return string
      */
     public function getModeAdjudication()
     {
@@ -561,7 +573,7 @@ class situationAppel {
     /**
      * Get soumission
      *
-     * @return string 
+     * @return string
      */
     public function getSoumission()
     {
@@ -584,7 +596,7 @@ class situationAppel {
     /**
      * Get motifs
      *
-     * @return string 
+     * @return string
      */
     public function getMotifs()
     {
@@ -621,7 +633,7 @@ class situationAppel {
     /**
      * Get dureeGarentie
      *
-     * @return integer 
+     * @return integer
      */
     public function getDureeGarentie()
     {
@@ -644,7 +656,7 @@ class situationAppel {
     /**
      * Get delaiExection
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDelaiExection()
     {
@@ -667,10 +679,16 @@ class situationAppel {
     /**
      * Get penalites
      *
-     * @return integer 
+     * @return integer
      */
     public function getPenalites()
     {
         return $this->penalites;
     }
+
+    function __toString()
+    {
+        return "situationAppel";
+    }
+
 }

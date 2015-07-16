@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class soumissionnairesType extends AbstractType
+class soumissionnaireType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,8 @@ class soumissionnairesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomEntreprise',null,array('label'=>'Maître d’Ouvrage'))
-            ->add('nomContact',null,array('label'=>'Nom du contact '))
-            ->add('telephone',null,array('label'=>'Tél'))
-            ->add('fax',null,array('label'=>'Fax'))
-            ->add('mail',null,array('label'=>'E-mail'))
+            ->add('nomEntreprise',null,array('label'=>'Raison sociale :'))
+
         ;
     }
 
@@ -38,7 +35,7 @@ class soumissionnairesType extends AbstractType
      */
     public function getName()
     {
-        return 'ficheProjetFormEntreprise';
+        return 'ficheProjetFormSoumissionnaireType';
     }
 
 } 

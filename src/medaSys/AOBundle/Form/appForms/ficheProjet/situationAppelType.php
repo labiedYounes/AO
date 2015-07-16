@@ -58,13 +58,10 @@ class situationAppelType extends AbstractType {
                 case   'qualificationTechnique':
                     $event->getForm()->add('qualificationTechnique',null,array('label'=>'Qualification Technique'))->add('responsableQualification',null,array('label'=>'Responsable qualification :'));
                     break;
-                case   'soumissionnaires':
-                    $event->getForm()->add('soumissionnaires','collection',array('type'=>new soumissionnaireType()
-                    ));
-                    break;
+
             }
             if($this->section== 'soumissionnaires'){
-                $event->getForm() ->add('suiviPlis',new suiviPlisType('soumissionares'));
+                $event->getForm() ->add('suiviPlis',new suiviPlisType('soumissionnaires'));
             }
             else{
                 $event->getForm() ->add('suiviPlis',new suiviPlisType());

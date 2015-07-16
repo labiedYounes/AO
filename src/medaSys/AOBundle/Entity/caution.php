@@ -56,6 +56,8 @@ class caution {
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\Regex("/\d+/") => options (pattern, match, message)
      */
     protected $montant=0;
     /**

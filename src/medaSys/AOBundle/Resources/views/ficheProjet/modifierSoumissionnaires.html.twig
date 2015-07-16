@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>suiviPlis edit</h1>
+
+    {{ form_start(edit_form) }}
+    <ul class="speakers" data-prototype="{{ form_widget(edit_form.soumissionnaires.vars.prototype)|e }}">
+        {% for soumissionaire in edit_form.soumissionnaires %}
+            <li>{{ form_row(soumissionaire.soumissionnaire.nomEntreprise) }}
+                {{ form_row(soumissionaire.montant) }}
+
+            </li>
+        {% endfor %}
+    </ul>
+    {{ form_end(edit_form) }}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('suiviplis') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '@medaSysAOBundle/Resources/public/js/soumissionaires.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,3 +1,7 @@
+meda_sys_ao_soumissionnairesplis:
+    resource: "@medaSysAOBundle/Resources/config/routing/soumissionnairesplis.yml"
+    prefix:   /soumissionnairesplis
+
 meda_sys_ao_suiviplis:
     resource: "@medaSysAOBundle/Resources/config/routing/suiviplis.yml"
     prefix:   /suiviplis
@@ -41,3 +45,7 @@ meda_sys_ao_appel:
 meda_sys_ao_homepage:
     path:     /hello/{name}
     defaults: { _controller: medaSysAOBundle:Default:index }
+
+medaSysAOBundle_soumissionnairesplis:
+    resource: "@medaSysAOBundle/Resources/config/routing/soumissionnairesplis.yml"
+    prefix:   /soumissionnairesplis

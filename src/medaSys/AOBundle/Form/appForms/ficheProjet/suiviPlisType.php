@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class suiviPlisType extends AbstractType
 {
-private $soumissionnaires;
+    private $soumissionnaires;
     /**
      * current appel
      * @var appel
@@ -40,8 +40,12 @@ private $soumissionnaires;
 
                 case   'soumissionnaires':
                     $event->getForm() ->add('lieuxOuverture',null,array('label'=>"Lieu d ’ouverture des plis : "));
-                    $event->getForm()->add('soumissionnaires','collection',array('type'=>new soumissionnaireType()
+                    $event->getForm()->add('soumissionnaires','collection',array('type'=>new soumissionnairesPlisType(),
+                        'allow_add'    => true,
+                        'allow_delete'  => true,
+                        'by_reference'  => false,
                     ));
+                    /// $event->getForm()->add('soumissionnaires',new soumissionnairesPlisType());
                     break;
                 case   'none':
                     $event->getForm() ->add('lieuxOuverture',null,array('label'=>"Lieu d ’ouverture des plis : "));

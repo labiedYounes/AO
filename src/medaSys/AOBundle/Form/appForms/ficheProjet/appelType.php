@@ -19,6 +19,7 @@ class appelType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $testing=array("test","tests");
         $builder
             ->add('objet',null,array('label'=>'Objet :'))
             ->add('attestation',null,array('label'=>'Attestation à fournir :'))

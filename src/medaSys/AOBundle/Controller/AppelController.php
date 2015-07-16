@@ -51,7 +51,7 @@ class appelController extends Controller
             return $this->redirect($this->generateUrl('appel_show', array('id' => $appel->getId())));
         }
 
-        return $this->render('medaSysAOBundle:appel:new.html.twig', array(
+        return $this->render('medaSysAOBundle:ficheProjet:new.html.twig', array(
             'entity' => $appel,
             'form'   => $form->createView(),
         ));
@@ -198,7 +198,6 @@ class appelController extends Controller
         $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
 
         if (!$appel) {
-            throw $this->createNotFoundException('Unable to find appel entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -271,7 +270,7 @@ class appelController extends Controller
 
 
         if ($editForm->isValid()) {
-            //die(var_dump($view." test"));
+           // die(var_dump($view." test"));
             $em->persist($appel);
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
@@ -291,6 +290,8 @@ class appelController extends Controller
 
         $appel = $em->getRepository('medaSysAOBundle:appel')->find($id);
 
+
+
         if (!$appel) {
             throw $this->createNotFoundException('Unable to find appel entity.');
         }
@@ -303,7 +304,7 @@ class appelController extends Controller
 
 
         if ($editForm->isValid()) {
-            //die(var_dump($view." test"));
+           // die(var_dump('h'));
             $em->persist($appel);
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
