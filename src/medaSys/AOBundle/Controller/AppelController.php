@@ -178,11 +178,11 @@ class appelController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
+        /*$form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
         $form->add('installation', 'submit', array('label' => 'Installation'));
         $form->add('qualificationTechnique', 'submit', array('label' => 'Qualification Technique'));
         $form->add('soumissionnaires', 'submit', array('label' => 'Soumissionnaires'));
-        $form->add('submit', 'submit', array('label' => 'Update'));
+       */ $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -234,7 +234,7 @@ class appelController extends Controller
         $editForm = $this->createEditForm($appel,'cautionnement');
         $editForm->handleRequest($request);
         // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
-        $view=$this->isClicked($editForm);
+       // $view=$this->isClicked($editForm);
 
 
         if ($editForm->isValid()) {
@@ -243,9 +243,9 @@ class appelController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
-        $editView=$view==""?'edit':$view;
+       // $editView=$view==""?'edit':$view;
 
-        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:ficheProjet:cautionnement.html.twig', array(
             'entity'      => $appel,
             'edit_form'   => $this->getForm("",$editForm),
             'delete_form' => $deleteForm->createView(),
@@ -266,7 +266,7 @@ class appelController extends Controller
         $editForm = $this->createEditForm($appel,'installation');
         $editForm->handleRequest($request);
         // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
-        $view=$this->isClicked($editForm);
+       // $view=$this->isClicked($editForm);
 
 
         if ($editForm->isValid()) {
@@ -275,9 +275,9 @@ class appelController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
-        $editView=$view==""?'edit':$view;
+        //$editView=$view==""?'edit':$view;
 
-        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:ficheProjet:installation.html.twig', array(
             'entity'      => $appel,
             'edit_form'   => $this->getForm("",$editForm),
             'delete_form' => $deleteForm->createView(),
@@ -332,7 +332,7 @@ class appelController extends Controller
         $editForm = $this->createEditForm($appel,'qualificationTechnique');
         $editForm->handleRequest($request);
         // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
-        $view=$this->isClicked($editForm);
+        //$view=$this->isClicked($editForm);
 
 
         if ($editForm->isValid()) {
@@ -341,9 +341,9 @@ class appelController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
-        $editView=$view==""?'edit':$view;
+       // $editView=$view==""?'edit':$view;
 
-        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:ficheProjet:qualificationTechnique.html.twig', array(
             'entity'      => $appel,
             'edit_form'   => $this->getForm("",$editForm),
             'delete_form' => $deleteForm->createView(),
