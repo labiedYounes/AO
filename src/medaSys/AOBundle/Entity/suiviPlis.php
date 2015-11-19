@@ -37,11 +37,11 @@ class suiviPlis {
     /**
      * @ORM\Column(type="string", length=100 ,nullable=true)
      */
-    protected $seance="test";
+    protected $seance;
     /**
      * @ORM\Column(type="string", length=100 ,nullable=true)
      */
-    protected $lieuxOuverture="test";
+    protected $lieuxOuverture;
     /**
      * @ORM\OneToOne(targetEntity="situationAppel",mappedBy="suiviPlis")
      */

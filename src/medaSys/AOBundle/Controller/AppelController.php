@@ -8,6 +8,7 @@ use medaSys\AOBundle\Entity\appel;
 use medaSys\AOBundle\Entity\caution;
 use medaSys\AOBundle\Form\appForms\ficheProjet\appelType;
 use Symfony\Component\HttpFoundation\Response;
+use Jaspersoft\Client\Client;
 
 
 /**
@@ -178,11 +179,11 @@ class appelController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
+        /*$form->add('cautionnement', 'submit', array('label' => 'Cautionnement'));
         $form->add('installation', 'submit', array('label' => 'Installation'));
         $form->add('qualificationTechnique', 'submit', array('label' => 'Qualification Technique'));
         $form->add('soumissionnaires', 'submit', array('label' => 'Soumissionnaires'));
-        $form->add('submit', 'submit', array('label' => 'Update'));
+       */ $form->add('submit', 'submit', array('label' => 'Modifier'));
 
         return $form;
     }
@@ -234,7 +235,7 @@ class appelController extends Controller
         $editForm = $this->createEditForm($appel,'cautionnement');
         $editForm->handleRequest($request);
         // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
-        $view=$this->isClicked($editForm);
+       // $view=$this->isClicked($editForm);
 
 
         if ($editForm->isValid()) {
@@ -243,9 +244,9 @@ class appelController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
-        $editView=$view==""?'edit':$view;
+       // $editView=$view==""?'edit':$view;
 
-        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:ficheProjet:cautionnement.html.twig', array(
             'entity'      => $appel,
             'edit_form'   => $this->getForm("",$editForm),
             'delete_form' => $deleteForm->createView(),
@@ -266,7 +267,7 @@ class appelController extends Controller
         $editForm = $this->createEditForm($appel,'installation');
         $editForm->handleRequest($request);
         // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
-        $view=$this->isClicked($editForm);
+       // $view=$this->isClicked($editForm);
 
 
         if ($editForm->isValid()) {
@@ -275,9 +276,9 @@ class appelController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
-        $editView=$view==""?'edit':$view;
+        //$editView=$view==""?'edit':$view;
 
-        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:ficheProjet:installation.html.twig', array(
             'entity'      => $appel,
             'edit_form'   => $this->getForm("",$editForm),
             'delete_form' => $deleteForm->createView(),
@@ -332,7 +333,7 @@ class appelController extends Controller
         $editForm = $this->createEditForm($appel,'qualificationTechnique');
         $editForm->handleRequest($request);
         // die(var_dump($appel->getSituationAppel()->getPenalites().' fdqsdfq'));
-        $view=$this->isClicked($editForm);
+        //$view=$this->isClicked($editForm);
 
 
         if ($editForm->isValid()) {
@@ -341,9 +342,9 @@ class appelController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('appel_edit', array('id' => $id)));
         }
-        $editView=$view==""?'edit':$view;
+       // $editView=$view==""?'edit':$view;
 
-        return $this->render('medaSysAOBundle:ficheProjet:edit.html.twig', array(
+        return $this->render('medaSysAOBundle:ficheProjet:qualificationTechnique.html.twig', array(
             'entity'      => $appel,
             'edit_form'   => $this->getForm("",$editForm),
             'delete_form' => $deleteForm->createView(),
@@ -412,10 +413,57 @@ class appelController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('appel_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer'))
             ->getForm()
             ;
     }
+
+    public function ficheProjetAction($id,$reportName){
+        $c = new Client(
+            "http://localhost:8081/jasperserver",
+            "test",
+            "test"
+        );
+     $param=array('appelId'=>array($id),
+                   'soumission'=>array("oui"),
+                   'modeAdjudication'=>array("article"),
+                   'installation'=>array('casa'),
+                   'qualificationTechnique'=>array('oui'),
+                   'test'=>array('nn'),
+                   'nomContact'=>array('test'),
+    'tel'=>array('test'),
+    'fax'=>array('test'),
+    'eMail'=>array('test'),
+    'refAo'=>array('test'),
+   
+    'montantSoumi'=>array('test'),
+    'objet'=>array('test'),
+    
+    'nbrLot'=>array('test'),
+
+    'soumission'=>array('oui'),
+    'motifs'=>array('test'),
+    'modeAdjudication'=>array('lot'),
+    'modePassation'=>array('test'),
+    'estimation'=>array('test'),
+    'attestion'=>array('test'),
+    'lieuOuverture'=>array('test'),
+    'observations'=>array('test'),
+    'cautionProvisoire'=>array('test'),
+    'cautionDefinitive'=>array('test'),
+    'garantie'=>array('7%'),
+    'dureeGarantie'=>array('test'),
+    'delaiExecution'=>array('test'),
+    'penalites'=>array('test'),
+    'installation'=>array('rabat'),
+    'sites'=>array('test'),
+    'qualificationTechnique'=>array('oui'),
+    'responsableQualification'=>array('test'));
+      $report = $c->reportService()->runReport('/reports/interactive/'.$reportName, 'html',null,null,$param);
+/*$report = $c->reportService()->runReport('/public/Samples/Reports/suiviMarche', 'html');*/
+        echo $report;
+    }
+
 
 
 }

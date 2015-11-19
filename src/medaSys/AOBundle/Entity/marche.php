@@ -22,17 +22,17 @@ class marche {
     /**
      * @ORM\Column(type="string" ,length=100)
      */
-    protected $objet="test";
+    protected $objet;
     /**
      * @ORM\OneToOne(targetEntity="responsable")
      */
-    protected $responsableProjet="test";//chrgé du projet
+    protected $responsableProjet;//chrgé du projet
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
      * @Assert\GreaterThan("+1 days")
      */
-    protected $datePassation="test";
+    protected $datePassation;
     /**
      * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="marches")
      */

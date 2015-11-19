@@ -22,22 +22,22 @@ class situationAppel {
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
-    protected $numOrder="test";
+    protected $numOrder;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
-    protected $resultas="test";
+    protected $resultas;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
-    protected $responsableCompte="test";
+    protected $responsableCompte;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
-    protected $responsableQualification="test";//oneToOne unidirectionnale
+    protected $responsableQualification;//oneToOne unidirectionnale
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank
@@ -70,7 +70,7 @@ class situationAppel {
     /**
      * @ORM\Column(type="text",nullable=true)
      */
-    protected $observation="test";
+    protected $observation;
     /**
      * @ORM\OneToOne(targetEntity="appel", inversedBy="situationAppel")
      */

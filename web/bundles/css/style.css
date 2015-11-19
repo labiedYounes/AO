@@ -570,7 +570,7 @@ body-small.fixed-sidebar.mini-navbar .top-navigation #page-wrapper {
   background-color: #1ab394;
   border-color: #1ab394;
   color: #FFFFFF;
-  width: 180px;
+  width: 220px;
   font-size: 16px;
 
 }
@@ -909,40 +909,40 @@ button.dim:active {
   top: 3px;
 }
 button.btn-primary.dim {
-  box-shadow: inset 0px 0px 0px #16987e, 0px 5px 0px 0px #16987e, 0px 10px 5px #999999;
+  box-shadow: inset 0px 0px 0px #16987e, 0px 5px 0px 0px #16987e, 0px 10px 5px #086766;
 }
 button.btn-primary.dim:active {
-  box-shadow: inset 0px 0px 0px #16987e, 0px 2px 0px 0px #16987e, 0px 5px 3px #999999;
+  box-shadow: inset 0px 0px 0px #16987e, 0px 2px 0px 0px #16987e, 0px 5px 3px #086766;
 }
 button.btn-default.dim {
-  box-shadow: inset 0px 0px 0px #b3b3b3, 0px 5px 0px 0px #b3b3b3, 0px 10px 5px #999999;
+  box-shadow: inset 0px 0px 0px #0A7E7E, 0px 5px 0px 0px #0A7E7E, 0px 10px 5px #086766;
 }
 button.btn-default.dim:active {
-  box-shadow: inset 0px 0px 0px #b3b3b3, 0px 2px 0px 0px #b3b3b3, 0px 5px 3px #999999;
+  box-shadow: inset 0px 0px 0px #0A7E7E, 0px 2px 0px 0px #0A7E7E, 0px 5px 3px #086766;
 }
 button.btn-warning.dim {
-  box-shadow: inset 0px 0px 0px #f79d3c, 0px 5px 0px 0px #f79d3c, 0px 10px 5px #999999;
+  box-shadow: inset 0px 0px 0px #f79d3c, 0px 5px 0px 0px #f79d3c, 0px 10px 5px #086766;
 }
 button.btn-warning.dim:active {
-  box-shadow: inset 0px 0px 0px #f79d3c, 0px 2px 0px 0px #f79d3c, 0px 5px 3px #999999;
+  box-shadow: inset 0px 0px 0px #f79d3c, 0px 2px 0px 0px #f79d3c, 0px 5px 3px #086766;
 }
 button.btn-info.dim {
-  box-shadow: inset 0px 0px 0px #1eacae, 0px 5px 0px 0px #1eacae, 0px 10px 5px #999999;
+  box-shadow: inset 0px 0px 0px #1eacae, 0px 5px 0px 0px #1eacae, 0px 10px 5px #086766;
 }
 button.btn-info.dim:active {
-  box-shadow: inset 0px 0px 0px #1eacae, 0px 2px 0px 0px #1eacae, 0px 5px 3px #999999;
+  box-shadow: inset 0px 0px 0px #1eacae, 0px 2px 0px 0px #1eacae, 0px 5px 3px #086766;
 }
 button.btn-success.dim {
-  box-shadow: inset 0px 0px 0px #1872ab, 0px 5px 0px 0px #1872ab, 0px 10px 5px #999999;
+  box-shadow: inset 0px 0px 0px #1872ab, 0px 5px 0px 0px #1872ab, 0px 10px 5px #086766;
 }
 button.btn-success.dim:active {
-  box-shadow: inset 0px 0px 0px #1872ab, 0px 2px 0px 0px #1872ab, 0px 5px 3px #999999;
+  box-shadow: inset 0px 0px 0px #1872ab, 0px 2px 0px 0px #1872ab, 0px 5px 3px #086766;
 }
 button.btn-danger.dim {
-  box-shadow: inset 0px 0px 0px #ea394c, 0px 5px 0px 0px #ea394c, 0px 10px 5px #999999;
+  box-shadow: inset 0px 0px 0px #ea394c, 0px 5px 0px 0px #ea394c, 0px 10px 5px #086766;
 }
 button.btn-danger.dim:active {
-  box-shadow: inset 0px 0px 0px #ea394c, 0px 2px 0px 0px #ea394c, 0px 5px 3px #999999;
+  box-shadow: inset 0px 0px 0px #ea394c, 0px 2px 0px 0px #ea394c, 0px 5px 3px #086766;
 }
 button.dim:before {
   font-size: 50px;
@@ -2949,6 +2949,7 @@ body.body-small .footer.fixed {
   width: 90%;
   padding-left: 30px;
 }
+
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   background-color: #F5F5F6;
@@ -3006,14 +3007,15 @@ body.body-small .footer.fixed {
   border: none;
 }
 .nav-tabs > li > a {
-  color: #A7B1C2;
-  font-weight: 600;
+  color: #086766;
+  font-weight: 900;
+  font-size: 16px;
   padding: 10px 20px 10px 25px;
 }
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus {
   background-color: #e6e6e6;
-  color: #676a6c;
+  color: #1AB394;
 }
 .ui-tab .tab-content {
   padding: 20px 0px;
@@ -5080,3 +5082,7 @@ input{
 .style-td{
   background-color: white;
 }
+
+
+
+

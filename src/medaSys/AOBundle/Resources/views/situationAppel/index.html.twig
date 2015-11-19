@@ -1,12 +1,210 @@
-{% extends '::base.html.twig' %}
+<!DOCTYPE html>
+<html>
 
-{% block body -%}
-    <h1>situationAppel list</h1>
+<head>
 
-    <table class="records_list">
-        <thead>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Data Tables</title>
+
+    <link href="{{ asset('bundles/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="{{ asset('bundles/css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/plugins/dataTables/dataTables.responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/plugins/dataTables/dataTables.tableTools.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('bundles/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/style.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                            <div class="dropdown profile-element"> <span>
+                                    <img alt="image" class="img-circle" src="{{asset('bundles/img/profile_small.jpg')}}" />
+                                     </span>
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"> Maria ELBADAOUI</strong>
+                                     </span></span> </a>
+                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                    <li><a href="profile.html">Profile</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                    <li><a href="mailbox.html">Mailbox</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="login.html">Logout</a></li>
+                                </ul>
+                            </div>
+                            <div class="logo-element">
+                                IN+
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#"> <span class="nav-label" style="font-size:14px; font-weight: bold; ">Appels d'offres</span><span class="fa arrow" style="font-size:20px; font-weight: bold;"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="{{ path('appel') }}">Appels offres</a></li>
+                                <li><a href="{{ path('entreprise') }}">Entreprises</a></li>
+                                <li><a href="{{ path('caution') }}">Cautions</a></li>
+                                <li><a href="{{ path('situationappel') }}">Situation AO</a></li>
+                                <li><a href="{{ path('suiviplis') }}">Ouverture plis</a></li>
+                                <li><a href="">Vérification dossier</a></li>
+                                <li><a href="">Fiche passation</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"> <span class="nav-label"span style="font-size:14px; font-weight: bold; ">Marchés</span><span class="fa arrow" style="font-size:20px; font-weight: bold; "></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="{{ path('marche') }}">Marchés</a></li>
+                                <li><a href="{{ path('responsable') }}">Responsables</a></li>
+                                <li><a href="{{ path('caution') }}">Cautions</a></li>
+                                <li><a href="{{ path('situationmarche') }}">Suivi du marché</a></li>
+                                <li><a href="">Demande de référence</a></li>
+                                <li><a href="">Main levée</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span class="nav-label" style="font-size:14px; font-weight: bold; ">Administration</span><span class="fa arrow" style="font-size:20px; font-weight: bold; "></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="">Ajouter utilisateur</a></li>
+                                <li><a href="">Afficher utilisateurs</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+        
+                </div>
+            </nav>
+        
+                <div id="page-wrapper" class="gray-bg">
+                <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">   
+                    <div class="navbar-header">
+                    <img src="{{asset('bundles/css/patterns/medasys.png')}}" width="262" height="57">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary1 " href="#"><i class="fa fa-bars"></i> </a>
+                     </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a href="profile.html" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a7.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <small class="pull-right">46h ago</small>
+                                            <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                            <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a href="profile.html" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a4.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right text-navy">5h ago</small>
+                                            <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                            <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a href="profile.html" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/profile.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right">23h ago</small>
+                                            <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                            <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="mailbox.html">
+                                            <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a href="mailbox.html">
+                                        <div>
+                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                            <span class="pull-right text-muted small">4 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="profile.html">
+                                        <div>
+                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                            <span class="pull-right text-muted small">12 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="grid_options.html">
+                                        <div>
+                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                            <span class="pull-right text-muted small">4 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="notifications.html">
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+        
+        
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+        
+                </nav>
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2 style="font-family: times new roman, times, serif; font-weight: bold ; font-size: 24px;">Liste des situations  d'appels </h2>
+                </div>
+            </div>
+            <div class="ibox-content">
+            <table class="table table-striped table-bordered table-hover " id="editable" >
+            <thead>
             <tr>
-                <th>Id</th>
                 <th>Numorder</th>
                 <th>Resultas</th>
                 <th>Responsablecompte</th>
@@ -19,11 +217,10 @@
                 <th>Observation</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('situationappel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.numOrder }}</td>
                 <td>{{ entity.resultas }}</td>
                 <td>{{ entity.responsableCompte }}</td>
@@ -35,25 +232,129 @@
                 <td>{% if entity.dateVisiteLieux %}{{ entity.dateVisiteLieux|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.observation }}</td>
                 <td>
-                <ul>
+
+                 <ul>
+                    
                     <li>
-                        <a href="{{ path('situationappel_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('situationappel_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
                     </li>
                     <li>
-                        <a href="{{ path('situationappel_edit', { 'id': entity.id }) }}">edit</a>
+                       <a href="{{ path('situationappel_show', { 'id': entity.id }) }}"><i class="fa fa-eye"></i></a> 
                     </li>
                 </ul>
                 </td>
             </tr>
-        {% endfor %}
-        </tbody>
+         {% endfor %}       
+            </tbody>
+            </table>
+
+    <br>
+    <table style="margin-left:40% ; ">
+        <tr>
+            <td>
+                <a href="{{ path('situationappel_new') }}"><button type="button" class="btn btn-primary0">Créer situationAppel</button></a>
+            </td>
+        </tr>
+
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('situationappel_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+            </div>
+            </div>
+            </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="{{asset('bundles/js/jquery-2.1.1.js')}}"></script>
+    <script src="{{asset('bundles/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('bundles/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{asset('bundles/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!--<script src="{{asset('bundles/js/plugins/jeditable/jquery.jeditable.js')}}"></script> -->
+
+    <!-- Data Tables -->
+    <script src="{{asset('bundles/js/plugins/dataTables/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('bundles/js/plugins/dataTables/dataTables.bootstrap.js')}}"></script>
+    <script src="{{asset('bundles/js/plugins/dataTables/dataTables.responsive.js')}}"></script>
+    <script src="{{asset('bundles/js/plugins/dataTables/dataTables.tableTools.min.js')}}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{{asset('bundles/js/inspinia.js')}}"></script>
+    <script src="{{asset('bundles/js/plugins/pace/pace.min.js')}}"></script>
+
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function() {
+            $('.dataTables-example').dataTable({
+                responsive: true,
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "{{asset('bundles/js/plugins/dataTables/swf/copy_csv_xls_pdf.swf')}}"
+                }
+            });
+
+            /* Init DataTables */
+            var oTable = $('#editable').dataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable( '../example_ajax.php', {
+                "callback": function( sValue, y ) {
+                    var aPos = oTable.fnGetPosition( this );
+                    oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+                },
+                "submitdata": function ( value, settings ) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition( this )[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            } );
+
+
+        });
+
+        function fnClickAddRow() {
+            $('#editable').dataTable().fnAddData( [
+                "Custom row",
+                "New row",
+                "New row",
+                "New row",
+                "New row" ] );
+
+        }
+    </script>
+<style>
+    body.DTTT_Print {
+        background: #fff;
+
+    }
+    .DTTT_Print #page-wrapper {
+        margin: 0;
+        background:#fff;
+    }
+
+    button.DTTT_button, div.DTTT_button, a.DTTT_button {
+        border: 1px solid #e7eaec;
+        background: #fff;
+        color: #676a6c;
+        box-shadow: none;
+        padding: 6px 8px;
+    }
+    button.DTTT_button:hover, div.DTTT_button:hover, a.DTTT_button:hover {
+        border: 1px solid #d2d2d2;
+        background: #fff;
+        color: #676a6c;
+        box-shadow: none;
+        padding: 6px 8px;
+    }
+
+    .dataTables_filter label {
+        margin-right: 5px;
+
+    }
+</style>
+</body>
+
+</html>

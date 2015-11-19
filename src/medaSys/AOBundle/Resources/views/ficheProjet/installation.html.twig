@@ -1,65 +1,470 @@
-{% extends '::base.html.twig' %}
+<!DOCTYPE html>
+<html>
 
-{% block body -%}
-    <h1>appel creation</h1>
+<head>
 
-    {% block editForm %}
-        {{ form_start(edit_form) }}
-        {% block editFormData %}
-    <table>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <tr><td>
-                {{ form_row(edit_form.situationAppel.responsableCompte) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.maitreOuvrage.nomEntreprise) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.maitreOuvrage.nomContact) }}</td></tr>
+    <title>INSPINIA | Data Tables</title>
 
-        <tr><td> {{ form_row(edit_form.maitreOuvrage.telephone) }}</td>
-            <td>{{ form_row(edit_form.maitreOuvrage.fax) }}</td>
-            <td>{{ form_row(edit_form.maitreOuvrage.mail) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.situationAppel.numOrder) }}</td>
-            <td>{{ form_row(edit_form.situationAppel.dateSoumission) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.situationAppel.montantSoumission) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.objet) }}</td>
-            <td> {{ form_row(edit_form.dateLimit) }}</td>
-            <td> {{ form_row(edit_form.lieuxDepot) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.situationAppel.lot) }}</td>
-            <td>{{ form_row(edit_form.situationAppel.dateVisiteLieux) }}</td></tr>
-        <tr><td> {{ form_row(edit_form.situationAppel.soumission) }}</td>
-            <td>{{ form_row(edit_form.situationAppel.motifs) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.situationAppel.modeAdjudication) }}</td></tr>
+    <link href="{{ asset('bundles/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="{{ asset('bundles/css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/plugins/dataTables/dataTables.responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/plugins/dataTables/dataTables.tableTools.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('bundles/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/layout.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/css/menu.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element"> <span>
+                                    <img alt="image" class="img-circle" src="{{asset('bundles/img/profile_small.jpg')}}" />
+                                     </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"> Maria ELBADAOUI</strong>
+                                     </span></span> </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                        <li><a href="mailbox.html">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li>
+                <a href="#"> <span class="nav-label" style="font-size:14px; font-weight: bold; ">Appels d'offres</span><span class="fa arrow" style="font-size:20px; font-weight: bold;"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="{{ path('appel') }}">Appels offres</a></li>
+                    <li><a href="{{ path('entreprise') }}">Entreprises</a></li>
+                    <li><a href="{{ path('caution') }}">Cautions</a></li>
+                    <li><a href="{{ path('situationappel') }}">Situation AO</a></li>
+                    <li><a href="{{ path('suiviplis') }}">Ouverture plis</a></li>
+                    <li><a href="">Vérification dossier</a></li>
+                    <li><a href="">Fiche passation</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"> <span class="nav-label"span style="font-size:14px; font-weight: bold; ">Marchés</span><span class="fa arrow" style="font-size:20px; font-weight: bold; "></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="{{ path('marche') }}">Marchés</a></li>
+                    <li><a href="{{ path('responsable') }}">Responsables</a></li>
+                    <li><a href="{{ path('caution') }}">Cautions</a></li>
+                    <li><a href="{{ path('situationmarche') }}">Suivi du marché</a></li>
+                    <li><a href="">Demande de référence</a></li>
+                    <li><a href="">Main levée</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><span class="nav-label" style="font-size:14px; font-weight: bold; ">Administration</span><span class="fa arrow" style="font-size:20px; font-weight: bold; "></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="">Ajouter utilisateur</a></li>
+                    <li><a href="">Afficher utilisateurs</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<div id="page-wrapper" class="gray-bg">
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <img src="{{asset('bundles/css/patterns/medasys.png')}}" width="262" height="57">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary1 " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <div class="dropdown-messages-box">
+                            <a href="profile.html" class="pull-left">
+                                <img alt="image" class="img-circle" src="img/a7.jpg">
+                            </a>
+                            <div class="media-body">
+                                <small class="pull-right">46h ago</small>
+                                <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="dropdown-messages-box">
+                            <a href="profile.html" class="pull-left">
+                                <img alt="image" class="img-circle" src="img/a4.jpg">
+                            </a>
+                            <div class="media-body ">
+                                <small class="pull-right text-navy">5h ago</small>
+                                <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="dropdown-messages-box">
+                            <a href="profile.html" class="pull-left">
+                                <img alt="image" class="img-circle" src="img/profile.jpg">
+                            </a>
+                            <div class="media-body ">
+                                <small class="pull-right">23h ago</small>
+                                <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="text-center link-block">
+                            <a href="mailbox.html">
+                                <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="mailbox.html">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="grid_options.html">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="text-center link-block">
+                            <a href="notifications.html">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
 
 
-        <tr><td>{{ form_row(edit_form.passation) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.situationAppel.montantMarche) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.attestation) }}</td></tr>
+            <li>
+                <a href="login.html">
+                    <i class="fa fa-sign-out"></i> Log out
+                </a>
+            </li>
+        </ul>
 
-        <tr><td>{{ form_row(edit_form.situationAppel.suiviPlis.lieuxOuverture) }}</td></tr>
-        <tr><td>{{ form_row(edit_form.situationAppel.observation) }}</td></tr>
-            <tr><td>{{ form_row(edit_form.situationAppel.installation) }}</td></tr>
-            <tr><td>{{ form_row(edit_form.situationAppel.siteConcernes) }}</td></tr>
+    </nav>
+</div>
+<div class="ibox-content">
+<div class="row wrapper border-bottom white-bg page-heading">
 
-        {% endblock %}
+    <h2 style="font-family: times new roman, times, serif; font-weight: bold ; font-size: 24px;">  Installation d'AO N° {{entity.id}} : </h2>
+                <div class="panel blank-panel" style="padding-left:15% ;" >
 
-    </table>
-        {{ form_end(edit_form) }}
-    {% endblock %}
+                        <div class="panel-heading">
+                             <div class="panel-options">
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('appel') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
-    {#{% set etats = edit_form.situationAppel.etats %}
-    {% for i in etats|length %}
-        <tr>
-            <td>{{ form_row(etats[i]) }}</td>
-            <td>{{ form_widget(etat[i]) }}</td>
-        </tr>
-    {% endfor %}#}
-    {#{{ dump(edit_form.situationAppel.etats ) }}#}
-    {#{{ form(edit_form) }}#}
+                                <ul class="nav nav-tabs">
+                                    <li class=""><a href="{{ path('cautionnement', {'id': entity.id}) }}" aria-expanded="true">Cautionnement</a></li> 
+                                    <li class=""><a  href="{{ path('suiviplis_modifier_soumissionnaires', {'id': entity.id}) }}" aria-expanded="false">Soumissionnaires</a></li>
+                                    <li class=""><a  href="{{ path('installation', {'id': entity.id}) }}" aria-expanded="false">Installation</a></li>
+                                    <li class=""><a  href="{{ path('qualificationTechnique', {'id': entity.id}) }}" aria-expanded="false">Qualification Technique</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-{% endblock %}
+<div style="margin-left:93% ;">            
+    <a href="{{ path('appel') }}" title="retour" style="font-size:25px" ><i class="fa fa-mail-reply"></i> </a>
+</div>
+
+
+
+
+  <br><br>
+    {{ form_start(edit_form) }}
+    <fieldset id="form-p-1" role="tabpanel" aria-labelledby="form-h-1" class="body current" aria-hidden="false" style="display: block;">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Responsable compte</label>
+                    {{ form_widget(edit_form.situationAppel.responsableCompte,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Nom du contact</label>
+                    {{ form_widget(edit_form.maitreOuvrage.nomContact,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Fax</label>
+                    {{ form_widget(edit_form.maitreOuvrage.fax,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Réf AO/Consultation</label>
+                    {{ form_widget(edit_form.situationAppel.numOrder,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Montant de la soumission</label>
+                    {{ form_widget(edit_form.situationAppel.montantSoumission,{'attr' : {'class' : 'form-control required' }})}}
+
+                </div>
+
+                <div class="form-group">
+                    <label>Date dépôt Prospectus</label>
+
+                    {{ form_widget(edit_form.dateLimit,{'attr' : {'class' : '' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Nombre de lots </label>
+                    {{ form_widget(edit_form.situationAppel.lot,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Soumission </label>
+                    {{ form_widget(edit_form.situationAppel.soumission,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Mode Adjudication  </label>
+                    {{ form_widget(edit_form.situationAppel.modeAdjudication,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Estimation du projet</label>
+                    {{ form_widget(edit_form.situationAppel.montantMarche,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Observations </label>
+                    {{ form_widget(edit_form.situationAppel.observation,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+            </div>
+
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Maître d’Ouvrage</label>
+                    {{ form_widget(edit_form.maitreOuvrage.nomEntreprise,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Tél </label>
+                    {{ form_widget(edit_form.maitreOuvrage.telephone,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    {{ form_widget(edit_form.maitreOuvrage.mail,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Date/heure soumission</label>
+                    {{ form_widget(edit_form.situationAppel.dateSoumission,{'attr' : {'class' : '' }})}}
+
+                </div>
+                <div class="form-group">
+                    <label>Objet </label>
+                    {{ form_widget( edit_form.objet,{'attr' : {'class' : 'form-control required' }})}}
+
+                </div>
+                <div class="form-group">
+                    <label>lieu dépôt Prospectus  </label>
+                    {{ form_widget(edit_form.lieuxDepot,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Date visite des lieux  </label>
+                    {{ form_widget(edit_form.situationAppel.dateVisiteLieux,{'attr' : {'class' : '' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Motifs </label>
+                    {{ form_widget(edit_form.situationAppel.motifs,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Mode de Passation  </label>
+                    {{ form_widget(edit_form.passation,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Attestation à fournir </label>
+                    {{ form_widget(edit_form.attestation,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+                <div class="form-group">
+                    <label>Lieu d ’ouverture des plis </label>
+                    {{ form_widget(edit_form.situationAppel.suiviPlis.lieuxOuverture,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+ </div>
+
+
+        </div>
+
+    </fieldset>
+
+    <fieldset id="form-p-1" role="tabpanel" aria-labelledby="form-h-1" class="body current" aria-hidden="false" style="display: block;">
+        <legend>Installation</legend>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Installation </label>
+                    {{ form_widget(edit_form.situationAppel.installation,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Site concernés </label>
+                    {{ form_widget(edit_form.situationAppel.siteConcernes,{'attr' : {'class' : 'form-control required' }})}}
+                </div>
+            </div>
+    </fieldset>
+           
+
+
+</div>
+
+
+<br><br><br>
+<table style="margin-left:25% ; ">
+    <tr>
+        <td>
+            <a href="{{ path('appel') }}"><button type="button" class="btn btn-primary"><<</button></a>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>
+            {{ form_row(edit_form.submit,{'attr' : {'class' : 'btn btn-primary' }})}}
+        </td>
+    </tr>
+
+
+</table>
+
+
+
+{{ form_end(edit_form) }}
+{#{% set etats = edit_form.situationAppel.etats %}
+
+{#{{ dump(edit_form.situationAppel.etats ) }}#}
+{#{{ form(edit_form) }}#}
+</div>
+</div>
+</div>
+
+
+
+<!-- Mainly scripts -->
+<script src="{{asset('bundles/js/jquery-2.1.1.js')}}"></script>
+<script src="{{asset('bundles/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('bundles/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+<script src="{{asset('bundles/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!--<script src="{{asset('bundles/js/plugins/jeditable/jquery.jeditable.js')}}"></script> -->
+
+<!-- Data Tables -->
+<script src="{{asset('bundles/js/plugins/dataTables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('bundles/js/plugins/dataTables/dataTables.bootstrap.js')}}"></script>
+<script src="{{asset('bundles/js/plugins/dataTables/dataTables.responsive.js')}}"></script>
+<script src="{{asset('bundles/js/plugins/dataTables/dataTables.tableTools.min.js')}}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{{asset('bundles/js/inspinia.js')}}"></script>
+<script src="{{asset('bundles/js/plugins/pace/pace.min.js')}}"></script>
+
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function() {
+        $('.dataTables-example').dataTable({
+            responsive: true,
+            "dom": 'T<"clear">lfrtip',
+            "tableTools": {
+                "sSwfPath": "{{asset('bundles/js/plugins/dataTables/swf/copy_csv_xls_pdf.swf')}}"
+            }
+        });
+
+        /* Init DataTables */
+        var oTable = $('#editable').dataTable();
+
+        /* Apply the jEditable handlers to the table */
+        oTable.$('td').editable( '../example_ajax.php', {
+            "callback": function( sValue, y ) {
+                var aPos = oTable.fnGetPosition( this );
+                oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+            },
+            "submitdata": function ( value, settings ) {
+                return {
+                    "row_id": this.parentNode.getAttribute('id'),
+                    "column": oTable.fnGetPosition( this )[2]
+                };
+            },
+
+            "width": "90%",
+            "height": "100%"
+        } );
+
+
+    });
+
+    function fnClickAddRow() {
+        $('#editable').dataTable().fnAddData( [
+            "Custom row",
+            "New row",
+            "New row",
+            "New row",
+            "New row" ] );
+
+    }
+</script>
+<style>
+    body.DTTT_Print {
+        background: #fff;
+
+    }
+    .DTTT_Print #page-wrapper {
+        margin: 0;
+        background:#fff;
+    }
+
+    button.DTTT_button, div.DTTT_button, a.DTTT_button {
+        border: 1px solid #e7eaec;
+        background: #fff;
+        color: #676a6c;
+        box-shadow: none;
+        padding: 6px 8px;
+    }
+    button.DTTT_button:hover, div.DTTT_button:hover, a.DTTT_button:hover {
+        border: 1px solid #d2d2d2;
+        background: #fff;
+        color: #676a6c;
+        box-shadow: none;
+        padding: 6px 8px;
+    }
+
+    .dataTables_filter label {
+        margin-right: 5px;
+
+    }
+</style>
+</body>
+
+</html>
+

@@ -46,3 +46,9 @@ appel_delete:
     path:     /{id}/delete
     defaults: { _controller: "medaSysAOBundle:appel:delete" }
     methods:  [POST, DELETE]
+
+
+appel_ficheProjet:
+    path:     /{id}/{reportName}/report
+    defaults: { _controller: "medaSysAOBundle:appel:ficheProjet" }
+    methods:  [POST, PUT,GET]

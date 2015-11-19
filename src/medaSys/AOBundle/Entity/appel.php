@@ -26,18 +26,18 @@ class appel{
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank
      */
-    protected $objet="test";
+    protected $objet;
     /**
      * @ORM\Column(type="text", nullable=true)
      *@Assert\NotBlank
      */
-    protected $description="test";
+    protected $description;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Regex("/^\w+/")
      *
      */
-    protected $type="dev";//dev ...
+    protected $type;//dev ...
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Regex(
@@ -46,12 +46,12 @@ class appel{
      *     message="Your name cannot contain a number")
      *
      */
-    protected $passation="lot";
+    protected $passation;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      *
      */
-    protected $attestation="test";
+    protected $attestation;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Regex("/\d+/") => options (pattern, match, message)
@@ -61,12 +61,12 @@ class appel{
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
-    protected $ville="rabat";
+    protected $ville;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
-    protected $typeMarche="privé";// privé|public
+    protected $typeMarche;// privé|public
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
@@ -77,7 +77,7 @@ class appel{
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
-    protected $lieuxDepot="rabat";
+    protected $lieuxDepot;
     /**
      * @ORM\ManyToOne(targetEntity="entreprise", inversedBy="appels",cascade={"persist"} )
      *  @ORM\JoinColumn(name="maitreOuvrage_id", referencedColumnName="id")

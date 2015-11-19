@@ -48,12 +48,9 @@
                 </div>
             </li>
             <li>
-                <a href="#"><span class="nav-label" style="font-size:14px; font-weight: bold; ">Accueil</span></a>
-            </li>
-            <li>
                 <a href="#"> <span class="nav-label" style="font-size:14px; font-weight: bold; ">Appels d'offres</span><span class="fa arrow" style="font-size:20px; font-weight: bold;"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{ path('appel') }}">Apeels offres</a></li>
+                    <li><a href="{{ path('appel') }}">Appels offres</a></li>
                     <li><a href="{{ path('entreprise') }}">Entreprises</a></li>
                     <li><a href="{{ path('caution') }}">Cautions</a></li>
                     <li><a href="{{ path('situationappel') }}">Situation AO</a></li>
@@ -201,14 +198,13 @@
     </div>
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Liste suivi douverture plis</h2>
+           <h2 style="font-family: times new roman, times, serif; font-weight: bold ; font-size: 24px;">Liste de suivi d'ouverture des plis</h2>
         </div>
     </div>
     <div class="ibox-content">
         <table class="table table-striped table-bordered table-hover " id="editable" >
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Dateouverture</th>
                 <th>Seance</th>
                 <th>Lieuxouverture</th>
@@ -218,33 +214,26 @@
             <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('suiviplis_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                     <td>{% if entity.dateOuverture %}{{ entity.dateOuverture|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ entity.seance }}</td>
                     <td>{{ entity.lieuxOuverture }}</td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('suiviplis_show', { 'id': entity.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('suiviplis_edit', { 'id': entity.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                         <ul>
+                    
+                    <li>
+                        <a href="{{ path('suiviplis_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                    </li>
+                    <li>
+                       <a href="{{ path('suiviplis_show', { 'id': entity.id }) }}"><i class="fa fa-eye"></i></a> 
+                    </li>
+                </ul>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
 
-        <ul>
-            <li>
-                <a href="{{ path('suiviplis_new') }}">
-                    Create a new entry
-                </a>
-            </li>
-        </ul>.
-
+       
 
     </div>
 </div>
