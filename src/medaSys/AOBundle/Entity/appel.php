@@ -29,7 +29,6 @@ class appel{
     protected $objet;
     /**
      * @ORM\Column(type="text", nullable=true)
-     *@Assert\NotBlank
      */
     protected $description;
     /**
@@ -59,12 +58,10 @@ class appel{
     protected $cp=1;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Assert\NotBlank
      */
     protected $ville;
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Assert\NotBlank
      */
     protected $typeMarche;// privé|public
     /**

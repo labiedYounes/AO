@@ -224,6 +224,9 @@
                     <li>
                        <a href="{{ path('marche_show', { 'id': entity.id }) }}"><i class="fa fa-eye"></i></a> 
                     </li>
+                    <li>
+                        <a href="{{ path('appel_ficheProjet', { 'id': entity.id,'reportName':'suiviMarche' }) }}"><span title="Fiche De projet" ><i class="fa fa-file-pdf-o"></span></i></a>
+                    </li>
                 </ul>
                 </td>
             </tr>
