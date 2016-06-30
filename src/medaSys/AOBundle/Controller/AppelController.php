@@ -183,7 +183,9 @@ class appelController extends Controller
         $form->add('installation', 'submit', array('label' => 'Installation'));
         $form->add('qualificationTechnique', 'submit', array('label' => 'Qualification Technique'));
         $form->add('soumissionnaires', 'submit', array('label' => 'Soumissionnaires'));
+
        */ $form->add('submit', 'submit', array('label' => 'Modifier'));
+
 
         return $form;
     }
